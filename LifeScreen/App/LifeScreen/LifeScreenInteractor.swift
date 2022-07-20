@@ -10,6 +10,9 @@ import Foundation
 /// Протокол управления бизнес-логикой в модуле LifeScreen
 protocol LifeScreenBusinessLogic {
     
+    /// Осуществить загрузку (из сети) и сохранить данные в кэш
+    ///  - Parameter completion: closure по выполнению (флаг успешности / ошибка)
+    func loadData(completion: @escaping (Result<Data, Error>) -> Void)
 }
 
 /// Слой бизнес-логики модуля LifeScreen
@@ -20,5 +23,7 @@ final class LifeScreenInteractor {
 
 // MARK: - LifeScreenBusinessLogic
 extension LifeScreenInteractor: LifeScreenBusinessLogic {
-    
+    func loadData(completion: @escaping (Result<Data, Error>) -> Void) {
+        <#code#>
+    }
 }

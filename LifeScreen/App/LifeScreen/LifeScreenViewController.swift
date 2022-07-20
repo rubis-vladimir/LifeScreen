@@ -7,8 +7,6 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
-
 /// Протокол управления View-слоем в модуле LifeScreen
 protocol LifeScreenViewable: AnyObject {
     
@@ -16,27 +14,56 @@ protocol LifeScreenViewable: AnyObject {
 
 class LifeScreenViewController: UICollectionViewController {
 
+    private var viewModels: [Any] = [] {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+    
     weak var presenter: LifeScreenPresentation?
+    private var layout = PinterestLayout()
+    var images: [SingleImageItem] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        generateData()
+        configureCollectionView()
         
-        collectionView.backgroundColor = .systemRed
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
     }
     
     
     init() {
-        super.init(collectionViewLayout: UICollectionViewFlowLayout())
+        super.init(collectionViewLayout: UICollectionViewLayout())
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func generateData() {
+        images = (1...200).map({ _ in SingleImageItem.generateDumyImage() })
+    }
+    
+
+    func configureCollectionView() {
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(PhotoItemCell.self, forCellWithReuseIdentifier: PhotoItemCell.reuseIdentifer)
+        collectionView.backgroundColor = .systemBackground
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
+        
+        // Set columns count
+        layout.columnsCount = 2
+        layout.delegate = self
+        layout.contentPadding = PinterestLayout.Padding(horizontal: 10, vertical: 10)
+        layout.cellsPadding = PinterestLayout.Padding(horizontal: 10, vertical: 10)
+
+        collectionView.setContentOffset(CGPoint.zero, animated: false)
+        collectionView.reloadData()
+    }
     /*
     // MARK: - Navigation
 
@@ -51,14 +78,13 @@ class LifeScreenViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 10
+        return viewModels.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-    
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoItemCell.reuseIdentifer, for: indexPath) as! PhotoItemCell
         
-    
+        cell.photoURL = images[indexPath.row].thumbnail?.url
         return cell
     }
     
@@ -95,16 +121,28 @@ class LifeScreenViewController: UICollectionViewController {
 
 }
 
-// MARK: UICollectionViewDelegateFlowLayout
-extension LifeScreenViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: 50, height: 50)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+//// MARK: UICollectionViewDelegateFlowLayout
+//extension LifeScreenViewController: UICollectionViewDelegateFlowLayout {
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        CGSize(width: 50, height: 50)
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+//        UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+//    }
+//}
+// MARK: - PinterestLayoutDelegate
+extension LifeScreenViewController: PinterestLayoutDelegate {
+    func cellSize(indexPath: IndexPath) -> CGSize {
+        // Calculate size based on the layout width
+        let image = images[indexPath.row]
+        guard let width = image.thumbnail?.width, let height = image.thumbnail?.height else { return .zero }
+        let cellWidth = layout.width
+        let size = CGSize(width: Int(cellWidth), height: Int((height/width) * cellWidth))
+        return size
     }
 }
+
 
 // MARK: - LifeScreenViewable
 extension LifeScreenViewController: LifeScreenViewable {

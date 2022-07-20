@@ -28,14 +28,11 @@ protocol LifeEventListRoutable {
 }
 
 /// Слой навигации модуля LifeEventList
-final class LifeEventListRouter: LifeEventListRoutable {
-
-    private let navigationController: UINavigationController
+final class LifeEventListRouter {
+    var navigationController: UINavigationController?
+}
     
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
-    }
-    
+extension LifeEventListRouter: LifeEventListRoutable {
 
     func route(to: Target) {
         switch to {
@@ -44,6 +41,11 @@ final class LifeEventListRouter: LifeEventListRoutable {
             
         case .detailInfo:
             print("Окно детальной информации")
+            guard let nc = navigationController else { return }
+            let vc = EventDetailsViewController()
+            EventDetailsAssembly(navigationController: nc).assembly(viewController: vc)
+            
+            nc.pushViewController(vc, animated: true)
             
         case .settings:
             print("Настройки")

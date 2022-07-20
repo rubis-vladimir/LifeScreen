@@ -24,12 +24,13 @@ extension LifeEventListAssembly: Assemblying {
         guard let vc = viewController as? LifeEventListViewController else { return }
         
         let interactor = LifeEventListInteractor()
-        let router = LifeEventListRouter(navigationController: navigationController)
+        let router = LifeEventListRouter()
         let presenter = LifeEventListPresenter(view: vc,
                                                interactor: interactor,
                                                router: router)
         
         vc.presenter = presenter
         interactor.presenter = presenter
+        router.navigationController = navigationController
     }
 }

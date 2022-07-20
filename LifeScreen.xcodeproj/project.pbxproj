@@ -30,6 +30,13 @@
 		7DA3EEA228885FDC00EE5D28 /* EventDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EEA128885FDC00EE5D28 /* EventDetailsPresenter.swift */; };
 		7DA3EEA428885FE700EE5D28 /* EventDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EEA328885FE700EE5D28 /* EventDetailsInteractor.swift */; };
 		7DA3EEA628885FF300EE5D28 /* EventDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EEA528885FF300EE5D28 /* EventDetailsRouter.swift */; };
+		7DA3EEAA2888768300EE5D28 /* SingleImageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EEA92888768300EE5D28 /* SingleImageItem.swift */; };
+		7DA3EEAC288876B100EE5D28 /* PhotoItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EEAB288876B100EE5D28 /* PhotoItemCell.swift */; };
+		7DA3EEAF288876E800EE5D28 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EEAE288876E800EE5D28 /* NetworkManager.swift */; };
+		7DA3EEB128887FA700EE5D28 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EEB028887FA700EE5D28 /* Event.swift */; };
+		7DA3EEB42888850900EE5D28 /* ImageDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EEB32888850900EE5D28 /* ImageDownloadManager.swift */; };
+		7DA3EEB6288891E200EE5D28 /* EventCollageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EEB5288891E200EE5D28 /* EventCollageCell.swift */; };
+		7DA3EEB92888945800EE5D28 /* EventCollageCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EEB82888945800EE5D28 /* EventCollageCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +65,13 @@
 		7DA3EEA128885FDC00EE5D28 /* EventDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsPresenter.swift; sourceTree = "<group>"; };
 		7DA3EEA328885FE700EE5D28 /* EventDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsInteractor.swift; sourceTree = "<group>"; };
 		7DA3EEA528885FF300EE5D28 /* EventDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsRouter.swift; sourceTree = "<group>"; };
+		7DA3EEA92888768300EE5D28 /* SingleImageItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleImageItem.swift; sourceTree = "<group>"; };
+		7DA3EEAB288876B100EE5D28 /* PhotoItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoItemCell.swift; sourceTree = "<group>"; };
+		7DA3EEAE288876E800EE5D28 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		7DA3EEB028887FA700EE5D28 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		7DA3EEB32888850900EE5D28 /* ImageDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadManager.swift; sourceTree = "<group>"; };
+		7DA3EEB5288891E200EE5D28 /* EventCollageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollageCell.swift; sourceTree = "<group>"; };
+		7DA3EEB82888945800EE5D28 /* EventCollageCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollageCellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +149,8 @@
 				7DA3EE8C2888258500EE5D28 /* LifeScreenPresenter.swift */,
 				7DA3EE8E2888281A00EE5D28 /* LifeScreenInteractor.swift */,
 				7DA3EE902888292C00EE5D28 /* LifeScreenRouter.swift */,
+				7DA3EEB72888942F00EE5D28 /* ViewModels */,
+				7DA3EEA82888761000EE5D28 /*  Temporary Elements */,
 				7DA3EE9728882BEC00EE5D28 /* Entity */,
 				7DA3EE9328882B1A00EE5D28 /* Layout */,
 				7DA3EE9228882B0D00EE5D28 /* Cells */,
@@ -172,6 +188,7 @@
 		7DA3EE7D28872A8700EE5D28 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				7DA3EEAD288876D300EE5D28 /* Workers */,
 				7DA3EE7E28872A9300EE5D28 /* Protocols */,
 			);
 			path = Common;
@@ -196,6 +213,7 @@
 		7DA3EE9228882B0D00EE5D28 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				7DA3EEB5288891E200EE5D28 /* EventCollageCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -218,6 +236,7 @@
 		7DA3EE9728882BEC00EE5D28 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				7DA3EEB028887FA700EE5D28 /* Event.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -269,6 +288,32 @@
 			children = (
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		7DA3EEA82888761000EE5D28 /*  Temporary Elements */ = {
+			isa = PBXGroup;
+			children = (
+				7DA3EEA92888768300EE5D28 /* SingleImageItem.swift */,
+				7DA3EEAB288876B100EE5D28 /* PhotoItemCell.swift */,
+			);
+			path = " Temporary Elements";
+			sourceTree = "<group>";
+		};
+		7DA3EEAD288876D300EE5D28 /* Workers */ = {
+			isa = PBXGroup;
+			children = (
+				7DA3EEAE288876E800EE5D28 /* NetworkManager.swift */,
+				7DA3EEB32888850900EE5D28 /* ImageDownloadManager.swift */,
+			);
+			path = Workers;
+			sourceTree = "<group>";
+		};
+		7DA3EEB72888942F00EE5D28 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				7DA3EEB82888945800EE5D28 /* EventCollageCellViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -341,6 +386,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DA3EEAC288876B100EE5D28 /* PhotoItemCell.swift in Sources */,
 				7DA3EE7228871A0600EE5D28 /* LifeScreenViewController.swift in Sources */,
 				7DA3EE5C288717AF00EE5D28 /* AppDelegate.swift in Sources */,
 				7DA3EE7C28872A8400EE5D28 /* LifeEventListAssembly.swift in Sources */,
@@ -350,8 +396,11 @@
 				7DA3EEA028885FCB00EE5D28 /* EventDetailsViewController.swift in Sources */,
 				7DA3EE7428871B3B00EE5D28 /* MainTabbarController.swift in Sources */,
 				7DA3EE8228872CE800EE5D28 /* LifeEventListPresenter.swift in Sources */,
+				7DA3EEB42888850900EE5D28 /* ImageDownloadManager.swift in Sources */,
+				7DA3EEB92888945800EE5D28 /* EventCollageCellViewModel.swift in Sources */,
 				7DA3EE8D2888258500EE5D28 /* LifeScreenPresenter.swift in Sources */,
 				7DA3EEA428885FE700EE5D28 /* EventDetailsInteractor.swift in Sources */,
+				7DA3EEAF288876E800EE5D28 /* NetworkManager.swift in Sources */,
 				7DA3EE8B2888240F00EE5D28 /* LifeScreenAssembly.swift in Sources */,
 				7DA3EE5E288717AF00EE5D28 /* SceneDelegate.swift in Sources */,
 				7DA3EE8F2888281A00EE5D28 /* LifeScreenInteractor.swift in Sources */,
@@ -359,9 +408,12 @@
 				7DA3EE9528882B4600EE5D28 /* PinterestLayout.swift in Sources */,
 				7DA3EEA628885FF300EE5D28 /* EventDetailsRouter.swift in Sources */,
 				7DA3EE8428872E7500EE5D28 /* LifeEventListInteractor.swift in Sources */,
+				7DA3EEB6288891E200EE5D28 /* EventCollageCell.swift in Sources */,
+				7DA3EEAA2888768300EE5D28 /* SingleImageItem.swift in Sources */,
 				7DA3EE9E28885F1F00EE5D28 /* EventDetailsAssembly.swift in Sources */,
 				7DA3EE70288719D400EE5D28 /* LifeEventListViewController.swift in Sources */,
 				7DA3EE8628872EC200EE5D28 /* LifeEventListRouter.swift in Sources */,
+				7DA3EEB128887FA700EE5D28 /* Event.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
