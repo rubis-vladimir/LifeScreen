@@ -9,8 +9,15 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
+/// Протокол управления View-слоем в модуле LifeScreen
+protocol LifeScreenViewable: AnyObject {
+    
+}
+
 class LifeScreenViewController: UICollectionViewController {
 
+    weak var presenter: LifeScreenPresentation?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -97,4 +104,9 @@ extension LifeScreenViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
     }
+}
+
+// MARK: - LifeScreenViewable
+extension LifeScreenViewController: LifeScreenViewable {
+    
 }

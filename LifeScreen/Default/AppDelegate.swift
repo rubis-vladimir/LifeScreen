@@ -20,9 +20,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         /// Создаем основной ТабБар
         let mainTabbarController = UITabBarController()
         
-        /// Помещаем в ТабБар 2 VC обернутых в NavigationVC
-        let navigationVC1 = UINavigationController(rootViewController: LifeEventListViewController())
-        let navigationVC2 = UINavigationController(rootViewController: LifeScreenViewController())
+        /// Создаем вкладки (экраны) ТабБара и конфигурируем их
+        let lifeEventListViewController = LifeEventListViewController()
+        let lifeScreenViewController = LifeScreenViewController()
+    
+        let navigationVC1 = UINavigationController(rootViewController: lifeEventListViewController)
+        let navigationVC2 = UINavigationController(rootViewController: lifeScreenViewController)
+        
+        LifeEventListAssembly(navigationController: navigationVC1).assembly(viewController: lifeEventListViewController)
     
         mainTabbarController.addChild(navigationVC1)
         mainTabbarController.addChild(navigationVC2)

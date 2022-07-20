@@ -1,43 +1,53 @@
 //
-//  LifeEventListViewController.swift
+//  EventDetailsViewController.swift
 //  LifeScreen
 //
-//  Created by Владимир Рубис on 19.07.2022.
+//  Created by Владимир Рубис on 20.07.2022.
 //
 
 import UIKit
 
-/// Протокол управления View-слоем в модуле LifeEventList
-protocol LifeEventListViewable: AnyObject {
+
+/// Протокол управления View-слоем в модуле EventDetails
+protocol EventDetailsViewable: AnyObject {
     
 }
 
-/// Контроллер представления жизненных событий
-class LifeEventListViewController: UITableViewController {
+class EventDetailsViewController: UITableViewController {
 
-    weak var presenter: LifeEventListPresentation?
+    weak var presenter: EventDetailsPresentation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .systemBlue
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
-    
-    
-    // MARK: - UITableViewDataSource
+    // MARK: - Table view data source
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 0
+    }
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        // #warning Incomplete implementation, return the number of rows
+        return 0
     }
 
+    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
-        cell.backgroundColor = .brown
+        // Configure the cell...
 
         return cell
     }
+    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -86,7 +96,8 @@ class LifeEventListViewController: UITableViewController {
 
 }
 
-// MARK: - LifeEventListViewable
-extension LifeEventListViewController: LifeEventListViewable {
+
+// MARK: -  EventDetailsViewable
+extension EventDetailsViewController: EventDetailsViewable {
     
 }
