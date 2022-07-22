@@ -18,22 +18,16 @@ protocol ImageDownloadManagement {
     ///  - Parameters:
     ///     - url: URL-адрес изображения
     ///     - completion: closure по выполнению (флаг успешности / ошибка)
-    static func loadImage(from url: URL,
+    func loadImage(from url: URL,
                    completion: @escaping (Result<Data, Error>) -> Void)
 }
 
 /// Сервис загрузки изображений
-final class ImageDownloadManager {
-    
-    static let shared = ImageDownloadManager()
-    
-    init() {}
-    
-}
+final class ImageDownloadManager {}
 
 // MARK: - ImageDownloadManagement
 extension ImageDownloadManager: ImageDownloadManagement {
-    static func loadImage(from url: URL,
+    func loadImage(from url: URL,
                    completion: @escaping (Result<Data, Error>) -> Void) {
         print("Download Start")
         getData(from: url) { data, response, optionalError in
@@ -43,6 +37,7 @@ extension ImageDownloadManager: ImageDownloadManagement {
                     return
                 }
                 completion(.failure(error))
+                return
             }
             
             print(response?.suggestedFilename ?? url.lastPathComponent)
@@ -51,7 +46,7 @@ extension ImageDownloadManager: ImageDownloadManagement {
         }
     }
     
-    static private func getData(from url: URL,
+    private func getData(from url: URL,
                          completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
         URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
     }

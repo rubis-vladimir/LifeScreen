@@ -15,11 +15,8 @@ protocol LifeScreenRoutable {
 /// Слой навигации модуля LifeScreen
 final class LifeScreenRouter {
     
-    private let navigateionController: UINavigationController
+    var navigateionController: UINavigationController?
     
-    init(navigateionController: UINavigationController) {
-        self.navigateionController = navigateionController
-    }
 }
 
 // MARK: - LifeScreenRoutable

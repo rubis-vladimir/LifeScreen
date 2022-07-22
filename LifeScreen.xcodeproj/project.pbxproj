@@ -37,6 +37,7 @@
 		7DA3EEB42888850900EE5D28 /* ImageDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EEB32888850900EE5D28 /* ImageDownloadManager.swift */; };
 		7DA3EEB6288891E200EE5D28 /* EventCollageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EEB5288891E200EE5D28 /* EventCollageCell.swift */; };
 		7DA3EEB92888945800EE5D28 /* EventCollageCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EEB82888945800EE5D28 /* EventCollageCellViewModel.swift */; };
+		7DA3EEBC288993CA00EE5D28 /* LifeScreenPresentetionLanWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EEBB288993CA00EE5D28 /* LifeScreenPresentetionLanWorker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 		7DA3EEB32888850900EE5D28 /* ImageDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadManager.swift; sourceTree = "<group>"; };
 		7DA3EEB5288891E200EE5D28 /* EventCollageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollageCell.swift; sourceTree = "<group>"; };
 		7DA3EEB82888945800EE5D28 /* EventCollageCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollageCellViewModel.swift; sourceTree = "<group>"; };
+		7DA3EEBB288993CA00EE5D28 /* LifeScreenPresentetionLanWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeScreenPresentetionLanWorker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 		7DA3EE7728871FDF00EE5D28 /* LifeScreen */ = {
 			isa = PBXGroup;
 			children = (
+				7DA3EEBA288993AE00EE5D28 /* Workers */,
 				7DA3EE8A2888240F00EE5D28 /* LifeScreenAssembly.swift */,
 				7DA3EE7128871A0600EE5D28 /* LifeScreenViewController.swift */,
 				7DA3EE8C2888258500EE5D28 /* LifeScreenPresenter.swift */,
@@ -316,6 +319,14 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		7DA3EEBA288993AE00EE5D28 /* Workers */ = {
+			isa = PBXGroup;
+			children = (
+				7DA3EEBB288993CA00EE5D28 /* LifeScreenPresentetionLanWorker.swift */,
+			);
+			path = Workers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -391,6 +402,7 @@
 				7DA3EE5C288717AF00EE5D28 /* AppDelegate.swift in Sources */,
 				7DA3EE7C28872A8400EE5D28 /* LifeEventListAssembly.swift in Sources */,
 				7DA3EE912888292C00EE5D28 /* LifeScreenRouter.swift in Sources */,
+				7DA3EEBC288993CA00EE5D28 /* LifeScreenPresentetionLanWorker.swift in Sources */,
 				7DA3EE89288743CA00EE5D28 /* LifeEventCell.swift in Sources */,
 				7DA3EE8028872AA200EE5D28 /* Assembly.swift in Sources */,
 				7DA3EEA028885FCB00EE5D28 /* EventDetailsViewController.swift in Sources */,

@@ -28,9 +28,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navigationVC2 = UINavigationController(rootViewController: lifeScreenViewController)
         
         LifeEventListAssembly(navigationController: navigationVC1).assembly(viewController: lifeEventListViewController)
+        LifeScreenAssembly(navigationController: navigationVC2).assembly(viewController: lifeScreenViewController)
     
         mainTabbarController.addChild(navigationVC1)
         mainTabbarController.addChild(navigationVC2)
+        
         
         window.rootViewController = mainTabbarController
         window.makeKeyAndVisible()

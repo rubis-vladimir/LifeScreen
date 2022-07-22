@@ -23,12 +23,13 @@ extension LifeScreenAssembly: Assemblying {
         guard let vc = viewController as? LifeScreenViewController else { return }
         
         let interactor = LifeScreenInteractor()
-        let router = LifeScreenRouter(navigateionController: navigationController)
+        let router = LifeScreenRouter()
         let presenter = LifeScreenPresenter(viewController: vc,
                                             interactor: interactor,
                                             router: router)
         
         vc.presenter = presenter
-        
+        interactor.presenter = presenter
+        router.navigateionController = navigationController
     }
 }

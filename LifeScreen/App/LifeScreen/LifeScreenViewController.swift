@@ -14,24 +14,26 @@ protocol LifeScreenViewable: AnyObject {
 
 class LifeScreenViewController: UICollectionViewController {
 
-    private var viewModels: [Any] = [] {
+    private var viewModels: [EventCollageCellViewModelProtocol] = [] {
         didSet {
             collectionView.reloadData()
         }
     }
     
-    weak var presenter: LifeScreenPresentation?
+    var presenter: LifeScreenPresentation?
     private var layout = PinterestLayout()
     var images: [SingleImageItem] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        generateData()
         configureCollectionView()
+        getViewModels()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-
-        // Do any additional setup after loading the view.
     }
     
     
@@ -43,14 +45,10 @@ class LifeScreenViewController: UICollectionViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func generateData() {
-        images = (1...200).map({ _ in SingleImageItem.generateDumyImage() })
-    }
-    
-
     func configureCollectionView() {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(PhotoItemCell.self, forCellWithReuseIdentifier: PhotoItemCell.reuseIdentifer)
+       
+        collectionView.register(EventCollageCell.self, forCellWithReuseIdentifier: EventCollageCell.reuseId)
         collectionView.backgroundColor = .systemBackground
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
@@ -63,16 +61,24 @@ class LifeScreenViewController: UICollectionViewController {
 
         collectionView.setContentOffset(CGPoint.zero, animated: false)
         collectionView.reloadData()
+        print("Настройка")
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+    
+    func getViewModels() {
+        
+        presenter?.getViewModels(competion: { [weak self] result in
+            switch result {
+            case .success(let viewModels):
+                self?.viewModels = viewModels
+                print("получили viewModels")
+            case .failure(let error):
+                // Обрабатываем View-слоем полученную ошибку
+                print(error.localizedDescription)
+            }
+        })
+        
+        print("Обновили ViewModels")
     }
-    */
 
     // MARK: UICollectionViewDataSource
 
@@ -82,43 +88,13 @@ class LifeScreenViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoItemCell.reuseIdentifer, for: indexPath) as! PhotoItemCell
+        let viewModel = viewModels[indexPath.row]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EventCollageCell.reuseId, for: indexPath) as! EventCollageCell
         
-        cell.photoURL = images[indexPath.row].thumbnail?.url
+//        cell.photoURL = images[indexPath.row].thumbnail?.url
+        cell.configure(viewModel)
         return cell
     }
-    
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
-
 }
 
 //// MARK: UICollectionViewDelegateFlowLayout
@@ -135,8 +111,11 @@ class LifeScreenViewController: UICollectionViewController {
 extension LifeScreenViewController: PinterestLayoutDelegate {
     func cellSize(indexPath: IndexPath) -> CGSize {
         // Calculate size based on the layout width
-        let image = images[indexPath.row]
-        guard let width = image.thumbnail?.width, let height = image.thumbnail?.height else { return .zero }
+        let viewModel = viewModels[indexPath.row]
+        print(indexPath.row)
+        print(viewModel.url)
+        let width = viewModel.width
+        let height = viewModel.height
         let cellWidth = layout.width
         let size = CGSize(width: Int(cellWidth), height: Int((height/width) * cellWidth))
         return size
