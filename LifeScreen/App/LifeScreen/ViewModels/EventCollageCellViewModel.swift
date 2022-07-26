@@ -9,7 +9,6 @@ import Foundation
 
 protocol EventCollageCellViewModelProtocol {
     var url: URL? { get }
-    var imageData: Data? { get }
     var width: Double { get }
     var height: Double { get }
     
@@ -21,7 +20,6 @@ protocol EventCollageCellViewModelProtocol {
 struct EventCollageCellViewModel: EventCollageCellViewModelProtocol {
     
     var url: URL?
-    var imageData: Data?
     var width: Double
     var height: Double
     
@@ -34,3 +32,4 @@ struct EventCollageCellViewModel: EventCollageCellViewModelProtocol {
         self.height = height
     } 
 }
+

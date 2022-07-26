@@ -23,26 +23,37 @@ protocol ImageDownloadManagement {
 }
 
 /// Сервис загрузки изображений
-final class ImageDownloadManager {}
+final class ImageDownloadManager {
+    
+    var imageCache = NSCache<NSString, NSData>()
+}
 
 // MARK: - ImageDownloadManagement
 extension ImageDownloadManager: ImageDownloadManagement {
     func loadImage(from url: URL,
                    completion: @escaping (Result<Data, Error>) -> Void) {
-        print("Download Start")
-        getData(from: url) { data, response, optionalError in
-            guard let data = data else {
-                guard let error = optionalError else {
-                    completion(.failure(ImageLoadingErrors.failureWhenDownloading))
+        
+        if let cachedImage = imageCache.object(forKey: url.absoluteString as NSString) {
+            print("Loading from cache")
+            completion(.success(cachedImage as Data))
+        } else {
+//            print("Download Start")
+            getData(from: url) { data, response, optionalError in
+                guard let data = data else {
+                    guard let error = optionalError else {
+                        completion(.failure(ImageLoadingErrors.failureWhenDownloading))
+                        return
+                    }
+                    completion(.failure(error))
                     return
                 }
-                completion(.failure(error))
-                return
+                
+//                print(response?.suggestedFilename ?? url.lastPathComponent)
+//                print("Download Finished")
+                
+                self.imageCache.setObject(data as NSData, forKey: url.absoluteString as NSString)
+                completion(.success(data))
             }
-            
-            print(response?.suggestedFilename ?? url.lastPathComponent)
-            print("Download Finished")
-            completion(.success(data))
         }
     }
     

@@ -16,6 +16,8 @@ class LifeScreenViewController: UICollectionViewController {
 
     private var viewModels: [EventCollageCellViewModelProtocol] = [] {
         didSet {
+            print(viewModels[0])
+            print("Обновили CollectionView")
             collectionView.reloadData()
         }
     }
@@ -30,12 +32,6 @@ class LifeScreenViewController: UICollectionViewController {
         configureCollectionView()
         getViewModels()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-    }
-    
     
     init() {
         super.init(collectionViewLayout: UICollectionViewLayout())
@@ -112,8 +108,6 @@ extension LifeScreenViewController: PinterestLayoutDelegate {
     func cellSize(indexPath: IndexPath) -> CGSize {
         // Calculate size based on the layout width
         let viewModel = viewModels[indexPath.row]
-        print(indexPath.row)
-        print(viewModel.url)
         let width = viewModel.width
         let height = viewModel.height
         let cellWidth = layout.width

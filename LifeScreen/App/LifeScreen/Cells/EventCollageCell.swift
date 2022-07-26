@@ -32,28 +32,30 @@ class EventCollageCell: UICollectionViewCell {
         self.viewModel = viewModel
         self.imageDownloadManager = imageDownloadManager
         
-//        if let data = viewModel.imageData {
-//            if let image = UIImage(data: data) {
-//                DispatchQueue.main.async {
-//                    self.collageImageView.image = image
-//                    print("Картинка загружена")
-//                }
-//            }
-//        }
+        //        if let data = viewModel.imageData {
+        //            if let image = UIImage(data: data) {
+        //                DispatchQueue.main.async {
+        //                    self.collageImageView.image = image
+        //                    print("Картинка загружена")
+        //                }
+        //            }
+        //        }
         
-                if let url = viewModel.url {
-                    imageDownloadManager.loadImage(from: url) { [weak self] result in
-                        if let data = try? result.get() {
-                            if let image = UIImage(data: data) {
-        
-                                DispatchQueue.main.async {
-                                    self?.collageImageView.image = image
-                                    print("Картинка загружена")
-                                }
-                            }
+        if let url = viewModel.url {
+            imageDownloadManager.loadImage(from: url) { [weak self] result in
+                if let data = try? result.get() {
+                    
+                    if let image = UIImage(data: data) {
+                        
+                        DispatchQueue.main.async {
+                            self?.collageImageView.image = image
+//                            print("Картинка загружена")
                         }
                     }
                 }
+            }
+        }
+        
         contentContainer.layer.cornerRadius = 5
         contentContainer.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(contentContainer)
