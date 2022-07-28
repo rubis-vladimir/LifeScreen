@@ -21,8 +21,8 @@ struct Event: Codable {
     var thumbnail: Image?
 
     static func generateDumyImage() -> Event {
-        let randomImageH = Int.random(in: 300...2000)
-        let randomImageW = Int.random(in: 300...2000)
+        let randomImageH = Int.random(in: 1500...2800)
+        let randomImageW = Int.random(in: 1500...2800)
 
         let urlString = "https://source.unsplash.com/random/\(randomImageH)x\(randomImageW)?sig=\(Int.random(in: 0...5000))"
         

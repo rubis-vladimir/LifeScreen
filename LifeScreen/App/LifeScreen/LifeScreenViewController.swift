@@ -24,7 +24,6 @@ class LifeScreenViewController: UICollectionViewController {
     
     var presenter: LifeScreenPresentation?
     private var layout = PinterestLayout()
-    var images: [SingleImageItem] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +43,7 @@ class LifeScreenViewController: UICollectionViewController {
     func configureCollectionView() {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
        
-        collectionView.register(EventCollageCell.self, forCellWithReuseIdentifier: EventCollageCell.reuseId)
+        collectionView.register(EventCollageCell2.self, forCellWithReuseIdentifier: EventCollageCell2.reuseId)
         collectionView.backgroundColor = .systemBackground
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
@@ -85,7 +84,7 @@ class LifeScreenViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let viewModel = viewModels[indexPath.row]
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EventCollageCell.reuseId, for: indexPath) as! EventCollageCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EventCollageCell2.reuseId, for: indexPath) as! EventCollageCell2
         
 //        cell.photoURL = images[indexPath.row].thumbnail?.url
         cell.configure(viewModel)
