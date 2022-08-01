@@ -43,15 +43,6 @@ class EventCollageCell2: UICollectionViewCell {
             contentContainer.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
         
-        //        if let data = viewModel.imageData {
-        //            if let image = UIImage(data: data) {
-        //                DispatchQueue.main.async {
-        //                    self.collageImageView.image = image
-        //                    print("Картинка загружена")
-        //                }
-        //            }
-        //        }
-        
         // Временно, так как при пролистывании изменяет уже загруженный Коллаж
         let variant = CollageLayout.allCases.randomElement() ?? .clOnePhoto
         
@@ -75,15 +66,5 @@ class EventCollageCell2: UICollectionViewCell {
                 }
             }
         }
-        
-//        contentContainer.imageView1.contentMode = .scaleAspectFill
-//        contentContainer.imageView2.contentMode = .scaleAspectFill
-//        contentContainer.imageView3.contentMode = .scaleAspectFill
-        
-        
-//        contentContainer.layer.cornerRadius = 5
-
-        
-        
     }
 }
