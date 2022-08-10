@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 /// Протокол управления View-слоем в модуле LifeEventList
 protocol LifeEventListViewable: AnyObject {
@@ -17,14 +18,47 @@ class LifeEventListViewController: UITableViewController {
 
     weak var presenter: LifeEventListPresentation?
     
+    let localeStorageManager: LocaleStorageManagement = LocaleStorageManager()
+    let urls: [String] = ["sdfhjksdhfk.ru", "jsdfknavfdv.com", "sjkdfkjsnfj.ya"]
+    
+    let eventsData: [String: String] = ["Новый год 2022": "Было очень весело", "Выезд с палатками": "Покутили", "Спортакиада": "Снова.. первые!!"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .systemBlue
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
+        
+        let user = UserModel(name: "Петр")
+        user.email = "petyaTop@mail.ru"
+        user._id = ObjectId("507f191e810c19729de860ea")
+
+        eventsData.forEach {
+            let event = EventModel(title: $0.key, specification: $0.value, date: Date())
+            urls.forEach {
+                let image = Image(urlString: $0)
+                event.images.append(image)
+            }
+            user.events.append(event)
+        }
+        
+//        localeStorageManager.saveObject(user)
+        print("Пользователь был сохранен")
+        
+        
+        
     }
 
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let key = ObjectId("507f191e810c19729de860ea")
+        
+        guard let userModel = localeStorageManager.fetchUser(key) else {
+            print("Модель не получена")
+            return }
+        print(userModel)
+    }
     
     // MARK: - UITableViewDataSource
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -94,3 +128,4 @@ class LifeEventListViewController: UITableViewController {
 extension LifeEventListViewController: LifeEventListViewable {
     
 }
+
