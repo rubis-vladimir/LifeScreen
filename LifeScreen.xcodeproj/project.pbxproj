@@ -45,6 +45,8 @@
 		7DC4D3AE28A42C7B009D378B /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7DC4D3AD28A42C7B009D378B /* RealmSwift */; };
 		7DC4D3B028A4305A009D378B /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4D3AF28A4305A009D378B /* UserModel.swift */; };
 		7DC4D3B228A431B5009D378B /* LocaleStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4D3B128A431B5009D378B /* LocaleStorageManager.swift */; };
+		7DC4D3B528A4F026009D378B /* FileManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4D3B428A4F026009D378B /* FileManagerService.swift */; };
+		7DC4D3B728A4F2D4009D378B /* DateConvertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4D3B628A4F2D4009D378B /* DateConvertService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +88,8 @@
 		7DA3EEBB288993CA00EE5D28 /* LifeScreenPresentetionLanWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeScreenPresentetionLanWorker.swift; sourceTree = "<group>"; };
 		7DC4D3AF28A4305A009D378B /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		7DC4D3B128A431B5009D378B /* LocaleStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocaleStorageManager.swift; sourceTree = "<group>"; };
+		7DC4D3B428A4F026009D378B /* FileManagerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerService.swift; sourceTree = "<group>"; };
+		7DC4D3B628A4F2D4009D378B /* DateConvertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateConvertService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -342,6 +346,8 @@
 				7DA3EEAE288876E800EE5D28 /* NetworkManager.swift */,
 				7DA3EEB32888850900EE5D28 /* ImageDownloadManager.swift */,
 				7DC4D3B128A431B5009D378B /* LocaleStorageManager.swift */,
+				7DC4D3B628A4F2D4009D378B /* DateConvertService.swift */,
+				7DC4D3B428A4F026009D378B /* FileManagerService.swift */,
 			);
 			path = Workers;
 			sourceTree = "<group>";
@@ -444,6 +450,7 @@
 				7DA3EE7C28872A8400EE5D28 /* LifeEventListAssembly.swift in Sources */,
 				7DA3EE912888292C00EE5D28 /* LifeScreenRouter.swift in Sources */,
 				7DA3EEBC288993CA00EE5D28 /* LifeScreenPresentetionLanWorker.swift in Sources */,
+				7DC4D3B528A4F026009D378B /* FileManagerService.swift in Sources */,
 				7DA3EE89288743CA00EE5D28 /* LifeEventCell.swift in Sources */,
 				7DA3EE8028872AA200EE5D28 /* Assembly.swift in Sources */,
 				7DC4D3B228A431B5009D378B /* LocaleStorageManager.swift in Sources */,
@@ -457,6 +464,7 @@
 				7DA3EEB92888945800EE5D28 /* EventCollageCellViewModel.swift in Sources */,
 				7DA3EE8D2888258500EE5D28 /* LifeScreenPresenter.swift in Sources */,
 				7DA3EEA428885FE700EE5D28 /* EventDetailsInteractor.swift in Sources */,
+				7DC4D3B728A4F2D4009D378B /* DateConvertService.swift in Sources */,
 				7DA3EEAF288876E800EE5D28 /* NetworkManager.swift in Sources */,
 				7DA3EE8B2888240F00EE5D28 /* LifeScreenAssembly.swift in Sources */,
 				7DA3EE5E288717AF00EE5D28 /* SceneDelegate.swift in Sources */,
