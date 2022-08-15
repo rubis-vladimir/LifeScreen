@@ -24,7 +24,7 @@ struct Event: Codable {
         let randomImageH = Int.random(in: 1500...2800)
         let randomImageW = Int.random(in: 1500...2800)
 
-        let urlString = "https://source.unsplash.com/random/\(randomImageH)x\(randomImageW)?sig=\(Int.random(in: 0...5000))"
+        let urlString = "https://source.unsplash.com/random/\(randomImageH)x\(randomImageW)?sig=\(Int.random(in: 0...1000))"
         
         let mockedDummy = Event(
             titleInfo: "Dummy",

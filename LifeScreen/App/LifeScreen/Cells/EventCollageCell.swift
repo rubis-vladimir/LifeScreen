@@ -12,7 +12,8 @@ class EventCollageCell: UICollectionViewCell {
     static let reuseId = "EventCollageCell"
     
     private var viewModel: EventCollageCellViewModelProtocol?
-    private var imageDownloadManager: ImageDownloadManagement?
+    private let imageDownloadManager: ImageDownloadManagement = ImageDownloadManager()
+    private let fileManagerService: FileManagerProtocol = FileManagerService()
     
     private let collageImageView = UIImageView()
     private let contentContainer = UIView()
@@ -27,10 +28,8 @@ class EventCollageCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(_ viewModel: EventCollageCellViewModelProtocol,
-                   imageDownloadManager: ImageDownloadManagement = ImageDownloadManager()) {
+    func configure(_ viewModel: EventCollageCellViewModelProtocol) {
         self.viewModel = viewModel
-        self.imageDownloadManager = imageDownloadManager
         
         //        if let data = viewModel.imageData {
         //            if let image = UIImage(data: data) {
@@ -42,15 +41,31 @@ class EventCollageCell: UICollectionViewCell {
         //        }
         
         if let url = viewModel.url {
-            imageDownloadManager.loadImage(from: url) { [weak self] result in
-                if let data = try? result.get() {
-                    
-                    if let image = UIImage(data: data) {
+            
+            let filePath = fileManagerService.read(from: "2022", and: "Event", file: url.absoluteString)
+            
+            if let filePath = filePath {
+                guard let image = UIImage(contentsOfFile: filePath) else { return }
+                
+                DispatchQueue.main.async {
+                    self.collageImageView.image = image
+                    print("Картинка загружена локально")
+                }
+            } else {
+                imageDownloadManager.loadImage(from: url) { [weak self] result in
+                    if let data = try? result.get() {
                         
-                        DispatchQueue.main.async {
-                            self?.collageImageView.image = image
-//                            print("Картинка загружена")
+                        if let image = UIImage(data: data) {
+                            
+                            DispatchQueue.main.async {
+                                self?.collageImageView.image = image
+                                print("Картинка загружена из сети")
+                            }
+                            
+                            
                         }
+                        
+                        self?.fileManagerService.write(data, to: "2022", and: "Event", file: url.absoluteString)
                     }
                 }
             }

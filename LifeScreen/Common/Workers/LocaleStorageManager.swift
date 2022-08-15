@@ -32,10 +32,6 @@ protocol LocaleStorageManagement {
     func deleteObject<T: Object>(_ object: T)
 }
 
-protocol FileManagement {
-    
-}
-
 /// Сервис работы с локальным хранилищем
 final class LocaleStorageManager {
     
@@ -97,17 +93,5 @@ extension LocaleStorageManager: LocaleStorageManagement {
         } catch let error {
             print("Failed to delete", error)
         }
-    }
-    
-}
-
-// MARK: - FileManagement
-extension LocaleStorageManager: FileManagement {
-    func test() {
-        guard let url = manager.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
-        
-//        let newFolderUrl = url.appendingPathComponent("users")
-//        
-//        manager.createDirectory(at: <#T##URL#>, withIntermediateDirectories: true, attributes: [:])
     }
 }

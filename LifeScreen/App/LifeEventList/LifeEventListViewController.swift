@@ -82,6 +82,13 @@ class LifeEventListViewController: UITableViewController {
 //
 //        localeStorageManager.deleteObject(userModel)
 //        print("Объект удален")
+        
+        DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(7)) {
+            let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            print(path.path)
+        }
+        
+                                                                                                                
     }
     
     // MARK: - UITableViewDataSource

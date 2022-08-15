@@ -18,7 +18,7 @@
 		7DA3EE68288717B100EE5D28 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DA3EE66288717B100EE5D28 /* LaunchScreen.storyboard */; };
 		7DA3EE70288719D400EE5D28 /* LifeEventListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EE6F288719D400EE5D28 /* LifeEventListViewController.swift */; };
 		7DA3EE7228871A0600EE5D28 /* LifeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EE7128871A0600EE5D28 /* LifeScreenViewController.swift */; };
-		7DA3EE7428871B3B00EE5D28 /* MainTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EE7328871B3B00EE5D28 /* MainTabbarController.swift */; };
+		7DA3EE7428871B3B00EE5D28 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EE7328871B3B00EE5D28 /* MainTabBarController.swift */; };
 		7DA3EE7C28872A8400EE5D28 /* LifeEventListAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EE7B28872A8400EE5D28 /* LifeEventListAssembly.swift */; };
 		7DA3EE8028872AA200EE5D28 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EE7F28872AA200EE5D28 /* Assembly.swift */; };
 		7DA3EE8228872CE800EE5D28 /* LifeEventListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EE8128872CE800EE5D28 /* LifeEventListPresenter.swift */; };
@@ -41,6 +41,7 @@
 		7DA3EEB6288891E200EE5D28 /* EventCollageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EEB5288891E200EE5D28 /* EventCollageCell.swift */; };
 		7DA3EEB92888945800EE5D28 /* EventCollageCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EEB82888945800EE5D28 /* EventCollageCellViewModel.swift */; };
 		7DA3EEBC288993CA00EE5D28 /* LifeScreenPresentetionLanWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EEBB288993CA00EE5D28 /* LifeScreenPresentetionLanWorker.swift */; };
+		7DB5AEB328AA6F81008A91B1 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB5AEB228AA6F81008A91B1 /* CustomTabBar.swift */; };
 		7DC4D3AC28A42C7B009D378B /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 7DC4D3AB28A42C7B009D378B /* Realm */; };
 		7DC4D3AE28A42C7B009D378B /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7DC4D3AD28A42C7B009D378B /* RealmSwift */; };
 		7DC4D3B028A4305A009D378B /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4D3AF28A4305A009D378B /* UserModel.swift */; };
@@ -63,7 +64,7 @@
 		7DA3EE69288717B100EE5D28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7DA3EE6F288719D400EE5D28 /* LifeEventListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeEventListViewController.swift; sourceTree = "<group>"; };
 		7DA3EE7128871A0600EE5D28 /* LifeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeScreenViewController.swift; sourceTree = "<group>"; };
-		7DA3EE7328871B3B00EE5D28 /* MainTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarController.swift; sourceTree = "<group>"; };
+		7DA3EE7328871B3B00EE5D28 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		7DA3EE7B28872A8400EE5D28 /* LifeEventListAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeEventListAssembly.swift; sourceTree = "<group>"; };
 		7DA3EE7F28872AA200EE5D28 /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
 		7DA3EE8128872CE800EE5D28 /* LifeEventListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeEventListPresenter.swift; sourceTree = "<group>"; };
@@ -86,6 +87,7 @@
 		7DA3EEB5288891E200EE5D28 /* EventCollageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollageCell.swift; sourceTree = "<group>"; };
 		7DA3EEB82888945800EE5D28 /* EventCollageCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollageCellViewModel.swift; sourceTree = "<group>"; };
 		7DA3EEBB288993CA00EE5D28 /* LifeScreenPresentetionLanWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeScreenPresentetionLanWorker.swift; sourceTree = "<group>"; };
+		7DB5AEB228AA6F81008A91B1 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		7DC4D3AF28A4305A009D378B /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		7DC4D3B128A431B5009D378B /* LocaleStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocaleStorageManager.swift; sourceTree = "<group>"; };
 		7DC4D3B428A4F026009D378B /* FileManagerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerService.swift; sourceTree = "<group>"; };
@@ -215,7 +217,8 @@
 		7DA3EE7828871FE900EE5D28 /* MainTabBar */ = {
 			isa = PBXGroup;
 			children = (
-				7DA3EE7328871B3B00EE5D28 /* MainTabbarController.swift */,
+				7DA3EE7328871B3B00EE5D28 /* MainTabBarController.swift */,
+				7DB5AEB228AA6F81008A91B1 /* CustomTabBar.swift */,
 			);
 			path = MainTabBar;
 			sourceTree = "<group>";
@@ -455,7 +458,7 @@
 				7DA3EE8028872AA200EE5D28 /* Assembly.swift in Sources */,
 				7DC4D3B228A431B5009D378B /* LocaleStorageManager.swift in Sources */,
 				7DA3EEA028885FCB00EE5D28 /* EventDetailsViewController.swift in Sources */,
-				7DA3EE7428871B3B00EE5D28 /* MainTabbarController.swift in Sources */,
+				7DA3EE7428871B3B00EE5D28 /* MainTabBarController.swift in Sources */,
 				7D4B76AA2891B32E00CCF8DD /* EventCollageCell2.swift in Sources */,
 				7DC4D3B028A4305A009D378B /* UserModel.swift in Sources */,
 				7D4B76A82891605100CCF8DD /* CollageView.swift in Sources */,
@@ -470,6 +473,7 @@
 				7DA3EE5E288717AF00EE5D28 /* SceneDelegate.swift in Sources */,
 				7DA3EE8F2888281A00EE5D28 /* LifeScreenInteractor.swift in Sources */,
 				7DA3EEA228885FDC00EE5D28 /* EventDetailsPresenter.swift in Sources */,
+				7DB5AEB328AA6F81008A91B1 /* CustomTabBar.swift in Sources */,
 				7D4B76A5288B4CE000CCF8DD /* Persist.swift in Sources */,
 				7DA3EE9528882B4600EE5D28 /* PinterestLayout.swift in Sources */,
 				7DA3EEA628885FF300EE5D28 /* EventDetailsRouter.swift in Sources */,
