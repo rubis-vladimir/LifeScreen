@@ -14,7 +14,7 @@ enum ImageLoadingErrors: String, Error {
 /// Протокол загрузки изображений
 protocol ImageDownloadManagement {
     
-    /// Осуществить загрузку изображений (из сети)
+    /// Осуществить загрузку изображений (из сети / локально)
     ///  - Parameters:
     ///     - url: URL-адрес изображения
     ///     - completion: closure по выполнению (флаг успешности / ошибка)
@@ -37,7 +37,7 @@ extension ImageDownloadManager: ImageDownloadManagement {
             print("Loading from cache")
             completion(.success(cachedImage as Data))
         } else {
-//            print("Download Start")
+            
             getData(from: url) { data, response, optionalError in
                 guard let data = data else {
                     guard let error = optionalError else {

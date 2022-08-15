@@ -20,8 +20,7 @@ final class EventModel: Object {
     @Persisted var images = List<Image>()
     
     convenience init(title: String,
-                     specification: String? = nil,
-                     date: Date) {
+                     specification: String? = nil) {
         self.init()
         self.title = title
         self.specification = specification

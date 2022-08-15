@@ -22,6 +22,7 @@ class LifeEventListViewController: UITableViewController {
     let urls: [String] = ["sdfhjksdhfk.ru", "jsdfknavfdv.com", "sjkdfkjsnfj.ya"]
     
     let eventsData: [String: String] = ["Новый год 2022": "Было очень весело", "Выезд с палатками": "Покутили", "Спортакиада": "Снова.. первые!!"]
+    let dates: [String] = ["11-20-2022", "07-03-2022", "05-25-2022"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +34,11 @@ class LifeEventListViewController: UITableViewController {
         user.email = "petyaTop@mail.ru"
         user._id = ObjectId("507f191e810c19729de860ea")
 
-        eventsData.forEach {
-            let event = EventModel(title: $0.key, specification: $0.value, date: Date())
+        zip(eventsData, dates).forEach { event, date in
+            
+            let event = EventModel(title: event.key, specification: event.value)
+            event.date = DateConvertService.convertStrToDate(date) ?? Date()
+            
             urls.forEach {
                 let image = Image(urlString: $0)
                 event.images.append(image)
@@ -43,7 +47,6 @@ class LifeEventListViewController: UITableViewController {
         }
         
 //        localeStorageManager.saveObject(user)
-        print("Пользователь был сохранен")
         
         
         
@@ -54,10 +57,38 @@ class LifeEventListViewController: UITableViewController {
         
         let key = ObjectId("507f191e810c19729de860ea")
         
-        guard let userModel = localeStorageManager.fetchUser(key) else {
+        guard let userModel = localeStorageManager.fetchObject(UserModel.self, key: key) else {
             print("Модель не получена")
             return }
-        print(userModel)
+//        print(userModel)
+        
+        let events = userModel.events.where { $0.title == "Выезд с палатками"}
+        
+        print(events)
+        print(events.count)
+        print("_____________________")
+        
+//        localeStorageManager.updateObject(userModel) {
+//            userModel.events[0].title = ".!."
+//            userModel.events.removeLast()
+//        }
+//
+//        print("_____________________")
+//
+//        guard let userModel = localeStorageManager.fetchObject(UserModel.self, key: key) else {
+//            print("Модель не получена")
+//            return }
+//        print(userModel)
+//
+//        localeStorageManager.deleteObject(userModel)
+//        print("Объект удален")
+        
+        DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(7)) {
+            let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            print(path.path)
+        }
+        
+                                                                                                                
     }
     
     // MARK: - UITableViewDataSource
