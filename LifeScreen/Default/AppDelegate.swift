@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        mainTabbarController.addChild(navigationVC1)
 //        mainTabbarController.addChild(navVC)
 //        mainTabbarController.addChild(navigationVC2)
-        
+        MainTabBarAssembly(navigationController: UINavigationController()).assembly(viewController: mainTabbarController)
         window.rootViewController = mainTabbarController
         window.makeKeyAndVisible()
         self.window = window

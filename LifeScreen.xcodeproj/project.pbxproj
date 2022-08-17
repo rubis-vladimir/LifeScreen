@@ -12,6 +12,13 @@
 		7D4B76AA2891B32E00CCF8DD /* EventCollageCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4B76A92891B32E00CCF8DD /* EventCollageCell2.swift */; };
 		7D4CCC152893FDA7001EEE5A /* LifeEventCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CCC142893FDA7001EEE5A /* LifeEventCellViewModel.swift */; };
 		7D4CCC18289403C3001EEE5A /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CCC17289403C3001EEE5A /* EventModel.swift */; };
+		7D6AEF3128AD308C00B70B33 /* MainTabBarAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6AEF3028AD308C00B70B33 /* MainTabBarAssembly.swift */; };
+		7D6AEF3328AD30A000B70B33 /* MainTabBarPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6AEF3228AD30A000B70B33 /* MainTabBarPresenter.swift */; };
+		7D6AEF3528AD30BF00B70B33 /* MainTabBarRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6AEF3428AD30BF00B70B33 /* MainTabBarRouter.swift */; };
+		7D6AEF3728AD32B900B70B33 /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6AEF3628AD32B900B70B33 /* AddEventViewController.swift */; };
+		7D6AEF3928AD334300B70B33 /* AddEventPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6AEF3828AD334300B70B33 /* AddEventPresenter.swift */; };
+		7D6AEF3B28AD335700B70B33 /* AddEventInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6AEF3A28AD335700B70B33 /* AddEventInteractor.swift */; };
+		7D6AEF3D28AD336B00B70B33 /* AddEventAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6AEF3C28AD336B00B70B33 /* AddEventAssembly.swift */; };
 		7DA3EE5C288717AF00EE5D28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EE5B288717AF00EE5D28 /* AppDelegate.swift */; };
 		7DA3EE5E288717AF00EE5D28 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EE5D288717AF00EE5D28 /* SceneDelegate.swift */; };
 		7DA3EE65288717B100EE5D28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DA3EE64288717B100EE5D28 /* Assets.xcassets */; };
@@ -41,7 +48,6 @@
 		7DA3EEB6288891E200EE5D28 /* EventCollageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EEB5288891E200EE5D28 /* EventCollageCell.swift */; };
 		7DA3EEB92888945800EE5D28 /* EventCollageCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EEB82888945800EE5D28 /* EventCollageCellViewModel.swift */; };
 		7DA3EEBC288993CA00EE5D28 /* LifeScreenPresentetionLanWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EEBB288993CA00EE5D28 /* LifeScreenPresentetionLanWorker.swift */; };
-		7DB5AEB328AA6F81008A91B1 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB5AEB228AA6F81008A91B1 /* CustomTabBar.swift */; };
 		7DC4D3AC28A42C7B009D378B /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 7DC4D3AB28A42C7B009D378B /* Realm */; };
 		7DC4D3AE28A42C7B009D378B /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7DC4D3AD28A42C7B009D378B /* RealmSwift */; };
 		7DC4D3B028A4305A009D378B /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4D3AF28A4305A009D378B /* UserModel.swift */; };
@@ -56,6 +62,13 @@
 		7D4B76A92891B32E00CCF8DD /* EventCollageCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollageCell2.swift; sourceTree = "<group>"; };
 		7D4CCC142893FDA7001EEE5A /* LifeEventCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeEventCellViewModel.swift; sourceTree = "<group>"; };
 		7D4CCC17289403C3001EEE5A /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
+		7D6AEF3028AD308C00B70B33 /* MainTabBarAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarAssembly.swift; sourceTree = "<group>"; };
+		7D6AEF3228AD30A000B70B33 /* MainTabBarPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarPresenter.swift; sourceTree = "<group>"; };
+		7D6AEF3428AD30BF00B70B33 /* MainTabBarRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarRouter.swift; sourceTree = "<group>"; };
+		7D6AEF3628AD32B900B70B33 /* AddEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
+		7D6AEF3828AD334300B70B33 /* AddEventPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventPresenter.swift; sourceTree = "<group>"; };
+		7D6AEF3A28AD335700B70B33 /* AddEventInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventInteractor.swift; sourceTree = "<group>"; };
+		7D6AEF3C28AD336B00B70B33 /* AddEventAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventAssembly.swift; sourceTree = "<group>"; };
 		7DA3EE58288717AF00EE5D28 /* LifeScreen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LifeScreen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DA3EE5B288717AF00EE5D28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7DA3EE5D288717AF00EE5D28 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -87,7 +100,6 @@
 		7DA3EEB5288891E200EE5D28 /* EventCollageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollageCell.swift; sourceTree = "<group>"; };
 		7DA3EEB82888945800EE5D28 /* EventCollageCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollageCellViewModel.swift; sourceTree = "<group>"; };
 		7DA3EEBB288993CA00EE5D28 /* LifeScreenPresentetionLanWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeScreenPresentetionLanWorker.swift; sourceTree = "<group>"; };
-		7DB5AEB228AA6F81008A91B1 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		7DC4D3AF28A4305A009D378B /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		7DC4D3B128A431B5009D378B /* LocaleStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocaleStorageManager.swift; sourceTree = "<group>"; };
 		7DC4D3B428A4F026009D378B /* FileManagerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerService.swift; sourceTree = "<group>"; };
@@ -217,8 +229,10 @@
 		7DA3EE7828871FE900EE5D28 /* MainTabBar */ = {
 			isa = PBXGroup;
 			children = (
+				7D6AEF3028AD308C00B70B33 /* MainTabBarAssembly.swift */,
 				7DA3EE7328871B3B00EE5D28 /* MainTabBarController.swift */,
-				7DB5AEB228AA6F81008A91B1 /* CustomTabBar.swift */,
+				7D6AEF3228AD30A000B70B33 /* MainTabBarPresenter.swift */,
+				7D6AEF3428AD30BF00B70B33 /* MainTabBarRouter.swift */,
 			);
 			path = MainTabBar;
 			sourceTree = "<group>";
@@ -297,6 +311,10 @@
 		7DA3EE9828882DC300EE5D28 /* AddEvent */ = {
 			isa = PBXGroup;
 			children = (
+				7D6AEF3C28AD336B00B70B33 /* AddEventAssembly.swift */,
+				7D6AEF3628AD32B900B70B33 /* AddEventViewController.swift */,
+				7D6AEF3828AD334300B70B33 /* AddEventPresenter.swift */,
+				7D6AEF3A28AD335700B70B33 /* AddEventInteractor.swift */,
 			);
 			path = AddEvent;
 			sourceTree = "<group>";
@@ -449,6 +467,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DA3EE7228871A0600EE5D28 /* LifeScreenViewController.swift in Sources */,
+				7D6AEF3928AD334300B70B33 /* AddEventPresenter.swift in Sources */,
+				7D6AEF3728AD32B900B70B33 /* AddEventViewController.swift in Sources */,
 				7DA3EE5C288717AF00EE5D28 /* AppDelegate.swift in Sources */,
 				7DA3EE7C28872A8400EE5D28 /* LifeEventListAssembly.swift in Sources */,
 				7DA3EE912888292C00EE5D28 /* LifeScreenRouter.swift in Sources */,
@@ -459,10 +479,13 @@
 				7DC4D3B228A431B5009D378B /* LocaleStorageManager.swift in Sources */,
 				7DA3EEA028885FCB00EE5D28 /* EventDetailsViewController.swift in Sources */,
 				7DA3EE7428871B3B00EE5D28 /* MainTabBarController.swift in Sources */,
+				7D6AEF3528AD30BF00B70B33 /* MainTabBarRouter.swift in Sources */,
 				7D4B76AA2891B32E00CCF8DD /* EventCollageCell2.swift in Sources */,
 				7DC4D3B028A4305A009D378B /* UserModel.swift in Sources */,
 				7D4B76A82891605100CCF8DD /* CollageView.swift in Sources */,
 				7DA3EE8228872CE800EE5D28 /* LifeEventListPresenter.swift in Sources */,
+				7D6AEF3328AD30A000B70B33 /* MainTabBarPresenter.swift in Sources */,
+				7D6AEF3B28AD335700B70B33 /* AddEventInteractor.swift in Sources */,
 				7DA3EEB42888850900EE5D28 /* ImageDownloadManager.swift in Sources */,
 				7DA3EEB92888945800EE5D28 /* EventCollageCellViewModel.swift in Sources */,
 				7DA3EE8D2888258500EE5D28 /* LifeScreenPresenter.swift in Sources */,
@@ -473,7 +496,6 @@
 				7DA3EE5E288717AF00EE5D28 /* SceneDelegate.swift in Sources */,
 				7DA3EE8F2888281A00EE5D28 /* LifeScreenInteractor.swift in Sources */,
 				7DA3EEA228885FDC00EE5D28 /* EventDetailsPresenter.swift in Sources */,
-				7DB5AEB328AA6F81008A91B1 /* CustomTabBar.swift in Sources */,
 				7D4B76A5288B4CE000CCF8DD /* Persist.swift in Sources */,
 				7DA3EE9528882B4600EE5D28 /* PinterestLayout.swift in Sources */,
 				7DA3EEA628885FF300EE5D28 /* EventDetailsRouter.swift in Sources */,
@@ -482,6 +504,8 @@
 				7DA3EE9E28885F1F00EE5D28 /* EventDetailsAssembly.swift in Sources */,
 				7D4CCC18289403C3001EEE5A /* EventModel.swift in Sources */,
 				7DA3EE70288719D400EE5D28 /* LifeEventListViewController.swift in Sources */,
+				7D6AEF3D28AD336B00B70B33 /* AddEventAssembly.swift in Sources */,
+				7D6AEF3128AD308C00B70B33 /* MainTabBarAssembly.swift in Sources */,
 				7D4CCC152893FDA7001EEE5A /* LifeEventCellViewModel.swift in Sources */,
 				7DA3EE8628872EC200EE5D28 /* LifeEventListRouter.swift in Sources */,
 				7DA3EEB128887FA700EE5D28 /* Event.swift in Sources */,
