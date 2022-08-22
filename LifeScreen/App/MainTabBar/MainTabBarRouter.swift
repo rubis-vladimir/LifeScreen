@@ -10,7 +10,7 @@ import UIKit
 /// Протокол управления слоя навигации модуля MainTabBar
 protocol MainTabBarRoutable {
     
-    
+    /// Переход к AddEventVC
     func route()
 }
 
@@ -23,7 +23,26 @@ final class MainTabBarRouter {
 extension MainTabBarRouter: MainTabBarRoutable {
     
     func route() {
-//        let vc = AddEventViewController()
         print("Переход на экран добавления События")
+        guard let nc = navigationController else { return }
+        
+        let vc = AddEventViewController()
+//        let nc = UINavigationController(rootViewController: vc)
+        
+        AddEventAssembly(navigationController: nc).assembly(viewController: vc)
+        
+//        nc.modalPresentationStyle = .fullScreen
+//        nc.present(vc, animated: true)
+        
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.moveIn
+        transition.subtype = CATransitionSubtype.fromTop
+        
+        nc.view.layer.add(transition, forKey: nil)
+        
+//        nc.modalPresentationStyle = .fullScreen
+        nc.pushViewController(vc, animated: false)
     }
 }

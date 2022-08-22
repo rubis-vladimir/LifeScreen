@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D26B8A828B2CD10005DE3F5 /* TVCBuilderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D26B8A728B2CD10005DE3F5 /* TVCBuilderProtocol.swift */; };
+		7D48DC7F28B37BC00063A017 /* AddEventPhotoCellBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D48DC7E28B37BC00063A017 /* AddEventPhotoCellBuilder.swift */; };
+		7D48DC8128B37C780063A017 /* AddEventPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D48DC8028B37C780063A017 /* AddEventPhotoCell.swift */; };
+		7D48DC8328B37F4F0063A017 /* AddEventInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D48DC8228B37F4F0063A017 /* AddEventInfoCell.swift */; };
+		7D48DC8528B3827A0063A017 /* AddEventSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D48DC8428B3827A0063A017 /* AddEventSection.swift */; };
+		7D48DC8928B390A80063A017 /* TVFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D48DC8828B390A80063A017 /* TVFactoryProtocol.swift */; };
+		7D48DC9128B39A960063A017 /* AddEventInfoCellBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D48DC9028B39A960063A017 /* AddEventInfoCellBuilder.swift */; };
+		7D48DC9328B39BC60063A017 /* AddEventFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D48DC9228B39BC60063A017 /* AddEventFactory.swift */; };
+		7D48DC9628B3ED950063A017 /* AddEventTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D48DC9528B3ED950063A017 /* AddEventTitleCell.swift */; };
+		7D48DC9828B3EDC50063A017 /* AddEventTitleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D48DC9728B3EDC50063A017 /* AddEventTitleBuilder.swift */; };
+		7D4B381728B378A000ECEF6D /* TVSectionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4B381628B378A000ECEF6D /* TVSectionProtocol.swift */; };
 		7D4B76A5288B4CE000CCF8DD /* Persist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4B76A4288B4CE000CCF8DD /* Persist.swift */; };
 		7D4B76A82891605100CCF8DD /* CollageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4B76A72891605100CCF8DD /* CollageView.swift */; };
 		7D4B76AA2891B32E00CCF8DD /* EventCollageCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4B76A92891B32E00CCF8DD /* EventCollageCell2.swift */; };
@@ -57,6 +68,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7D26B8A728B2CD10005DE3F5 /* TVCBuilderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVCBuilderProtocol.swift; sourceTree = "<group>"; };
+		7D48DC7E28B37BC00063A017 /* AddEventPhotoCellBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventPhotoCellBuilder.swift; sourceTree = "<group>"; };
+		7D48DC8028B37C780063A017 /* AddEventPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventPhotoCell.swift; sourceTree = "<group>"; };
+		7D48DC8228B37F4F0063A017 /* AddEventInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventInfoCell.swift; sourceTree = "<group>"; };
+		7D48DC8428B3827A0063A017 /* AddEventSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventSection.swift; sourceTree = "<group>"; };
+		7D48DC8828B390A80063A017 /* TVFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVFactoryProtocol.swift; sourceTree = "<group>"; };
+		7D48DC9028B39A960063A017 /* AddEventInfoCellBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventInfoCellBuilder.swift; sourceTree = "<group>"; };
+		7D48DC9228B39BC60063A017 /* AddEventFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddEventFactory.swift; path = "LifeScreen/App/AddEvent/View/New Group/Factory/AddEventFactory.swift"; sourceTree = SOURCE_ROOT; };
+		7D48DC9528B3ED950063A017 /* AddEventTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventTitleCell.swift; sourceTree = "<group>"; };
+		7D48DC9728B3EDC50063A017 /* AddEventTitleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventTitleBuilder.swift; sourceTree = "<group>"; };
+		7D4B381628B378A000ECEF6D /* TVSectionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVSectionProtocol.swift; sourceTree = "<group>"; };
 		7D4B76A4288B4CE000CCF8DD /* Persist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persist.swift; sourceTree = "<group>"; };
 		7D4B76A72891605100CCF8DD /* CollageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageView.swift; sourceTree = "<group>"; };
 		7D4B76A92891B32E00CCF8DD /* EventCollageCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollageCell2.swift; sourceTree = "<group>"; };
@@ -119,6 +141,52 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7D48DC8A28B39A050063A017 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				7D48DC8D28B39A650063A017 /* Views */,
+				7D48DC8F28B39A7D0063A017 /* Builders */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		7D48DC8B28B39A2F0063A017 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7D6AEF3628AD32B900B70B33 /* AddEventViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7D48DC8C28B39A4F0063A017 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				7D48DC9228B39BC60063A017 /* AddEventFactory.swift */,
+			);
+			name = Factory;
+			path = "New Group/Factory";
+			sourceTree = "<group>";
+		};
+		7D48DC8D28B39A650063A017 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7D48DC8028B37C780063A017 /* AddEventPhotoCell.swift */,
+				7D48DC9528B3ED950063A017 /* AddEventTitleCell.swift */,
+				7D48DC8228B37F4F0063A017 /* AddEventInfoCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7D48DC8F28B39A7D0063A017 /* Builders */ = {
+			isa = PBXGroup;
+			children = (
+				7D48DC7E28B37BC00063A017 /* AddEventPhotoCellBuilder.swift */,
+				7D48DC9728B3EDC50063A017 /* AddEventTitleBuilder.swift */,
+				7D48DC9028B39A960063A017 /* AddEventInfoCellBuilder.swift */,
+			);
+			path = Builders;
+			sourceTree = "<group>";
+		};
 		7D4B76A3288B4CC600CCF8DD /* Wrappers */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +218,13 @@
 				7DC4D3AF28A4305A009D378B /* UserModel.swift */,
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		7D6AEF3E28AE313E00B70B33 /* Workers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Workers;
 			sourceTree = "<group>";
 		};
 		7DA3EE4F288717AF00EE5D28 = {
@@ -203,6 +278,7 @@
 				7DA3EE8128872CE800EE5D28 /* LifeEventListPresenter.swift */,
 				7DA3EE8528872EC200EE5D28 /* LifeEventListRouter.swift */,
 				7D4CCC132893FD72001EEE5A /* ViewModels */,
+				7D6AEF3E28AE313E00B70B33 /* Workers */,
 				7DA3EE872887439F00EE5D28 /* Cells */,
 			);
 			path = LifeEventList;
@@ -229,10 +305,10 @@
 		7DA3EE7828871FE900EE5D28 /* MainTabBar */ = {
 			isa = PBXGroup;
 			children = (
-				7D6AEF3028AD308C00B70B33 /* MainTabBarAssembly.swift */,
 				7DA3EE7328871B3B00EE5D28 /* MainTabBarController.swift */,
 				7D6AEF3228AD30A000B70B33 /* MainTabBarPresenter.swift */,
 				7D6AEF3428AD30BF00B70B33 /* MainTabBarRouter.swift */,
+				7D6AEF3028AD308C00B70B33 /* MainTabBarAssembly.swift */,
 			);
 			path = MainTabBar;
 			sourceTree = "<group>";
@@ -271,6 +347,10 @@
 			isa = PBXGroup;
 			children = (
 				7DA3EE7F28872AA200EE5D28 /* Assembly.swift */,
+				7D26B8A728B2CD10005DE3F5 /* TVCBuilderProtocol.swift */,
+				7D4B381628B378A000ECEF6D /* TVSectionProtocol.swift */,
+				7D48DC8828B390A80063A017 /* TVFactoryProtocol.swift */,
+				7D48DC8428B3827A0063A017 /* AddEventSection.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -311,10 +391,10 @@
 		7DA3EE9828882DC300EE5D28 /* AddEvent */ = {
 			isa = PBXGroup;
 			children = (
-				7D6AEF3C28AD336B00B70B33 /* AddEventAssembly.swift */,
-				7D6AEF3628AD32B900B70B33 /* AddEventViewController.swift */,
-				7D6AEF3828AD334300B70B33 /* AddEventPresenter.swift */,
+				7DABC2C428B01A87003A2644 /* View */,
 				7D6AEF3A28AD335700B70B33 /* AddEventInteractor.swift */,
+				7D6AEF3828AD334300B70B33 /* AddEventPresenter.swift */,
+				7D6AEF3C28AD336B00B70B33 /* AddEventAssembly.swift */,
 			);
 			path = AddEvent;
 			sourceTree = "<group>";
@@ -387,6 +467,16 @@
 				7DA3EEBB288993CA00EE5D28 /* LifeScreenPresentetionLanWorker.swift */,
 			);
 			path = Workers;
+			sourceTree = "<group>";
+		};
+		7DABC2C428B01A87003A2644 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7D48DC8A28B39A050063A017 /* Cells */,
+				7D48DC8C28B39A4F0063A017 /* Factory */,
+				7D48DC8B28B39A2F0063A017 /* Controller */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -471,15 +561,23 @@
 				7D6AEF3728AD32B900B70B33 /* AddEventViewController.swift in Sources */,
 				7DA3EE5C288717AF00EE5D28 /* AppDelegate.swift in Sources */,
 				7DA3EE7C28872A8400EE5D28 /* LifeEventListAssembly.swift in Sources */,
+				7D48DC8328B37F4F0063A017 /* AddEventInfoCell.swift in Sources */,
 				7DA3EE912888292C00EE5D28 /* LifeScreenRouter.swift in Sources */,
+				7D26B8A828B2CD10005DE3F5 /* TVCBuilderProtocol.swift in Sources */,
+				7D4B381728B378A000ECEF6D /* TVSectionProtocol.swift in Sources */,
 				7DA3EEBC288993CA00EE5D28 /* LifeScreenPresentetionLanWorker.swift in Sources */,
 				7DC4D3B528A4F026009D378B /* FileManagerService.swift in Sources */,
 				7DA3EE89288743CA00EE5D28 /* LifeEventCell.swift in Sources */,
+				7D48DC9328B39BC60063A017 /* AddEventFactory.swift in Sources */,
 				7DA3EE8028872AA200EE5D28 /* Assembly.swift in Sources */,
 				7DC4D3B228A431B5009D378B /* LocaleStorageManager.swift in Sources */,
+				7D48DC9828B3EDC50063A017 /* AddEventTitleBuilder.swift in Sources */,
+				7D48DC8528B3827A0063A017 /* AddEventSection.swift in Sources */,
 				7DA3EEA028885FCB00EE5D28 /* EventDetailsViewController.swift in Sources */,
 				7DA3EE7428871B3B00EE5D28 /* MainTabBarController.swift in Sources */,
+				7D48DC8928B390A80063A017 /* TVFactoryProtocol.swift in Sources */,
 				7D6AEF3528AD30BF00B70B33 /* MainTabBarRouter.swift in Sources */,
+				7D48DC8128B37C780063A017 /* AddEventPhotoCell.swift in Sources */,
 				7D4B76AA2891B32E00CCF8DD /* EventCollageCell2.swift in Sources */,
 				7DC4D3B028A4305A009D378B /* UserModel.swift in Sources */,
 				7D4B76A82891605100CCF8DD /* CollageView.swift in Sources */,
@@ -497,8 +595,10 @@
 				7DA3EE8F2888281A00EE5D28 /* LifeScreenInteractor.swift in Sources */,
 				7DA3EEA228885FDC00EE5D28 /* EventDetailsPresenter.swift in Sources */,
 				7D4B76A5288B4CE000CCF8DD /* Persist.swift in Sources */,
+				7D48DC9128B39A960063A017 /* AddEventInfoCellBuilder.swift in Sources */,
 				7DA3EE9528882B4600EE5D28 /* PinterestLayout.swift in Sources */,
 				7DA3EEA628885FF300EE5D28 /* EventDetailsRouter.swift in Sources */,
+				7D48DC9628B3ED950063A017 /* AddEventTitleCell.swift in Sources */,
 				7DA3EE8428872E7500EE5D28 /* LifeEventListInteractor.swift in Sources */,
 				7DA3EEB6288891E200EE5D28 /* EventCollageCell.swift in Sources */,
 				7DA3EE9E28885F1F00EE5D28 /* EventDetailsAssembly.swift in Sources */,
@@ -506,6 +606,7 @@
 				7DA3EE70288719D400EE5D28 /* LifeEventListViewController.swift in Sources */,
 				7D6AEF3D28AD336B00B70B33 /* AddEventAssembly.swift in Sources */,
 				7D6AEF3128AD308C00B70B33 /* MainTabBarAssembly.swift in Sources */,
+				7D48DC7F28B37BC00063A017 /* AddEventPhotoCellBuilder.swift in Sources */,
 				7D4CCC152893FDA7001EEE5A /* LifeEventCellViewModel.swift in Sources */,
 				7DA3EE8628872EC200EE5D28 /* LifeEventListRouter.swift in Sources */,
 				7DA3EEB128887FA700EE5D28 /* Event.swift in Sources */,

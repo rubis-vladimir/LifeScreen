@@ -6,3 +6,18 @@
 //
 
 import Foundation
+
+
+protocol AddEventBusinessLogic {
+    
+}
+
+
+final class AddEventInteractor {
+    weak var presenter: AddEventPresentationManagement?
+}
+
+
+extension AddEventInteractor: AddEventBusinessLogic {
+    
+}

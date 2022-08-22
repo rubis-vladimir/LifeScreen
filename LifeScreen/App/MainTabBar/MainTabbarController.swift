@@ -7,12 +7,12 @@
 
 import UIKit
 
-
+/// Протокол управления View-слоем в модуле MainTabBar
 protocol MainTabBarViewable: AnyObject {
     
 }
 
-///
+/// Контроллер панели вкладок
 final class MainTabBarController: UITabBarController {
     
     var presenter: MainTabBarPresentation?
@@ -27,20 +27,15 @@ final class MainTabBarController: UITabBarController {
         return imageView
     }()
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-//        generateTabBar()
-    }
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+        tabBar.backgroundColor = .white
         redefineTabBarFrame()
         addMiddleButton()
     }
     
+    /// Переопределяем Frame для tabBar
     private func redefineTabBarFrame() {
         let newTabBarHeight = tabBar.frame.size.height + 10
         
@@ -51,16 +46,15 @@ final class MainTabBarController: UITabBarController {
         tabBar.frame = newFrame
     }
     
+    /// Добавляем Среднюю кнопку и настраиваем ее
     func addMiddleButton() {
         
-        // DISABLE TABBAR ITEM - behind the "+" custom button:
-        DispatchQueue.main.async {
-            if let items = self.tabBar.items {
-                 items[1].isEnabled = false
-            }
+        /// Отключаем tabBarItem за пользовательской кнопкой middleButton
+        if let items = self.tabBar.items {
+            items[1].isEnabled = false
         }
         
-        // shape, position and size
+        /// Устанавливаем размер, форму и расположения
         let size = CGFloat(40)
         let constant = CGFloat(10)
         plusImageView.layer.cornerRadius = size / 2
@@ -71,7 +65,7 @@ final class MainTabBarController: UITabBarController {
         plusImageView.translatesAutoresizingMaskIntoConstraints = false
         middleButton.translatesAutoresizingMaskIntoConstraints = false
         
-        // set constraints
+        /// Настройка констрейнтов
         let constraints = [
             middleButton.centerXAnchor.constraint(equalTo: tabBar.centerXAnchor),
             middleButton.centerYAnchor.constraint(equalTo: tabBar.centerYAnchor),
@@ -88,12 +82,13 @@ final class MainTabBarController: UITabBarController {
             constraint.isActive = true
         }
         
-        // action
+        /// Установка Action
         middleButton.addTarget(self,
                                action: #selector(routeToCreateEvent(sender:)),
                                for: .touchUpInside)
     }
     
+    /// Передача ивента навигации в Presenter
     @objc func routeToCreateEvent(sender: UIButton) {
         presenter?.readyForRoute()
     }

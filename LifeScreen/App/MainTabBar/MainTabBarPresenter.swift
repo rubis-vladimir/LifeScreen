@@ -5,12 +5,12 @@
 //  Created by Владимир Рубис on 17.08.2022.
 //
 
-import Foundation
 import UIKit
 
 /// Протокол передачи UI-эвентов слою презентации
 protocol MainTabBarPresentation {
     
+    /// Отправка запроса навигации
     func readyForRoute()
 }
 

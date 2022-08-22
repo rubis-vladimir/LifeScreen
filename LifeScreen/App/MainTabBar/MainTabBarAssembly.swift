@@ -33,29 +33,31 @@ extension MainTabBarAssembly: Assemblying {
         generateTabBar(vc)
     }
     
+    /// Настройка TabBar
+    /// - Parameter tb: TabBar-VC
     private func generateTabBar(_ tb: UITabBarController) {
         
         let c = UIImage.SymbolConfiguration(pointSize: 19, weight: .light)
         
         tb.viewControllers = [
-            setupVC(LifeEventListViewController(),
+            setupChildVC(LifeEventListViewController(),
                     image: UIImage(systemName: "person")?.withConfiguration(c),
                     selectedImage: UIImage(systemName: "person.fill")?.withConfiguration(c)),
             
             UIViewController(),
             
-            setupVC(LifeScreenViewController(),
+            setupChildVC(LifeScreenViewController(),
                     image: UIImage(systemName: "square.split.2x2")?.withConfiguration(c),
                     selectedImage: UIImage(systemName: "square.split.2x2.fill")?.withConfiguration(c))
         ]
-
-        tb.setViewControllers(tb.viewControllers, animated: false)
         
-        tb.tabBar.backgroundColor = .white
+        tb.setViewControllers(tb.viewControllers, animated: false)
         
     }
     
-    private func setupVC(_ viewController: UIViewController,
+    /// Настройка VC и tabBarItem
+    /// - Parameter viewController: Child-VC
+    private func setupChildVC(_ viewController: UIViewController,
                          image: UIImage? = nil,
                          selectedImage: UIImage? = nil) -> UIViewController {
         viewController.tabBarItem.image = image
@@ -63,6 +65,7 @@ extension MainTabBarAssembly: Assemblying {
         
         let navigationController = UINavigationController(rootViewController: viewController)
         
+        /// Конфигурируем VIPER-модуль для Child-VC
         switch viewController {
         case viewController as? LifeScreenViewController:
             LifeScreenAssembly(navigationController: navigationController).assembly(viewController: viewController)
@@ -70,6 +73,7 @@ extension MainTabBarAssembly: Assemblying {
             LifeEventListAssembly(navigationController: navigationController).assembly(viewController: viewController)
         default: break
         }
+        
         return viewController
     }
 }
