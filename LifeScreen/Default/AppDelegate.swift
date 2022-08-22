@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         /// Создаем основной ТабБар
         let mainTabbarController = MainTabBarController()
+        let navigationVC = UINavigationController(rootViewController: mainTabbarController)
         
         /// Создаем вкладки (экраны) ТабБара и конфигурируем их
 //        let lifeEventListViewController = LifeEventListViewController()
@@ -48,8 +49,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        mainTabbarController.addChild(navigationVC1)
 //        mainTabbarController.addChild(navVC)
 //        mainTabbarController.addChild(navigationVC2)
-        
-        window.rootViewController = mainTabbarController
+        MainTabBarAssembly(navigationController: navigationVC).assembly(viewController: mainTabbarController)
+        window.rootViewController = navigationVC
         window.makeKeyAndVisible()
         self.window = window
         

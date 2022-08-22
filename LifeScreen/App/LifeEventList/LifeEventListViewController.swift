@@ -16,7 +16,7 @@ protocol LifeEventListViewable: AnyObject {
 /// Контроллер представления жизненных событий
 class LifeEventListViewController: UITableViewController {
 
-    weak var presenter: LifeEventListPresentation?
+    var presenter: LifeEventListPresentation?
     
     let localeStorageManager: LocaleStorageManagement = LocaleStorageManager()
     let urls: [String] = ["sdfhjksdhfk.ru", "jsdfknavfdv.com", "sjkdfkjsnfj.ya"]
