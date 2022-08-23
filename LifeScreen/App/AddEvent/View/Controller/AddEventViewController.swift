@@ -11,6 +11,10 @@ protocol AddEventViewable: AnyObject {
     
 }
 
+protocol PresentPickerDelegate {
+    func presentPicker()
+}
+
 class AddEventViewController: UITableViewController {
     
     var presenter: AddEventPresentation?
@@ -29,7 +33,7 @@ class AddEventViewController: UITableViewController {
     
     private func setupFactory() {
         
-        factory = AddEventFactory(tableView: tableView)
+        factory = AddEventFactory(tableView: tableView, self)
         guard let sections = factory?.buildSections() else { return }
         self.sections = sections
     }
@@ -78,4 +82,21 @@ class AddEventViewController: UITableViewController {
 
 extension AddEventViewController: AddEventViewable {
     
+}
+
+extension AddEventViewController: PresentPickerDelegate {
+    func presentPicker() {
+        
+        let alert = UIAlertController(title: "Привет", message: "Тест", preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "OK", style: .default) {_ in 
+            print("All OK!")
+        }
+        let cancel = UIAlertAction(title: "ОТМЕНА", style: .cancel)
+        
+        alert.addAction(action)
+        alert.addAction(cancel)
+        
+        present(alert, animated: true)
+    }
 }

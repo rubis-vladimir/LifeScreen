@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import PhotosUI
 
 final class AddEventPhotoCell: UITableViewCell {
 
     static let reuseId = "AddEventPhotoCell"
+    
+    var delegate: PresentPickerDelegate?
     
     var photoImageView: UIImageView = {
         let imageView = UIImageView()
@@ -62,6 +65,7 @@ final class AddEventPhotoCell: UITableViewCell {
     
     @objc func add(sender: UIButton) {
         print("121123")
+        delegate?.presentPicker()
     }
     
     func setup() {
