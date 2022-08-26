@@ -7,6 +7,12 @@
 
 import UIKit
 
+/// Протокол загрузки данных AddEventInfoCell
+protocol AddEventInfoCellProtocol {
+    
+    func displayData(_ text: String)
+}
+
 final class AddEventInfoCell: UITableViewCell {
 
     static let reuseId = "AddEventInfoCell"
@@ -33,6 +39,8 @@ final class AddEventInfoCell: UITableViewCell {
     
     private func setupCell() {
         
+        self.selectionStyle = .none
+        
         addSubview(eventTextView)
         
         eventTextView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
@@ -41,12 +49,16 @@ final class AddEventInfoCell: UITableViewCell {
         eventTextView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30).isActive = true
         
     }
-    
-    func setup() {
-        self.selectionStyle = .none
+}
+
+//MARK: - AddEventInfoCellProtocol
+extension AddEventInfoCell: AddEventInfoCellProtocol {
+    func displayData(_ text: String) {
+        
     }
 }
 
+//MARK: -
 extension AddEventInfoCell: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {

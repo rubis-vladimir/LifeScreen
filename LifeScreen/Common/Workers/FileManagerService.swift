@@ -73,6 +73,8 @@ extension FileManagerService: FileManagerProtocol {
             print(error.localizedDescription)
         }
     }
+    
+    
 //    
 //    func createDirectory() {
 //        let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("photosFolder")

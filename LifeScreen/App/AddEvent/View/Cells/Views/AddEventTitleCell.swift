@@ -7,9 +7,16 @@
 
 import UIKit
 
+/// Протокол загрузки данных для AddEventTitleCell
+protocol AddEventTitleCellProtocol {
+    func displayData(_ title: String)
+}
+
 final class AddEventTitleCell: UITableViewCell {
     
     static let reuseId = "AddEventTitleCell"
+    
+    weak var delegate: AddEventTFProtocol?
     
     var titleEventTF: UITextField = {
         let tf = UITextField()
@@ -34,6 +41,11 @@ final class AddEventTitleCell: UITableViewCell {
         setupConstraints()
     }
     
+    private func setupElements() {
+        self.selectionStyle = .none
+        
+        titleEventTF.delegate = self
+    }
     
     private func setupConstraints() {
         
@@ -44,9 +56,22 @@ final class AddEventTitleCell: UITableViewCell {
         titleEventTF.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30).isActive = true
         titleEventTF.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30).isActive = true
     }
-    
-    func setup() {
-        self.selectionStyle = .none
+}
+
+//MARK: - AddEventTitleCellProtocol
+extension AddEventTitleCell: AddEventTitleCellProtocol {
+    func displayData(_ title: String) {
+        
     }
+}
+
+//
+extension AddEventTitleCell: UITextFieldDelegate {
     
+    /// Скрыть клавиатуру при нажатии по пустому месту
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        guard let vc = delegate as? AddEventViewController else { return }
+        vc.tableView.endEditing(true)
+    }
 }

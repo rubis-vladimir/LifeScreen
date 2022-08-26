@@ -7,26 +7,34 @@
 
 import UIKit
 
-final class AddEventTitleBuilder: TVCBuilderProtocol {
+final class AddEventTitleBuilder {
     
-    private let height: CGFloat
-    private var title: String?
+    /// Высота ячейки
+    private let height = CGFloat(50)
+    /// Название заголовка события
+    private let title: String
+    ///
+    private weak var delegate: AddEventTFProtocol?
     
-    init(height: CGFloat) {
-        self.height = height
-    }
-    
-    init(height: CGFloat, title: String) {
-        self.height = height
+    init(title: String = "", delegate: AddEventTFProtocol?) {
         self.title = title
+        self.delegate = delegate
     }
+}
+
+// MARK: - TVCBuilderProtocol
+extension AddEventTitleBuilder: TVCBuilderProtocol {
+    var reuseId: String { String(describing: AddEventTitleCell.self) }
+    
+    var cellType: AddEventCellType { .titleCell }
     
     func cellHeight() -> CGFloat { height }
     
     func cellAt(indexPath: IndexPath, tableView: UITableView) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AddEventTitleCell", for: indexPath) as! AddEventTitleCell
         
-        cell.setup()
+        cell.delegate = delegate
+        cell.displayData(title)
         
         return cell
     }

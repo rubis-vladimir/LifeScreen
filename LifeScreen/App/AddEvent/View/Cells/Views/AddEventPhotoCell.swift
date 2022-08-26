@@ -5,14 +5,18 @@
 //  Created by Владимир Рубис on 22.08.2022.
 //
 
-import UIKit
 import PhotosUI
 
-final class AddEventPhotoCell: UITableViewCell {
+/// Протокол загрузки данных AddEventPhotoCell
+protocol AddEventPhotoCellProtocol {
+    func displayData(_ image: UIImage?)
+}
 
+final class AddEventPhotoCell: UITableViewCell {
+    
     static let reuseId = "AddEventPhotoCell"
     
-    var delegate: PresentPickerDelegate?
+    weak var delegate: PresentPickerDelegate?
     
     var photoImageView: UIImageView = {
         let imageView = UIImageView()
@@ -32,14 +36,27 @@ final class AddEventPhotoCell: UITableViewCell {
         return button
     }()
     
+    
+    deinit {
+        print("PhotoCell деинициализирована")
+    }
+    
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
+        setupElements()
         setupConstraints()
     }
     
-    private func setupConstraints() {
+    private func setupElements() {
+        selectionStyle = .none
+        addPhotoButton.addTarget(self, action: #selector(add(sender:)), for: .touchUpInside)
+        
+        
+    }
     
+    private func setupConstraints() {
+        
         let size: CGFloat = 70
         
         addSubview(photoImageView)
@@ -51,7 +68,7 @@ final class AddEventPhotoCell: UITableViewCell {
             photoImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             photoImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             photoImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-
+            
             addPhotoButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             addPhotoButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             addPhotoButton.widthAnchor.constraint(equalToConstant: size),
@@ -64,12 +81,18 @@ final class AddEventPhotoCell: UITableViewCell {
     }
     
     @objc func add(sender: UIButton) {
-        print("121123")
         delegate?.presentPicker()
     }
-    
-    func setup() {
-        self.selectionStyle = .none
-        self.addPhotoButton.addTarget(self, action: #selector(add(sender:)), for: .touchUpInside)
+}
+
+//MARK: - AddEventPhotoCellProtocol
+extension AddEventPhotoCell: AddEventPhotoCellProtocol {
+    func displayData(_ image: UIImage?) {
+        if let image = image {
+            self.addPhotoButton.isHidden = true
+            self.photoImageView.image = image
+        } else {
+            self.addPhotoButton.isHidden = false
+        }
     }
 }

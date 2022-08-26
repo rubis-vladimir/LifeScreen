@@ -7,27 +7,41 @@
 
 import UIKit
 
-final class AddEventPhotoCellBuilder: TVCBuilderProtocol {
+/// Конфигуратор ячейки AddEventPhotoCell
+final class AddEventPhotoCellBuilder {
+    /// Высота ячейки
+    private let height = CGFloat(350)
+    /// Подгружаемая фотография
+    private let image: UIImage?
+    /// Делегат для обработки нажатия на кнопку
+    private weak var delegate: PresentPickerDelegate?
     
-    private let height: CGFloat
-    private let color: UIColor
-    
-    var delegate: PresentPickerDelegate?
-    
-    init(height: CGFloat, color: UIColor, delegate: PresentPickerDelegate?) {
-        self.height = height
-        self.color = color
+    init(image: UIImage?, delegate: PresentPickerDelegate?) {
+        self.image = image
         self.delegate = delegate
     }
+    
+    /// Временно для отладки
+    deinit {
+        print("Билдер деинициализирован")
+    }
+}
+
+// MARK: - TVCBuilderProtocol
+extension AddEventPhotoCellBuilder: TVCBuilderProtocol {
+    
+    var reuseId: String { String(describing: AddEventPhotoCell.self) }
+    
+    var cellType: AddEventCellType { .photoCell }
     
     func cellHeight() -> CGFloat { height }
     
     func cellAt(indexPath: IndexPath, tableView: UITableView) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: AddEventPhotoCell.reuseId, for: indexPath) as! AddEventPhotoCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: AddEventPhotoCell.reuseId, for: indexPath) as! AddEventPhotoCellProtocol
         
-        cell.setup()
         cell.delegate = delegate
-        
+        cell.displayData(image)
+       
         return cell
     }
 }
