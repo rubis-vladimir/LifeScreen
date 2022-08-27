@@ -7,25 +7,25 @@
 
 import UIKit
 
-/// Протокол загрузки данных AddEventInfoCell
-protocol AddEventInfoCellProtocol {
-    
-    func displayData(_ text: String)
-}
-
+/// Ячейка для отображения описания события
 final class AddEventInfoCell: UITableViewCell {
 
+    /// Идентификатор ячейки
     static let reuseId = "AddEventInfoCell"
+    /// Делегат для обработки взаимодействия
+    weak var delegate: AddEventFactoryProtocol?
+    /// Таймер
+    private var timer: Timer?
+    /// Дефолтный текст в TV
+    private let placeholder = "Расскажите о вашем событии..."
     
-    var eventTextView: UITextView = {
+    private var eventTextView: UITextView = {
         let tv = UITextView()
         let font = UIFont(name: "Helvetica", size: 14)
         
-        tv.text = "Расскажите о вашем событии..."
         tv.font = font
         tv.textColor = .systemGray
         tv.translatesAutoresizingMaskIntoConstraints = false
-        
         return tv
     }()
     
@@ -33,45 +33,58 @@ final class AddEventInfoCell: UITableViewCell {
         super.draw(rect)
         
         setupCell()
-        
-        eventTextView.delegate = self
     }
     
+    /// Отображает передаваемые данные
+    ///  - Parameter text: текст описания
+    func displayData(_ text: String?) {
+        eventTextView.text = text == "" ? placeholder : text
+    }
+    
+    /// Настраивает ячейку и ее элементы
     private func setupCell() {
-        
         self.selectionStyle = .none
-        
+
+        eventTextView.delegate = self
         addSubview(eventTextView)
         
-        eventTextView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
-        eventTextView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true
-        eventTextView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30).isActive = true
-        eventTextView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30).isActive = true
-        
+        /// Настройка констрейнтов
+        NSLayoutConstraint.activate([eventTextView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
+                                     eventTextView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
+                                     eventTextView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30),
+                                     eventTextView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30)])
     }
 }
 
-//MARK: - AddEventInfoCellProtocol
-extension AddEventInfoCell: AddEventInfoCellProtocol {
-    func displayData(_ text: String) {
-        
-    }
-}
-
-//MARK: -
+//MARK: - UITextViewDelegate
 extension AddEventInfoCell: UITextViewDelegate {
     
+    /// Сообщает делегату, когда начинается редактирование
     func textViewDidBeginEditing(_ textView: UITextView) {
+        /// Для очистки Placeholder
         if textView.textColor == UIColor.systemGray {
             textView.text = nil
             textView.textColor = UIColor.black.withAlphaComponent(0.7)
         }
     }
     
+    /// Сообщает делегату, когда заканчивается редактирование
     func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
-            textView.text = "Расскажите о вашем событии..."
+        /// Для отображения Placeholder
+        if textView.text == "" {
+            textView.text = placeholder
             textView.textColor = UIColor.systemGray
         }
+    }
+    
+    /// Сообщает делегату о изменении текста в текстовом представлении
+    func textViewDidChangeSelection(_ textView: UITextView) {
+        /// Для обновления модели данных
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [weak self] (_) in
+            guard let text = textView.text  else { return }
+            print(text)
+            self?.delegate?.didChangedText(with: .infoCell, text: text)
+        })
     }
 }

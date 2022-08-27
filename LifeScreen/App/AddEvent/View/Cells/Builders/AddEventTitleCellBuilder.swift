@@ -1,5 +1,5 @@
 //
-//  AddEventTitleBuilder.swift
+//  AddEventTitleCellBuilder.swift
 //  LifeScreen
 //
 //  Created by Владимир Рубис on 22.08.2022.
@@ -7,23 +7,23 @@
 
 import UIKit
 
-final class AddEventTitleBuilder {
+/// Строитель ячейки AddEventTitleCell
+final class AddEventTitleCellBuilder {
     
     /// Высота ячейки
-    private let height = CGFloat(50)
+    private let height = CGFloat(70)
     /// Название заголовка события
-    private let title: String
-    ///
-    private weak var delegate: AddEventTFProtocol?
+    private let title: String?
+    /// Делегат для передачи введенного текста
+    weak var delegate: AddEventFactoryProtocol?
     
-    init(title: String = "", delegate: AddEventTFProtocol?) {
+    init(title: String?) {
         self.title = title
-        self.delegate = delegate
     }
 }
 
 // MARK: - TVCBuilderProtocol
-extension AddEventTitleBuilder: TVCBuilderProtocol {
+extension AddEventTitleCellBuilder: TVCBuilderProtocol {
     var reuseId: String { String(describing: AddEventTitleCell.self) }
     
     var cellType: AddEventCellType { .titleCell }
@@ -32,10 +32,8 @@ extension AddEventTitleBuilder: TVCBuilderProtocol {
     
     func cellAt(indexPath: IndexPath, tableView: UITableView) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AddEventTitleCell", for: indexPath) as! AddEventTitleCell
-        
         cell.delegate = delegate
         cell.displayData(title)
-        
         return cell
     }
 }

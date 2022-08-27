@@ -7,21 +7,20 @@
 
 import UIKit
 
-/// Протокол загрузки данных для AddEventTitleCell
-protocol AddEventTitleCellProtocol {
-    func displayData(_ title: String)
-}
-
+/// Ячейка для отображения заголовка события
 final class AddEventTitleCell: UITableViewCell {
     
+    /// Идентификатор ячейки
     static let reuseId = "AddEventTitleCell"
+    /// Делегат для обработки взаимодействия
+    weak var delegate: AddEventFactoryProtocol?
+    /// Таймер
+    private var timer: Timer?
     
-    weak var delegate: AddEventTFProtocol?
-    
-    var titleEventTF: UITextField = {
+    private var titleEventTF: UITextField = {
         let tf = UITextField()
         let font = UIFont(name: "Helvetica-Bold", size: 20)
-    
+        
         tf.textColor = .black.withAlphaComponent(0.7)
         tf.font = font
         tf.translatesAutoresizingMaskIntoConstraints = false
@@ -34,44 +33,43 @@ final class AddEventTitleCell: UITableViewCell {
         return tf
     }()
     
-    
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
-        setupConstraints()
+        setupCell()
     }
     
-    private func setupElements() {
+    /// Настраивает ячейку и ее элементы
+    private func setupCell() {
         self.selectionStyle = .none
         
         titleEventTF.delegate = self
-    }
-    
-    private func setupConstraints() {
-        
         addSubview(titleEventTF)
         
-        titleEventTF.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        titleEventTF.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -15).isActive = true
-        titleEventTF.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30).isActive = true
-        titleEventTF.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30).isActive = true
+        /// Настройка констрейнтов
+        NSLayoutConstraint.activate([titleEventTF.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+                                     titleEventTF.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -15),
+                                     titleEventTF.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30),
+                                     titleEventTF.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30)])
+    }
+    
+    /// Отображает передаваемые данные
+    ///  - Parameter text: заголовок
+    func displayData(_ title: String?) {
+        titleEventTF.text = title
     }
 }
 
-//MARK: - AddEventTitleCellProtocol
-extension AddEventTitleCell: AddEventTitleCellProtocol {
-    func displayData(_ title: String) {
-        
-    }
-}
-
-//
+//MARK: - UITextFieldDelegate
 extension AddEventTitleCell: UITextFieldDelegate {
     
-    /// Скрыть клавиатуру при нажатии по пустому месту
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        guard let vc = delegate as? AddEventViewController else { return }
-        vc.tableView.endEditing(true)
+    /// Сообщает делегату о изменении текста в текстовом представлении
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        /// Для обновления модели данных
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [weak self] (_) in
+            guard let text = textField.text  else { return }
+            self?.delegate?.didChangedText(with: .titleCell, text: text)
+        })
     }
 }

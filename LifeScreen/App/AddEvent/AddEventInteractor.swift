@@ -5,7 +5,7 @@
 //  Created by Владимир Рубис on 17.08.2022.
 //
 
-import UIKit
+import Foundation
 
 
 protocol AddEventBusinessLogic {
@@ -17,17 +17,12 @@ protocol AddEventBusinessLogic {
 final class AddEventInteractor {
     weak var presenter: AddEventPresentationManagement?
     
-    private let localeImageDownloadManager: LocallyLoadedFromDevice
-    
-    init(localeImageDownloadManager: LocallyLoadedFromDevice = LocalImageDownloadManager()) {
-        self.localeImageDownloadManager = localeImageDownloadManager
-    }
     
 }
 
 
 extension AddEventInteractor: AddEventBusinessLogic {
     func save(event: EventModel) {
-        <#code#>
+        print(1)
     }
 }

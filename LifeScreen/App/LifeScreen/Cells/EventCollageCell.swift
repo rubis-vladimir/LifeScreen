@@ -65,7 +65,7 @@ class EventCollageCell: UICollectionViewCell {
                             
                         }
                         
-                        let dataImage = data.base64EncodedData(options: .lineLength64Characters)
+//                        let dataImage = data.base64EncodedData(options: .lineLength64Characters)
                         
 //                        self?.fileManagerService÷.write(dataImage, to: "2022", and: "Event", file: url.absoluteString)
                         

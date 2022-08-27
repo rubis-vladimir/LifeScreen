@@ -25,6 +25,9 @@ extension AddEventAssembly: Assemblying {
         let interactor = AddEventInteractor()
         let presenter = AddEventPresenter(viewController: vc,
                                           interactor: interactor)
+        let photoPickerManager = PhotoPickerManager()
+        photoPickerManager.vc = vc
+        vc.photoPickerManager = photoPickerManager
         vc.presenter = presenter
         interactor.presenter = presenter
     }

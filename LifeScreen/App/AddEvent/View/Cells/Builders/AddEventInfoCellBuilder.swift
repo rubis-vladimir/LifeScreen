@@ -7,18 +7,19 @@
 
 import UIKit
 
+/// Строитель ячейки AddEventInfoCell
 final class AddEventInfoCellBuilder {
     
+    /// Высота ячейки
     private let height = CGFloat(350)
-    private let text: String
+    /// Текст описания события
+    private let text: String?
+    /// Делегат для передачи введенного текста
+    weak var delegate: AddEventFactoryProtocol?
     
-    // delegate
-    
-    init(text: String) {
+    init(text: String?) {
         self.text = text
     }
-    
-    
 }
 
 //MARK: - TVCBuilderProtocol
@@ -31,9 +32,8 @@ extension AddEventInfoCellBuilder: TVCBuilderProtocol {
     
     func cellAt(indexPath: IndexPath, tableView: UITableView) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: AddEventInfoCell.reuseId, for: indexPath) as! AddEventInfoCell
-        
-        cell.displayData()
-        
+        cell.displayData(text)
+        cell.delegate = delegate
         return cell
     }
 }

@@ -5,18 +5,14 @@
 //  Created by Владимир Рубис on 22.08.2022.
 //
 
-import PhotosUI
+import UIKit
 
-/// Протокол загрузки данных AddEventPhotoCell
-protocol AddEventPhotoCellProtocol {
-    func displayData(_ image: UIImage?)
-}
-
+/// Ячейка для загрузки фотографий из галереи
 final class AddEventPhotoCell: UITableViewCell {
-    
+    /// Идентификатор ячейки
     static let reuseId = "AddEventPhotoCell"
-    
-    weak var delegate: PresentPickerDelegate?
+    /// Делегат для обработки взаимодействия
+    weak var delegate: AddEventFactoryProtocol?
     
     var photoImageView: UIImageView = {
         let imageView = UIImageView()
@@ -32,14 +28,8 @@ final class AddEventPhotoCell: UITableViewCell {
         button.backgroundColor = .systemGray2
         button.imageView?.tintColor = .white
         button.translatesAutoresizingMaskIntoConstraints = false
-        
         return button
     }()
-    
-    
-    deinit {
-        print("PhotoCell деинициализирована")
-    }
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
@@ -48,22 +38,21 @@ final class AddEventPhotoCell: UITableViewCell {
         setupConstraints()
     }
     
+    /// Настраивает ячейку и элементы
     private func setupElements() {
         selectionStyle = .none
-        addPhotoButton.addTarget(self, action: #selector(add(sender:)), for: .touchUpInside)
-        
-        
+        addPhotoButton.addTarget(self, action: #selector(addPhoto), for: .touchUpInside)
     }
     
+    /// Настраивает констрейнты
     private func setupConstraints() {
-        
         let size: CGFloat = 70
         
         addSubview(photoImageView)
         addSubview(addPhotoButton)
         
         /// Настройка констрейнтов
-        let constraints = [
+        NSLayoutConstraint.activate([
             photoImageView.topAnchor.constraint(equalTo: self.topAnchor),
             photoImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             photoImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
@@ -73,20 +62,16 @@ final class AddEventPhotoCell: UITableViewCell {
             addPhotoButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             addPhotoButton.widthAnchor.constraint(equalToConstant: size),
             addPhotoButton.heightAnchor.constraint(equalToConstant: size)
-        ]
-        
-        for constraint in constraints {
-            constraint.isActive = true
-        }
+        ])
     }
     
-    @objc func add(sender: UIButton) {
-        delegate?.presentPicker()
+    /// Вызов PhotoPicker через делегата
+    @objc func addPhoto() {
+        delegate?.didPhotoButtonTapped()
     }
-}
-
-//MARK: - AddEventPhotoCellProtocol
-extension AddEventPhotoCell: AddEventPhotoCellProtocol {
+    
+    /// Отображает передаваемые данные
+    ///  - Parameter image: фотография
     func displayData(_ image: UIImage?) {
         if let image = image {
             self.addPhotoButton.isHidden = true
