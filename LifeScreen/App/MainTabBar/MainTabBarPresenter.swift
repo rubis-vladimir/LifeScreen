@@ -29,6 +29,6 @@ final class MainTabBarPresenter {
 // MARK: - MainTabBarPresentation
 extension MainTabBarPresenter: MainTabBarPresentation {
     func readyForRoute() {
-        router.route()
+        router.routeToAddEvent()
     }
 }

@@ -25,6 +25,7 @@
 		7D4CCC18289403C3001EEE5A /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CCC17289403C3001EEE5A /* EventModel.swift */; };
 		7D67ABE028BA0EB3001B7554 /* AddEventRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D67ABDF28BA0EB3001B7554 /* AddEventRouter.swift */; };
 		7D67ABE328BA6105001B7554 /* TabBarConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D67ABE228BA6105001B7554 /* TabBarConfigurator.swift */; };
+		7D67ABE628BA7689001B7554 /* UIViewController + CustomNB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D67ABE528BA7689001B7554 /* UIViewController + CustomNB.swift */; };
 		7D6AEF3128AD308C00B70B33 /* MainTabBarAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6AEF3028AD308C00B70B33 /* MainTabBarAssembly.swift */; };
 		7D6AEF3328AD30A000B70B33 /* MainTabBarPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6AEF3228AD30A000B70B33 /* MainTabBarPresenter.swift */; };
 		7D6AEF3528AD30BF00B70B33 /* MainTabBarRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6AEF3428AD30BF00B70B33 /* MainTabBarRouter.swift */; };
@@ -88,6 +89,7 @@
 		7D4CCC17289403C3001EEE5A /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
 		7D67ABDF28BA0EB3001B7554 /* AddEventRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventRouter.swift; sourceTree = "<group>"; };
 		7D67ABE228BA6105001B7554 /* TabBarConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarConfigurator.swift; sourceTree = "<group>"; };
+		7D67ABE528BA7689001B7554 /* UIViewController + CustomNB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + CustomNB.swift"; sourceTree = "<group>"; };
 		7D6AEF3028AD308C00B70B33 /* MainTabBarAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarAssembly.swift; sourceTree = "<group>"; };
 		7D6AEF3228AD30A000B70B33 /* MainTabBarPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarPresenter.swift; sourceTree = "<group>"; };
 		7D6AEF3428AD30BF00B70B33 /* MainTabBarRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarRouter.swift; sourceTree = "<group>"; };
@@ -246,6 +248,14 @@
 				7D67ABE228BA6105001B7554 /* TabBarConfigurator.swift */,
 			);
 			path = Workers;
+			sourceTree = "<group>";
+		};
+		7D67ABE428BA764F001B7554 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7D67ABE528BA7689001B7554 /* UIViewController + CustomNB.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		7D6AEF3E28AE313E00B70B33 /* Workers */ = {
@@ -424,6 +434,7 @@
 				7D67ABDF28BA0EB3001B7554 /* AddEventRouter.swift */,
 				7D6AEF3C28AD336B00B70B33 /* AddEventAssembly.swift */,
 				7D41BBD428B9623F003ED674 /* Entity */,
+				7D67ABE428BA764F001B7554 /* Extensions */,
 				7D35CCC128B56C5900EBE9BC /* Workers */,
 			);
 			path = AddEvent;
@@ -603,6 +614,7 @@
 				7DC4D3B228A431B5009D378B /* LocaleStorageManager.swift in Sources */,
 				7D48DC9828B3EDC50063A017 /* AddEventTitleCellBuilder.swift in Sources */,
 				7DA3EEA028885FCB00EE5D28 /* EventDetailsViewController.swift in Sources */,
+				7D67ABE628BA7689001B7554 /* UIViewController + CustomNB.swift in Sources */,
 				7DA3EE7428871B3B00EE5D28 /* MainTabBarController.swift in Sources */,
 				7D67ABE328BA6105001B7554 /* TabBarConfigurator.swift in Sources */,
 				7D48DC8928B390A80063A017 /* TVFactoryProtocol.swift in Sources */,

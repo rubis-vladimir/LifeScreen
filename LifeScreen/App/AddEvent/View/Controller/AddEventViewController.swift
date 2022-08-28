@@ -42,6 +42,41 @@ class AddEventViewController: UITableViewController {
         super.viewDidLoad()
         
         refreshList()
+        setupViews()
+    }
+    
+    
+    private func setupViews() {
+        createCustomNavigationBar()
+        
+        let saveRightButton = createCustomButton(
+            imageName: "checkmark",
+            selector: #selector(audioRightButtonTapped)
+        )
+        let cancelLeftButton = createCustomButton(
+            imageName: "xmark",
+            selector: #selector(videoRightButtonTapped)
+        )
+        let customTitleView = createCustomTitleView(
+            contactName: "SwiftBook",
+            contactDescription: "New lesson...",
+            contactImage: "house.fill"
+        )
+        
+        
+    
+        navigationItem.rightBarButtonItems = [saveRightButton]
+        navigationItem.leftBarButtonItems = [cancelLeftButton]
+        navigationItem.titleView = customTitleView
+        
+    }
+    
+    @objc func audioRightButtonTapped() {
+        print("audioRightButtonTapped")
+    }
+    
+    @objc func videoRightButtonTapped() {
+        print("videoRightButtonTapped")
     }
     
     private func refreshList(model: AddEventModel = AddEventModel(title: "", text: "")) {

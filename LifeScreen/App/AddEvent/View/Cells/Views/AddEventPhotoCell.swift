@@ -23,8 +23,14 @@ final class AddEventPhotoCell: UITableViewCell {
     
     var addPhotoButton: UIButton = {
         let button = UIButton()
-        let configuration = UIImage.SymbolConfiguration(pointSize: 30, weight: .light)
-        button.setImage(UIImage(systemName: "plus")?.withConfiguration(configuration), for: .normal)
+        let configuration = UIImage.SymbolConfiguration(
+            pointSize: 30,
+            weight: .light
+        )
+        button.setImage(
+            UIImage(systemName: "plus")?.withConfiguration(configuration),
+            for: .normal
+        )
         button.backgroundColor = .systemGray2
         button.imageView?.tintColor = .white
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -41,7 +47,10 @@ final class AddEventPhotoCell: UITableViewCell {
     /// Настраивает ячейку и элементы
     private func setupElements() {
         selectionStyle = .none
-        addPhotoButton.addTarget(self, action: #selector(addPhoto), for: .touchUpInside)
+        addPhotoButton.addTarget(
+            self, action: #selector(addPhoto),
+            for: .touchUpInside
+        )
     }
     
     /// Настраивает констрейнты

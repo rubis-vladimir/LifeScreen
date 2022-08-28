@@ -21,8 +21,14 @@ final class MainTabBarController: UITabBarController {
     
     private var plusImageView: UIImageView = {
         let imageView = UIImageView()
-        let configuration = UIImage.SymbolConfiguration(pointSize: 19, weight: .thin)
-        imageView.image = UIImage(systemName: "plus.circle", withConfiguration: configuration)
+        let configuration = UIImage.SymbolConfiguration(
+            pointSize: 19,
+            weight: .thin
+        )
+        imageView.image = UIImage(
+            systemName: "plus.circle",
+            withConfiguration: configuration
+        )
         imageView.tintColor = .systemGray
         return imageView
     }()
@@ -83,9 +89,11 @@ final class MainTabBarController: UITabBarController {
         }
         
         /// Установка Action
-        middleButton.addTarget(self,
-                               action: #selector(routeToCreateEvent(sender:)),
-                               for: .touchUpInside)
+        middleButton.addTarget(
+            self,
+            action: #selector(routeToCreateEvent(sender:)),
+            for: .touchUpInside
+        )
     }
     
     /// Передача ивента навигации в Presenter

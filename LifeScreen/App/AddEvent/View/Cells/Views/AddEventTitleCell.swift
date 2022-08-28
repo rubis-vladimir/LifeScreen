@@ -20,16 +20,17 @@ final class AddEventTitleCell: UITableViewCell {
     private var titleEventTF: UITextField = {
         let tf = UITextField()
         let font = UIFont(name: "Helvetica-Bold", size: 20)
+        let placeholder = "Заголовок"
         
         tf.textColor = .black.withAlphaComponent(0.7)
         tf.font = font
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.textAlignment = .center
-        
-        let placeholder = "Заголовок"
-        tf.attributedPlaceholder = NSAttributedString(string: placeholder,
-                                                      attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray3,
-                                                                   NSAttributedString.Key.font: font ?? UIFont()])
+        tf.attributedPlaceholder = NSAttributedString(
+            string: placeholder,
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray3,
+                         NSAttributedString.Key.font: font ?? UIFont()]
+        )
         return tf
     }()
     
