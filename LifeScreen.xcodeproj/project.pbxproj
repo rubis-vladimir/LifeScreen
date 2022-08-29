@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		7D26B8A828B2CD10005DE3F5 /* TVCBuilderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D26B8A728B2CD10005DE3F5 /* TVCBuilderProtocol.swift */; };
+		7D34BE7E28BD232E002249DF /* DatePickerBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D34BE7D28BD232E002249DF /* DatePickerBottomSheetViewController.swift */; };
+		7D34BE8328BD3ABB002249DF /* UINavigationController + Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D34BE8228BD3ABB002249DF /* UINavigationController + Transition.swift */; };
+		7D34BE8528BD5BED002249DF /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D34BE8428BD5BED002249DF /* MainTabBarController.swift */; };
 		7D35CCC328B56CEC00EBE9BC /* PhotoPickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D35CCC228B56CEC00EBE9BC /* PhotoPickerManager.swift */; };
 		7D41BBD628B96258003ED674 /* AddEventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D41BBD528B96258003ED674 /* AddEventModel.swift */; };
 		7D48DC7F28B37BC00063A017 /* AddEventPhotoCellBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D48DC7E28B37BC00063A017 /* AddEventPhotoCellBuilder.swift */; };
@@ -25,7 +28,7 @@
 		7D4CCC18289403C3001EEE5A /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CCC17289403C3001EEE5A /* EventModel.swift */; };
 		7D67ABE028BA0EB3001B7554 /* AddEventRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D67ABDF28BA0EB3001B7554 /* AddEventRouter.swift */; };
 		7D67ABE328BA6105001B7554 /* TabBarConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D67ABE228BA6105001B7554 /* TabBarConfigurator.swift */; };
-		7D67ABE628BA7689001B7554 /* UIViewController + CustomNB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D67ABE528BA7689001B7554 /* UIViewController + CustomNB.swift */; };
+		7D67ABE628BA7689001B7554 /* UIViewController + CustomNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D67ABE528BA7689001B7554 /* UIViewController + CustomNavBar.swift */; };
 		7D6AEF3128AD308C00B70B33 /* MainTabBarAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6AEF3028AD308C00B70B33 /* MainTabBarAssembly.swift */; };
 		7D6AEF3328AD30A000B70B33 /* MainTabBarPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6AEF3228AD30A000B70B33 /* MainTabBarPresenter.swift */; };
 		7D6AEF3528AD30BF00B70B33 /* MainTabBarRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6AEF3428AD30BF00B70B33 /* MainTabBarRouter.swift */; };
@@ -39,7 +42,6 @@
 		7DA3EE68288717B100EE5D28 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DA3EE66288717B100EE5D28 /* LaunchScreen.storyboard */; };
 		7DA3EE70288719D400EE5D28 /* LifeEventListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EE6F288719D400EE5D28 /* LifeEventListViewController.swift */; };
 		7DA3EE7228871A0600EE5D28 /* LifeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EE7128871A0600EE5D28 /* LifeScreenViewController.swift */; };
-		7DA3EE7428871B3B00EE5D28 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EE7328871B3B00EE5D28 /* MainTabBarController.swift */; };
 		7DA3EE7C28872A8400EE5D28 /* LifeEventListAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EE7B28872A8400EE5D28 /* LifeEventListAssembly.swift */; };
 		7DA3EE8028872AA200EE5D28 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EE7F28872AA200EE5D28 /* Assembly.swift */; };
 		7DA3EE8228872CE800EE5D28 /* LifeEventListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EE8128872CE800EE5D28 /* LifeEventListPresenter.swift */; };
@@ -72,6 +74,9 @@
 
 /* Begin PBXFileReference section */
 		7D26B8A728B2CD10005DE3F5 /* TVCBuilderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVCBuilderProtocol.swift; sourceTree = "<group>"; };
+		7D34BE7D28BD232E002249DF /* DatePickerBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerBottomSheetViewController.swift; sourceTree = "<group>"; };
+		7D34BE8228BD3ABB002249DF /* UINavigationController + Transition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController + Transition.swift"; sourceTree = "<group>"; };
+		7D34BE8428BD5BED002249DF /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		7D35CCC228B56CEC00EBE9BC /* PhotoPickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerManager.swift; sourceTree = "<group>"; };
 		7D41BBD528B96258003ED674 /* AddEventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventModel.swift; sourceTree = "<group>"; };
 		7D48DC7E28B37BC00063A017 /* AddEventPhotoCellBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventPhotoCellBuilder.swift; sourceTree = "<group>"; };
@@ -89,7 +94,7 @@
 		7D4CCC17289403C3001EEE5A /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
 		7D67ABDF28BA0EB3001B7554 /* AddEventRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventRouter.swift; sourceTree = "<group>"; };
 		7D67ABE228BA6105001B7554 /* TabBarConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarConfigurator.swift; sourceTree = "<group>"; };
-		7D67ABE528BA7689001B7554 /* UIViewController + CustomNB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + CustomNB.swift"; sourceTree = "<group>"; };
+		7D67ABE528BA7689001B7554 /* UIViewController + CustomNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + CustomNavBar.swift"; sourceTree = "<group>"; };
 		7D6AEF3028AD308C00B70B33 /* MainTabBarAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarAssembly.swift; sourceTree = "<group>"; };
 		7D6AEF3228AD30A000B70B33 /* MainTabBarPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarPresenter.swift; sourceTree = "<group>"; };
 		7D6AEF3428AD30BF00B70B33 /* MainTabBarRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarRouter.swift; sourceTree = "<group>"; };
@@ -105,7 +110,6 @@
 		7DA3EE69288717B100EE5D28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7DA3EE6F288719D400EE5D28 /* LifeEventListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeEventListViewController.swift; sourceTree = "<group>"; };
 		7DA3EE7128871A0600EE5D28 /* LifeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeScreenViewController.swift; sourceTree = "<group>"; };
-		7DA3EE7328871B3B00EE5D28 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		7DA3EE7B28872A8400EE5D28 /* LifeEventListAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeEventListAssembly.swift; sourceTree = "<group>"; };
 		7DA3EE7F28872AA200EE5D28 /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
 		7DA3EE8128872CE800EE5D28 /* LifeEventListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeEventListPresenter.swift; sourceTree = "<group>"; };
@@ -147,6 +151,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7D34BE8028BD23EE002249DF /* DatePicker */ = {
+			isa = PBXGroup;
+			children = (
+				7D34BE7D28BD232E002249DF /* DatePickerBottomSheetViewController.swift */,
+			);
+			path = DatePicker;
+			sourceTree = "<group>";
+		};
+		7D34BE8128BD3A86002249DF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7D34BE8228BD3ABB002249DF /* UINavigationController + Transition.swift */,
+			);
+			name = Extensions;
+			path = Entity;
+			sourceTree = "<group>";
+		};
 		7D35CCC128B56C5900EBE9BC /* Workers */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,7 +274,7 @@
 		7D67ABE428BA764F001B7554 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				7D67ABE528BA7689001B7554 /* UIViewController + CustomNB.swift */,
+				7D67ABE528BA7689001B7554 /* UIViewController + CustomNavBar.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -300,6 +321,7 @@
 				7DA3EE7728871FDF00EE5D28 /* LifeScreen */,
 				7DA3EE9928882DF300EE5D28 /* EventDetails */,
 				7DA3EE9828882DC300EE5D28 /* AddEvent */,
+				7D34BE8028BD23EE002249DF /* DatePicker */,
 				7DA3EE9A28882E8700EE5D28 /* Settings */,
 				7DA3EE9B288835FC00EE5D28 /* PhotoAlbum */,
 				7DA3EE9C288836CF00EE5D28 /* PhotoDetails */,
@@ -343,7 +365,7 @@
 		7DA3EE7828871FE900EE5D28 /* MainTabBar */ = {
 			isa = PBXGroup;
 			children = (
-				7DA3EE7328871B3B00EE5D28 /* MainTabBarController.swift */,
+				7D34BE8428BD5BED002249DF /* MainTabBarController.swift */,
 				7D6AEF3228AD30A000B70B33 /* MainTabBarPresenter.swift */,
 				7D6AEF3428AD30BF00B70B33 /* MainTabBarRouter.swift */,
 				7D6AEF3028AD308C00B70B33 /* MainTabBarAssembly.swift */,
@@ -374,10 +396,11 @@
 		7DA3EE7D28872A8700EE5D28 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				7D4CCC16289403A4001EEE5A /* Entity */,
+				7D34BE8128BD3A86002249DF /* Extensions */,
+				7DA3EE7E28872A9300EE5D28 /* Protocols */,
 				7DA3EEAD288876D300EE5D28 /* Workers */,
 				7D4B76A3288B4CC600CCF8DD /* Wrappers */,
-				7DA3EE7E28872A9300EE5D28 /* Protocols */,
-				7D4CCC16289403A4001EEE5A /* Entity */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -597,6 +620,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D34BE8328BD3ABB002249DF /* UINavigationController + Transition.swift in Sources */,
 				7DA3EE7228871A0600EE5D28 /* LifeScreenViewController.swift in Sources */,
 				7D67ABE028BA0EB3001B7554 /* AddEventRouter.swift in Sources */,
 				7D6AEF3928AD334300B70B33 /* AddEventPresenter.swift in Sources */,
@@ -614,13 +638,13 @@
 				7DC4D3B228A431B5009D378B /* LocaleStorageManager.swift in Sources */,
 				7D48DC9828B3EDC50063A017 /* AddEventTitleCellBuilder.swift in Sources */,
 				7DA3EEA028885FCB00EE5D28 /* EventDetailsViewController.swift in Sources */,
-				7D67ABE628BA7689001B7554 /* UIViewController + CustomNB.swift in Sources */,
-				7DA3EE7428871B3B00EE5D28 /* MainTabBarController.swift in Sources */,
+				7D67ABE628BA7689001B7554 /* UIViewController + CustomNavBar.swift in Sources */,
 				7D67ABE328BA6105001B7554 /* TabBarConfigurator.swift in Sources */,
 				7D48DC8928B390A80063A017 /* TVFactoryProtocol.swift in Sources */,
 				7D6AEF3528AD30BF00B70B33 /* MainTabBarRouter.swift in Sources */,
 				7D48DC8128B37C780063A017 /* AddEventPhotoCell.swift in Sources */,
 				7D4B76AA2891B32E00CCF8DD /* EventCollageCell2.swift in Sources */,
+				7D34BE8528BD5BED002249DF /* MainTabBarController.swift in Sources */,
 				7DC4D3B028A4305A009D378B /* UserModel.swift in Sources */,
 				7D4B76A82891605100CCF8DD /* CollageView.swift in Sources */,
 				7DA3EE8228872CE800EE5D28 /* LifeEventListPresenter.swift in Sources */,
@@ -651,6 +675,7 @@
 				7D6AEF3128AD308C00B70B33 /* MainTabBarAssembly.swift in Sources */,
 				7D48DC7F28B37BC00063A017 /* AddEventPhotoCellBuilder.swift in Sources */,
 				7D4CCC152893FDA7001EEE5A /* LifeEventCellViewModel.swift in Sources */,
+				7D34BE7E28BD232E002249DF /* DatePickerBottomSheetViewController.swift in Sources */,
 				7DA3EE8628872EC200EE5D28 /* LifeEventListRouter.swift in Sources */,
 				7DA3EEB128887FA700EE5D28 /* Event.swift in Sources */,
 				7D41BBD628B96258003ED674 /* AddEventModel.swift in Sources */,

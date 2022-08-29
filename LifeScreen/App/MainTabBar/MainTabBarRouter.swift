@@ -24,18 +24,11 @@ extension MainTabBarRouter: MainTabBarRoutable {
     
     func routeToAddEvent() {
         guard let nc = navigationController else { return }
-        
         let vc = AddEventViewController()
         
         AddEventAssembly(navigationController: nc).assembly(viewController: vc)
+        nc.createCustomTransition(with: .moveIn)
         
-        let transition = CATransition()
-        transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        transition.type = CATransitionType.moveIn
-        transition.subtype = CATransitionSubtype.fromTop
-        
-        nc.view.layer.add(transition, forKey: nil)
         nc.pushViewController(vc, animated: false)
     }
 }

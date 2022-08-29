@@ -35,7 +35,7 @@ final class PhotoPickerManager {
         }
     }
     
-    func handleCompletion(assetIdentifier: String, object: Any?, error: Error? = nil) {
+    private func handleCompletion(assetIdentifier: String, object: Any?, error: Error? = nil) {
         guard currentAssetIdentifier == assetIdentifier else { return }
         
         if let image = object as? UIImage {
@@ -70,7 +70,6 @@ extension PhotoPickerManager: PhotoPickerConfiguratable {
         
         picker.delegate = self
         completion(picker)
-        
     }
 }
 

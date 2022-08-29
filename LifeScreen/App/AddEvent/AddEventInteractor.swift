@@ -10,7 +10,7 @@ import Foundation
 
 protocol AddEventBusinessLogic {
     
-    func save(event: EventModel)
+    func save(event: AddEventModel)
 }
 
 
@@ -22,7 +22,7 @@ final class AddEventInteractor {
 
 
 extension AddEventInteractor: AddEventBusinessLogic {
-    func save(event: EventModel) {
-        print(1)
+    func save(event: AddEventModel) {
+        print("Идем на сохранение")
     }
 }

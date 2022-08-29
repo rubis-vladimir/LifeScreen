@@ -18,7 +18,7 @@ protocol DisplayPhotoProtocol: AnyObject {
 /// Протокол вызова Photo Picker
 protocol PresentPickerProtocol: AnyObject {
     
-    /// Вызывает Photo Picker
+    /// Передача запроса презентеру на вызов PhotoPicker
     func presentPicker()
 }
 
@@ -30,68 +30,89 @@ protocol AddEventViewable: AnyObject {
 /// Контроллер добавления жизненных событий
 class AddEventViewController: UITableViewController {
     
+    /// Дефолтная модель данных
+    private var defaultModel = AddEventModel(title: "", text: "")
+    /// Презентер модуля AddEvent
     var presenter: AddEventPresentation?
-    /// Менеджер загрузки Photo Picker
-    var photoPickerManager: PhotoPickerConfiguratable?
     /// Массив конфигураторов ячеек
     private var builders: [TVCBuilderProtocol] = []
     /// Фабрика настройки табличного представления
     private var factory: TVFactoryProtocol?
     
+    //MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        refreshList()
-        setupViews()
+        refreshList(model: defaultModel)
+        setupNavigitionBarViews()
     }
     
-    
-    private func setupViews() {
-        createCustomNavigationBar()
+    /// Настраивает кастомный NavigitionBar
+    private func setupNavigitionBarViews() {
         
-        let saveRightButton = createCustomButton(
+        let saveRightButton = createCustomBarButton(
             imageName: "checkmark",
-            selector: #selector(audioRightButtonTapped)
+            selector: #selector(saveAndExitRightButtonTapped)
         )
-        let cancelLeftButton = createCustomButton(
+        let cancelLeftButton = createCustomBarButton(
             imageName: "xmark",
-            selector: #selector(videoRightButtonTapped)
+            selector: #selector(cancelLeftButtonTapped)
         )
-        let customTitleView = createCustomTitleView(
-            contactName: "SwiftBook",
-            contactDescription: "New lesson...",
-            contactImage: "house.fill"
+        let customTitleView = createTitleButton(
+            title: "29 августа 2022",
+            selector: #selector(routeToDataPickerVC)
         )
         
-        
-    
         navigationItem.rightBarButtonItems = [saveRightButton]
         navigationItem.leftBarButtonItems = [cancelLeftButton]
         navigationItem.titleView = customTitleView
+    }
+    
+    /// Сохраняет событие и скрывает экран
+    @objc private func saveAndExitRightButtonTapped() {
+        print("saveAndExitRightButtonTapped")
         
+        factory?.catchModel(completion: { [weak self] model in
+            guard let model = model as? AddEventModel else { return }
+            self?.presenter?.save(event: model)
+        })
+        dismissVC()
     }
     
-    @objc func audioRightButtonTapped() {
-        print("audioRightButtonTapped")
+    deinit {
+        print("VC deinit")
     }
     
-    @objc func videoRightButtonTapped() {
-        print("videoRightButtonTapped")
+    /// Скрывает экран
+    @objc private func cancelLeftButtonTapped() {
+        dismissVC()
     }
     
-    private func refreshList(model: AddEventModel = AddEventModel(title: "", text: "")) {
+    /// Переход к экрану с обновлением даты
+    @objc private func routeToDataPickerVC() {
+        presenter?.route(to: .dataPicker)
+    }
+    
+    /// Скрывает экран
+    private func dismissVC() {
+        guard let nc = navigationController else { return }
+        nc.createCustomTransition(with: .fade)
+        nc.popViewController(animated: false)
+    }
+    
+    /// Обновление данных и UI
+    ///   - Parameter model: модель сохраняемого события (по умолчанию пустая)
+    private func refreshList(model: AddEventModel) {
         
-        factory = AddEventFactory(tableView: tableView, model: model, delegate: self)
+        factory = AddEventFactory(tableView: tableView,
+                                  model: model,
+                                  delegate: self)
         guard let builders = factory?.builders else { return }
         self.builders = builders
         
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
-    }
-    
-    func eventSaveAndExit() {
-        
     }
     
     // MARK: - UITableViewDataSource & Delegate
@@ -109,13 +130,15 @@ extension AddEventViewController: DisplayPhotoProtocol {
     func setPhoto(_ image: UIImage) {
         /// Захватывает текущую модель, обновляет ее
         /// и перезагружает табличное представление
+        
+        var eventModel: AddEventModel?
         factory?.catchModel { [weak self] model in
             guard let model = model as? AddEventModel else { return }
-            let eventModel = AddEventModel(image: image,
+            eventModel = AddEventModel(image: image,
                                            title: model.title,
                                            text: model.text)
-            self?.refreshList(model: eventModel)
         }
+        refreshList(model: eventModel ?? defaultModel)
     }
 }
 
@@ -123,9 +146,7 @@ extension AddEventViewController: DisplayPhotoProtocol {
 extension AddEventViewController: PresentPickerProtocol {
     
     func presentPicker() {
-        photoPickerManager?.createPhotoPicker(completion: { [weak self] picker in
-            self?.present(picker, animated: true)
-        })
+        presenter?.route(to: .photoPiker)
     }
 }
 

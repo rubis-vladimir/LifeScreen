@@ -23,12 +23,16 @@ extension AddEventAssembly: Assemblying {
         
         guard let vc = viewController as? AddEventViewController else { return }
         let interactor = AddEventInteractor()
+        let router = AddEventRouter()
         let presenter = AddEventPresenter(viewController: vc,
-                                          interactor: interactor)
+                                          interactor: interactor,
+                                          router: router)
         let photoPickerManager = PhotoPickerManager()
-        photoPickerManager.vc = vc
-        vc.photoPickerManager = photoPickerManager
+        
         vc.presenter = presenter
         interactor.presenter = presenter
+        router.viewController = vc
+        router.photoPickerManager = photoPickerManager
+        photoPickerManager.vc = vc
     }
 }
