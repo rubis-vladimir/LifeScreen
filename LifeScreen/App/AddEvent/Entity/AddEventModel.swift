@@ -9,8 +9,8 @@ import UIKit
 
 /// Модель События в модуле AddEvent
 struct AddEventModel {
-    var image: UIImage?
-    var title: String
-    var text: String
+    var imageData: Data?
+    var title: String?
+    var text: String?
     var date: Date?
 }

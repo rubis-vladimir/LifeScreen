@@ -25,19 +25,10 @@ extension UIViewController {
         button.setTitle(title, for: .normal)
         button.setTitleColor(.black.withAlphaComponent(0.7), for: .normal)
         button.addTarget(self, action: selector, for: .touchUpInside)
-        
-//        let dataPicker = UIDatePicker()
-//        dataPicker.frame = CGRect(x: 20, y: 0, width: view.frame.width - 20, height: view.frame.height)
-//        dataPicker.datePickerMode = .date
-//        dataPicker.preferredDatePickerStyle = .wheels
-//        view.addSubview(dataPicker)
-//
-        
         return button
     }
     
     func createCustomBarButton(imageName: String, selector: Selector) -> UIBarButtonItem {
-        
         let button = UIButton(type: .system)
         button.setImage(
             UIImage(systemName: imageName)?.withRenderingMode(.alwaysTemplate),

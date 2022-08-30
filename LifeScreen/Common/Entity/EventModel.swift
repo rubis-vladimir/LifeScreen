@@ -10,6 +10,9 @@ import RealmSwift
 
 /// Модель События для сохранения в Realm
 final class EventModel: Object {
+
+    /// Уникальный номер события
+    @Persisted var id: String?
     /// Название
     @Persisted var title: String = ""
     /// Описание

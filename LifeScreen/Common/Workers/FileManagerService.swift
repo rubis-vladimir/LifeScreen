@@ -10,7 +10,7 @@ import Foundation
 protocol FileManagerProtocol {
     func read(from directoryYear: String,
               and directoryEvent: String,
-              file: String) -> String?
+              file: String) -> URL?
     
     func write(_ image: Data,
                to directoryYear: String,
@@ -28,11 +28,11 @@ extension FileManagerService: FileManagerProtocol {
     
     func read(from directoryYear: String,
               and directoryEvent: String,
-              file: String) -> String? {
+              file: String) -> URL? {
         
-        let filePath = path.appendingPathComponent(directoryYear).appendingPathComponent(directoryEvent).appendingPathComponent(file).path
+        let filePath = path.appendingPathComponent(directoryYear).appendingPathComponent(directoryEvent).appendingPathComponent(file)
         
-        if FileManager.default.fileExists(atPath: filePath) {
+        if FileManager.default.fileExists(atPath: filePath.path) {
             return filePath
         }
         return nil
@@ -46,6 +46,7 @@ extension FileManagerService: FileManagerProtocol {
 //            print(error.localizedDescription)
 //        }
     }
+    
     
     
     

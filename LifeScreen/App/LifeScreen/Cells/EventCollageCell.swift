@@ -45,7 +45,7 @@ class EventCollageCell: UICollectionViewCell {
             let filePath = fileManagerService.read(from: "2022", and: "Event", file: url.absoluteString)
             
             if let filePath = filePath {
-                guard let image = UIImage(contentsOfFile: filePath) else { return }
+                guard let image = UIImage(contentsOfFile: filePath.path) else { return }
                 
                 DispatchQueue.main.async {
                     self.collageImageView.image = image
@@ -56,7 +56,6 @@ class EventCollageCell: UICollectionViewCell {
                     if let data = try? result.get() {
                         
                         if let image = UIImage(data: data) {
-                            
                             DispatchQueue.main.async {
                                 self?.collageImageView.image = image
                                 print("Картинка загружена из сети")

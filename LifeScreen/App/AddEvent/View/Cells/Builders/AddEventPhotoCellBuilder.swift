@@ -11,13 +11,13 @@ import UIKit
 final class AddEventPhotoCellBuilder {
     /// Высота ячейки
     private let height = CGFloat(350)
-    /// Подгружаемая фотография
-    private let image: UIImage?
+    /// Данные изображения
+    private let imageData: Data?
     /// Делегат для обработки нажатия на кнопку
     weak var delegate: AddEventFactoryProtocol?
     
-    init(image: UIImage?) {
-        self.image = image
+    init(imageData: Data?) {
+        self.imageData = imageData
     }
 }
 
@@ -32,7 +32,7 @@ extension AddEventPhotoCellBuilder: TVCBuilderProtocol {
     
     func cellAt(indexPath: IndexPath, tableView: UITableView) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: AddEventPhotoCell.reuseId, for: indexPath) as! AddEventPhotoCell
-        cell.displayData(image)
+        cell.displayData(imageData)
         cell.delegate = delegate
         return cell
     }

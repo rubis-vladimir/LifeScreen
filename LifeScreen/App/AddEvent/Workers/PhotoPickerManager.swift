@@ -7,19 +7,23 @@
 
 import PhotosUI
 
+/// Пока не доработан. Подгружает изображения
 protocol PhotoPickerConfiguratable {
     func createPhotoPicker(completion: @escaping (PHPickerViewController) -> Void)
 }
 
 final class PhotoPickerManager {
     
-    weak var vc: DisplayPhotoProtocol?
+    private weak var delegate: DisplayPhotoDelegate?
     
     private var selection = [String: PHPickerResult]()
     private var selectedAssetIdentifiers = [String]()
     private var selectedAssetIdentifierIterator: IndexingIterator<[String]>?
     private var currentAssetIdentifier: String?
     
+    init(delegate: DisplayPhotoDelegate) {
+        self.delegate = delegate
+    }
     
     private func displayNext() {
         guard let assetIdentifier = selectedAssetIdentifierIterator?.next() else { return }
@@ -40,7 +44,11 @@ final class PhotoPickerManager {
         
         if let image = object as? UIImage {
             
-            vc?.setPhoto(image)
+            if let imageData = image.pngData() {
+                delegate?.setPhoto(imageData)
+            } else
+            {
+                return }
             
         } else if let error = error {
             print("Couldn't display \(assetIdentifier) with error: \(error)")

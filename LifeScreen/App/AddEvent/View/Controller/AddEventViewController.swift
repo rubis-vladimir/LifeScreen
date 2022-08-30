@@ -7,13 +7,7 @@
 
 import UIKit
 
-/// Протокол обновления модели и установки фото
-protocol DisplayPhotoProtocol: AnyObject {
-    
-    /// Добавляет в текущую модель фото и обновляет UI элементы
-    ///  - Parameter image: загруженное изображения из галереи
-    func setPhoto(_ image: UIImage)
-}
+
 
 /// Протокол вызова Photo Picker
 protocol PresentPickerProtocol: AnyObject {
@@ -23,8 +17,8 @@ protocol PresentPickerProtocol: AnyObject {
 }
 
 /// Пока не используется
-protocol AddEventViewable: AnyObject {
-    
+protocol AddEventPresenterDelegate: AnyObject {
+    func updateUI(with model: AddEventModel)
 }
 
 /// Контроллер добавления жизненных событий
@@ -43,8 +37,13 @@ class AddEventViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        refreshList(model: defaultModel)
+        showEvent()
         setupNavigitionBarViews()
+    }
+    
+    private func showEvent() {
+        presenter?.setupEditEvent()
+        refreshList()
     }
     
     /// Настраивает кастомный NavigitionBar
@@ -102,7 +101,8 @@ class AddEventViewController: UITableViewController {
     
     /// Обновление данных и UI
     ///   - Parameter model: модель сохраняемого события (по умолчанию пустая)
-    private func refreshList(model: AddEventModel) {
+    private func refreshList() {
+        guard let model = presenter?.eventModel else { return }
         
         factory = AddEventFactory(tableView: tableView,
                                   model: model,
@@ -125,22 +125,6 @@ class AddEventViewController: UITableViewController {
     }
 }
 
-//MARK: - DisplayPhotoProtocol
-extension AddEventViewController: DisplayPhotoProtocol {
-    func setPhoto(_ image: UIImage) {
-        /// Захватывает текущую модель, обновляет ее
-        /// и перезагружает табличное представление
-        
-        var eventModel: AddEventModel?
-        factory?.catchModel { [weak self] model in
-            guard let model = model as? AddEventModel else { return }
-            eventModel = AddEventModel(image: image,
-                                           title: model.title,
-                                           text: model.text)
-        }
-        refreshList(model: eventModel ?? defaultModel)
-    }
-}
 
 //MARK: - PresentPickerDelegate
 extension AddEventViewController: PresentPickerProtocol {
@@ -152,6 +136,8 @@ extension AddEventViewController: PresentPickerProtocol {
 
 
 //MARK: - AddEventViewable
-extension AddEventViewController: AddEventViewable {
-    
+extension AddEventViewController: AddEventPresenterDelegate {
+    func updateUI(with model: AddEventModel) {
+        refreshList()
+    }
 }

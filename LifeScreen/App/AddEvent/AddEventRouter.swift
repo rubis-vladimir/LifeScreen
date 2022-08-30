@@ -7,13 +7,25 @@
 
 import UIKit
 
+/// Навигация в модуле AddEvent
 enum AddEventTarget {
-    case photoPiker, dataPicker
+    /// Загрузчик изображений
+    case photoPiker
+    /// Child VC с DataPicker
+    case dataPicker
 }
 
+/// Протокол обновления модели и установки фото
+protocol DisplayPhotoDelegate: AnyObject {
+    
+    /// Добавляет в текущую модель фото и обновляет UI элементы
+    ///  - Parameter data: data загруженного изображения из галереи
+    func setPhoto(_ data: Data)
+}
 
 /// Протокол управления слоем навигации
 protocol AddEventRouting {
+    /// Переход по target
     func route(to: AddEventTarget)
 }
 
@@ -21,7 +33,8 @@ protocol AddEventRouting {
 final class AddEventRouter {
     
     weak var viewController: AddEventViewController?
-    var photoPickerManager: PhotoPickerConfiguratable?
+    weak var presenter: AddEventDisplayPhotoDelegate?
+    private var photoPickerManager: PhotoPickerConfiguratable?
     
 }
 
@@ -33,16 +46,21 @@ extension AddEventRouter: AddEventRouting {
         switch to {
             
         case .photoPiker:
+            photoPickerManager = PhotoPickerManager(delegate: self)
             photoPickerManager?.createPhotoPicker(completion: { picker in
                 vc.present(picker, animated: true)
             })
         case .dataPicker:
             DatePickerBottomSheetViewController(presentedViewController: vc, presenting: .none)
         }
-        
-        
-        
-        
-//        vConroller.present(vc, animated: true)
+    }
+}
+
+
+//MARK: - DisplayPhotoProtocol
+extension AddEventRouter: DisplayPhotoDelegate {
+    func setPhoto(_ data: Data) {
+        print("Получили дату")
+        presenter?.updateModel(with: data)
     }
 }

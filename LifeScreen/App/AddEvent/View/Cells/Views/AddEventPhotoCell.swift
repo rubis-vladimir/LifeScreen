@@ -81,10 +81,10 @@ final class AddEventPhotoCell: UITableViewCell {
     
     /// Отображает передаваемые данные
     ///  - Parameter image: фотография
-    func displayData(_ image: UIImage?) {
-        if let image = image {
+    func displayData(_ imageData: Data?) {
+        if let imageData = imageData {
             self.addPhotoButton.isHidden = true
-            self.photoImageView.image = image
+            self.photoImageView.image = UIImage(data: imageData)
         } else {
             self.addPhotoButton.isHidden = false
         }

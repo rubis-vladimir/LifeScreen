@@ -59,7 +59,7 @@ class EventCollageCell2: UICollectionViewCell {
             print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].absoluteString)
             
             if let filePath = filePath {
-                guard let image = UIImage(contentsOfFile: filePath) else { return }
+                guard let image = UIImage(contentsOfFile: filePath.path) else { return }
                 
                 DispatchQueue.main.async {
                     self.contentContainer.photoImageViewOne.image = image

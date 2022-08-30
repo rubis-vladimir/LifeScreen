@@ -17,22 +17,22 @@ final class AddEventAssembly {
 }
 
 // MARK: - Assemblying
-extension AddEventAssembly: Assemblying {
+extension AddEventAssembly {
     
-    func assembly(viewController: UIViewController) {
+    func assembly(viewController: UIViewController,
+                  editModel: EventModel?) {
         
         guard let vc = viewController as? AddEventViewController else { return }
         let interactor = AddEventInteractor()
         let router = AddEventRouter()
-        let presenter = AddEventPresenter(viewController: vc,
-                                          interactor: interactor,
+        let presenter = AddEventPresenter(interactor: interactor,
                                           router: router)
-        let photoPickerManager = PhotoPickerManager()
         
         vc.presenter = presenter
+        presenter.delegate = vc
         interactor.presenter = presenter
         router.viewController = vc
-        router.photoPickerManager = photoPickerManager
-        photoPickerManager.vc = vc
+        router.presenter = presenter
+        presenter.editModel = editModel
     }
 }

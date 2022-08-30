@@ -23,7 +23,7 @@ protocol AddEventFactoryProtocol: AnyObject {
 /// Фабрика настройки табличного представления модуля AddEvent
 final class AddEventFactory {
     
-    var model: AddEventModel
+    private var model: AddEventModel
     private let tableView: UITableView
     private weak var delegate: PresentPickerProtocol?
     
@@ -56,7 +56,7 @@ final class AddEventFactory {
         
         switch type {
         case .photoCell: /// Для ячейки подгрузки фото
-            let builder = AddEventPhotoCellBuilder(image: model.image)
+            let builder = AddEventPhotoCellBuilder(imageData: model.imageData)
             builder.delegate = self
             tableView.register(AddEventPhotoCell.self, forCellReuseIdentifier: builder.reuseId)
             return builder

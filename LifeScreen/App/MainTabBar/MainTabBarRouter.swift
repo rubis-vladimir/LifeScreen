@@ -26,7 +26,9 @@ extension MainTabBarRouter: MainTabBarRoutable {
         guard let nc = navigationController else { return }
         let vc = AddEventViewController()
         
-        AddEventAssembly(navigationController: nc).assembly(viewController: vc)
+        AddEventAssembly(navigationController: nc).assembly(viewController: vc,
+                                                            editModel: nil)
+        
         nc.createCustomTransition(with: .moveIn)
         
         nc.pushViewController(vc, animated: false)
