@@ -13,12 +13,12 @@
 		7D34BE8528BD5BED002249DF /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D34BE8428BD5BED002249DF /* MainTabBarController.swift */; };
 		7D35CCC328B56CEC00EBE9BC /* PhotoPickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D35CCC228B56CEC00EBE9BC /* PhotoPickerManager.swift */; };
 		7D41BBD628B96258003ED674 /* AddEventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D41BBD528B96258003ED674 /* AddEventModel.swift */; };
+		7D47518A28BDE2C500E67CE6 /* AddEventFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D47518928BDE2C500E67CE6 /* AddEventFactory.swift */; };
 		7D48DC7F28B37BC00063A017 /* AddEventPhotoCellBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D48DC7E28B37BC00063A017 /* AddEventPhotoCellBuilder.swift */; };
 		7D48DC8128B37C780063A017 /* AddEventPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D48DC8028B37C780063A017 /* AddEventPhotoCell.swift */; };
 		7D48DC8328B37F4F0063A017 /* AddEventInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D48DC8228B37F4F0063A017 /* AddEventInfoCell.swift */; };
 		7D48DC8928B390A80063A017 /* TVFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D48DC8828B390A80063A017 /* TVFactoryProtocol.swift */; };
 		7D48DC9128B39A960063A017 /* AddEventInfoCellBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D48DC9028B39A960063A017 /* AddEventInfoCellBuilder.swift */; };
-		7D48DC9328B39BC60063A017 /* AddEventFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D48DC9228B39BC60063A017 /* AddEventFactory.swift */; };
 		7D48DC9628B3ED950063A017 /* AddEventTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D48DC9528B3ED950063A017 /* AddEventTitleCell.swift */; };
 		7D48DC9828B3EDC50063A017 /* AddEventTitleCellBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D48DC9728B3EDC50063A017 /* AddEventTitleCellBuilder.swift */; };
 		7D4B76A5288B4CE000CCF8DD /* Persist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4B76A4288B4CE000CCF8DD /* Persist.swift */; };
@@ -79,12 +79,12 @@
 		7D34BE8428BD5BED002249DF /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		7D35CCC228B56CEC00EBE9BC /* PhotoPickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerManager.swift; sourceTree = "<group>"; };
 		7D41BBD528B96258003ED674 /* AddEventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventModel.swift; sourceTree = "<group>"; };
+		7D47518928BDE2C500E67CE6 /* AddEventFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddEventFactory.swift; path = LifeScreen/App/AddEvent/View/Factory/AddEventFactory.swift; sourceTree = SOURCE_ROOT; };
 		7D48DC7E28B37BC00063A017 /* AddEventPhotoCellBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventPhotoCellBuilder.swift; sourceTree = "<group>"; };
 		7D48DC8028B37C780063A017 /* AddEventPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventPhotoCell.swift; sourceTree = "<group>"; };
 		7D48DC8228B37F4F0063A017 /* AddEventInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventInfoCell.swift; sourceTree = "<group>"; };
 		7D48DC8828B390A80063A017 /* TVFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVFactoryProtocol.swift; sourceTree = "<group>"; };
 		7D48DC9028B39A960063A017 /* AddEventInfoCellBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventInfoCellBuilder.swift; sourceTree = "<group>"; };
-		7D48DC9228B39BC60063A017 /* AddEventFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddEventFactory.swift; path = "LifeScreen/App/AddEvent/View/New Group/Factory/AddEventFactory.swift"; sourceTree = SOURCE_ROOT; };
 		7D48DC9528B3ED950063A017 /* AddEventTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventTitleCell.swift; sourceTree = "<group>"; };
 		7D48DC9728B3EDC50063A017 /* AddEventTitleCellBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventTitleCellBuilder.swift; sourceTree = "<group>"; };
 		7D4B76A4288B4CE000CCF8DD /* Persist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persist.swift; sourceTree = "<group>"; };
@@ -204,7 +204,7 @@
 		7D48DC8C28B39A4F0063A017 /* Factory */ = {
 			isa = PBXGroup;
 			children = (
-				7D48DC9228B39BC60063A017 /* AddEventFactory.swift */,
+				7D47518928BDE2C500E67CE6 /* AddEventFactory.swift */,
 			);
 			name = Factory;
 			path = "New Group/Factory";
@@ -633,7 +633,6 @@
 				7DA3EEBC288993CA00EE5D28 /* LifeScreenPresentetionLanWorker.swift in Sources */,
 				7DC4D3B528A4F026009D378B /* FileManagerService.swift in Sources */,
 				7DA3EE89288743CA00EE5D28 /* LifeEventCell.swift in Sources */,
-				7D48DC9328B39BC60063A017 /* AddEventFactory.swift in Sources */,
 				7DA3EE8028872AA200EE5D28 /* Assembly.swift in Sources */,
 				7DC4D3B228A431B5009D378B /* LocaleStorageManager.swift in Sources */,
 				7D48DC9828B3EDC50063A017 /* AddEventTitleCellBuilder.swift in Sources */,
@@ -667,6 +666,7 @@
 				7D48DC9628B3ED950063A017 /* AddEventTitleCell.swift in Sources */,
 				7D35CCC328B56CEC00EBE9BC /* PhotoPickerManager.swift in Sources */,
 				7DA3EE8428872E7500EE5D28 /* LifeEventListInteractor.swift in Sources */,
+				7D47518A28BDE2C500E67CE6 /* AddEventFactory.swift in Sources */,
 				7DA3EEB6288891E200EE5D28 /* EventCollageCell.swift in Sources */,
 				7DA3EE9E28885F1F00EE5D28 /* EventDetailsAssembly.swift in Sources */,
 				7D4CCC18289403C3001EEE5A /* EventModel.swift in Sources */,
