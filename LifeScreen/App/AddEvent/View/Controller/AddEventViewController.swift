@@ -14,6 +14,8 @@ protocol PresentPickerProtocol: AnyObject {
     
     /// Передача запроса презентеру на вызов PhotoPicker
     func presentPicker()
+    /// Передача текстовых данных в модель
+    func didEnteredText(_ text: String, type: AddEventCellType)
 }
 
 /// Пока не используется
@@ -71,10 +73,7 @@ class AddEventViewController: UITableViewController {
     @objc private func saveAndExitRightButtonTapped() {
         print("saveAndExitRightButtonTapped")
         
-        factory?.catchModel(completion: { [weak self] model in
-            guard let model = model as? AddEventModel else { return }
-            self?.presenter?.save(event: model)
-        })
+        presenter?.saveCurrentEvent()
         dismissVC()
     }
     
@@ -131,6 +130,10 @@ extension AddEventViewController: PresentPickerProtocol {
     
     func presentPicker() {
         presenter?.route(to: .photoPiker)
+    }
+    
+    func didEnteredText(_ text: String, type: AddEventCellType) {
+        presenter?.updateModel(with: text, type: type)
     }
 }
 

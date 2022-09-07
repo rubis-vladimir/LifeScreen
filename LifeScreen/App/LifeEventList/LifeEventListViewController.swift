@@ -43,12 +43,12 @@ class LifeEventListViewController: UITableViewController {
                 let image = Image(urlString: $0)
                 event.images.append(image)
             }
-            user.events.append(event)
+//            user.events.append(event)
         }
         
 //        localeStorageManager.saveObject(user)
         
-        
+        localeStorageManager.removeAll()
         
     }
 
@@ -57,15 +57,15 @@ class LifeEventListViewController: UITableViewController {
         
         let key = ObjectId("507f191e810c19729de860ea")
         
-        guard let userModel = localeStorageManager.fetchObject(UserModel.self, key: key) else {
+        guard let eventModel = localeStorageManager.fetchObjects(EventModel.self) else {
             print("Модель не получена")
             return }
 //        print(userModel)
         
-        let events = userModel.events.where { $0.title == "Выезд с палатками"}
+//        let events = eventModel.filter { $0.title.contains("Привет")}
         
-        print(events)
-        print(events.count)
+        print(eventModel)
+//        print(events.count)
         print("_____________________")
         
 //        localeStorageManager.updateObject(userModel) {

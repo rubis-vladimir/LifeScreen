@@ -71,6 +71,18 @@ extension AddEventTitleCell: UITextFieldDelegate {
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [weak self] (_) in
             guard let text = textField.text  else { return }
             self?.delegate?.didChangedText(with: .titleCell, text: text)
+            print("textFieldDidEndEditing")
         })
     }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        print("textFieldDidEndEditing")
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        print("textFieldShouldEndEditing")
+        return true
+    }
+    
+    
 }

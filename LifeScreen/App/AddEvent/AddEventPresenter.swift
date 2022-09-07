@@ -17,7 +17,9 @@ protocol AddEventPresentation {
     /// Переход по target
     func route(to: AddEventTarget)
     /// Cохранение события
-    func save(event: AddEventModel)
+    func saveCurrentEvent()
+    /// Обновляет модель
+    func updateModel(with text: String, type: AddEventCellType)
 }
 
 /// Протокол передачи
@@ -75,8 +77,12 @@ extension AddEventPresenter: AddEventPresentation {
         router.route(to: to)
     }
     
-    func save(event: AddEventModel) {
-        interactor.save(event: event)
+    func saveCurrentEvent() {
+        interactor.saveEvent()
+    }
+    
+    func updateModel(with text: String, type: AddEventCellType) {
+        interactor.changeModel(with: text, type: type)
     }
 }
 

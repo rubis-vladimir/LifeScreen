@@ -28,14 +28,17 @@ protocol AddEventBusinessLogic {
     func changeModel(with imageData: Data,
                      completion: @escaping (Result<AddEventModel, AddEventFailure>) -> Void)
     
-    /// Сохраняет событие (пока не реализовано)
-    func save(event: AddEventModel)
+    func changeModel(with text: String, type: AddEventCellType)
+    
+    /// Сохраняет событие
+    func saveEvent()
 }
 
 /// Слой бизнес логики модуля AddEvent
 final class AddEventInteractor {
     
     private(set) var eventModel: AddEventModel = AddEventModel(title: "", text: "")
+    private var id: String?
     
     weak var presenter: AddEventPresentationManagement?
     private let fileManagerService: FileManagerProtocol
@@ -64,7 +67,7 @@ final class AddEventInteractor {
 
 // MARK: - AddEventBusinessLogic
 extension AddEventInteractor: AddEventBusinessLogic {
-
+    
     func getCorvertEditModel(editModel: EventModel,
                              completion: (Result<AddEventModel, AddEventFailure>) -> Void) {
         
@@ -76,6 +79,7 @@ extension AddEventInteractor: AddEventBusinessLogic {
                                    title: editModel.title,
                                    text: editModel.description,
                                    date: editModel.date)
+        self.id = editModel.id
         completion(.success(eventModel))
     }
     
@@ -86,7 +90,68 @@ extension AddEventInteractor: AddEventBusinessLogic {
         completion(.success(eventModel))
     }
     
-    func save(event: AddEventModel) {
-        print("Идем на сохранение")
+    func changeModel(with text: String, type: AddEventCellType) {
+        switch type {
+        case .titleCell:
+            eventModel.title = text
+        case .infoCell:
+            eventModel.text = text
+        default: break
+        }
+    }
+    
+    func saveEvent() {
+        if id != nil {
+            update(from: eventModel)
+            print("Обновили")
+        } else {
+            saveNewEvent(from: eventModel)
+            print("Сохранили")
+        }
+    }
+    
+    private func update(from model: AddEventModel) {
+        guard let editModel = localeStorage
+            .fetchObjects(EventModel.self)?
+            .filter({ $0.id == id })
+            .first else { return }
+        
+        localeStorage.updateObject(editModel) {
+            editModel.title = model.title ?? ""
+            editModel.specification = model.text
+            editModel.date = model.date ?? Date()
+            
+            guard let data = model.imageData else { return }
+            guard let newUrlString = FileManagerService.shared.write(
+                data,
+                to: "2022",
+                and: model.title ?? "",
+                file: "Test123"
+            ) else { return }
+            editModel.images.append(Image(urlString: newUrlString))
+        }
+    }
+    
+    private func saveNewEvent(from model: AddEventModel) {
+        print(model)
+        let event = EventModel()
+        event.title = model.title ?? ""
+        event.specification = model.text
+        event.date = model.date ?? Date()
+        event.id = "\(model.title ?? "")+12345"
+        
+        guard let data = model.imageData else { return }
+        guard let newUrlString = FileManagerService.shared.write(
+            data,
+            to: "2022",
+            and: model.title ?? "",
+            file: "Test123"
+        ) else {
+            return
+        }
+        event.images.append(Image(urlString: newUrlString))
+        
+        localeStorage.saveObject(event)
+        print(event)
     }
 }

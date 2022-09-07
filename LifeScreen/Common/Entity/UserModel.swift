@@ -18,8 +18,8 @@ final class UserModel: Object {
     @Persisted var email: String?
     /// Телефон
     @Persisted var phone: String?
-    /// События
-    @Persisted var events = List<EventModel>()
+//    /// События
+//    @Persisted var events = List<EventModel>()
     
     convenience init(name: String) {
         self.init()

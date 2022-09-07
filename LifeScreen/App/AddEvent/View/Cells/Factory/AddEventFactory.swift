@@ -101,13 +101,7 @@ extension AddEventFactory: AddEventFactoryProtocol {
     
     func didChangedText(with type: AddEventCellType,
                         text: String) {
-        switch type {
-        case .titleCell: /// Для ячейки заголовка события
-            model.title = text
-        case .infoCell: /// Для ячейки описания события
-            model.text = text
-        default: break
-        }
+        delegate?.didEnteredText(text, type: type)
     }
 }
 

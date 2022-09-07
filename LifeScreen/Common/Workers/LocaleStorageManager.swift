@@ -21,6 +21,10 @@ protocol LocaleStorageManagement {
     ///  - key: первичный ключ (primaryKey)
     func fetchObject<T: Object>(_ type: T.Type, key: Any) -> T?
     
+    ///
+    ///
+    func fetchObjects<T: Object>(_ type: T.Type) -> [T]?
+    
     /// Получаем объект из локального хранилища
     /// - Parameters:
     ///  - object: сохраненный объект (экземпляр модели)
@@ -30,6 +34,8 @@ protocol LocaleStorageManagement {
     /// Удаление объекта из локального хранилища
     /// - Parameter object: сохраненный объект (экземпляр модели)
     func deleteObject<T: Object>(_ object: T)
+    
+    func removeAll()
 }
 
 /// Сервис работы с локальным хранилищем
@@ -47,7 +53,7 @@ final class LocaleStorageManager {
     
     /// Экземпляр FileManager
     let manager = FileManager.default
-        
+    
 }
 
 // MARK: - LocaleStorageManagement
@@ -65,9 +71,16 @@ extension LocaleStorageManager: LocaleStorageManagement {
         }
     }
     
-    func fetchObject<T: Object>(_ type: T.Type, key: Any) -> T?  {
-            guard let realm: Realm = self.realm else { return nil }
-            return realm.object(ofType: type, forPrimaryKey: key)
+    func fetchObject<T: Object>(_ type: T.Type, key: Any) -> T? {
+        guard let realm: Realm = self.realm else { return nil }
+        return realm.object(ofType: type, forPrimaryKey: key)
+    }
+    
+    func fetchObjects<T: Object>(_ type: T.Type) -> [T]? {
+        guard let realm: Realm = self.realm else { return nil }
+        //        return realm.objects(type)
+        let results = realm.objects(type)
+        return Array(results)
     }
     
     func updateObject<T: Object>(_ object: T, completion: @escaping () -> Void)  {
@@ -92,6 +105,14 @@ extension LocaleStorageManager: LocaleStorageManagement {
             }
         } catch let error {
             print("Failed to delete", error)
+        }
+    }
+    
+    func removeAll() {
+        if let realm = try? Realm() {
+            try? realm.write({
+                realm.deleteAll()
+            })
         }
     }
 }

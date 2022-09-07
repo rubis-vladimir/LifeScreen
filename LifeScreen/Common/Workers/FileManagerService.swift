@@ -15,10 +15,14 @@ protocol FileManagerProtocol {
     func write(_ image: Data,
                to directoryYear: String,
                and directoryEvent: String,
-               file: String)
+               file: String) -> String?
 }
 
 final class FileManagerService {
+    
+    static var shared: FileManagerProtocol = FileManagerService()
+    
+//    private init() {}
     
     private let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
 }
@@ -53,7 +57,7 @@ extension FileManagerService: FileManagerProtocol {
     func write(_ image: Data,
                to directoryYear: String,
                and directoryEvent: String,
-               file: String) {
+               file: String) -> String? {
         
         let filePath = path.appendingPathComponent(directoryYear).appendingPathComponent(directoryEvent)
         print(filePath.path)
@@ -70,8 +74,10 @@ extension FileManagerService: FileManagerProtocol {
         
         do {
             try image.write(to: filePath.appendingPathComponent(file))
+            return filePath.appendingPathComponent(file).path
         } catch {
             print(error.localizedDescription)
+            return nil
         }
     }
     
