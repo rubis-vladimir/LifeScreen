@@ -56,10 +56,17 @@ final class AddEventFactory {
         
         switch type {
         case .photoCell: /// Для ячейки подгрузки фото
-            let builder = AddEventPhotoCellBuilder(imageData: model.imageData)
-            builder.delegate = self
-            tableView.register(AddEventPhotoCell.self, forCellReuseIdentifier: builder.reuseId)
-            return builder
+            if !model.imageData.isEmpty {
+                let builder = AddEventSlideShowCellBuilder(imageData: model.imageData)
+                builder.delegate = self
+                tableView.register(AddEventSlideShowCell.self, forCellReuseIdentifier: builder.reuseId)
+                return builder
+            } else {
+                let builder = AddEventPhotoCellBuilder()
+                builder.delegate = self
+                tableView.register(AddEventPhotoCell.self, forCellReuseIdentifier: builder.reuseId)
+                return builder
+            }
             
         case .titleCell: /// Для ячейки заголовка события
             let builder = AddEventTitleCellBuilder(title: model.title)

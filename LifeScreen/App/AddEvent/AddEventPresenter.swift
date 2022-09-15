@@ -27,7 +27,7 @@ protocol AddEventDisplayPhotoDelegate: AnyObject {
     
     /// Обновляет модель при загрузке изображения
     ///  - Parameter imageData: data изображения
-    func updateModel(with imageData: Data)
+    func updateModel(with imageData: [Data])
 }
 
 /// Пока не используется
@@ -40,7 +40,7 @@ final class AddEventPresenter {
     /// Модель редактируемого события
     var editModel: EventModel?
     
-    private(set) var eventModel: AddEventModel = AddEventModel(title: "", text: "") {
+    private(set) var eventModel: AddEventModel = AddEventModel(imageData: [], title: "", text: "") {
         didSet {
             delegate?.updateUI(with: eventModel)
         }
@@ -89,7 +89,7 @@ extension AddEventPresenter: AddEventPresentation {
 //MARK: - AddEventDisplayPhotoDelegate
 extension AddEventPresenter: AddEventDisplayPhotoDelegate {
     
-    func updateModel(with imageData: Data) {
+    func updateModel(with imageData: [Data]) {
         
         interactor.changeModel(with: imageData) { [weak self] result in
             switch result {

@@ -40,15 +40,6 @@ extension FileManagerService: FileManagerProtocol {
             return filePath
         }
         return nil
-//        do {
-//            let photos = try String(contentsOf: file)
-//
-//            for photo in photos.split(separator: ";") {
-//                print(photo)
-//            }
-//        } catch {
-//            print(error.localizedDescription)
-//        }
     }
     
     
@@ -60,7 +51,7 @@ extension FileManagerService: FileManagerProtocol {
                file: String) -> String? {
         
         let filePath = path.appendingPathComponent(directoryYear).appendingPathComponent(directoryEvent)
-        print(filePath.path)
+        
         if !FileManager.default.fileExists(atPath: filePath.absoluteString) {
             do {
                 try FileManager.default.createDirectory(at: filePath,
@@ -70,7 +61,6 @@ extension FileManagerService: FileManagerProtocol {
                 print(error.localizedDescription)
             }
         }
-
         
         do {
             try image.write(to: filePath.appendingPathComponent(file))
@@ -80,11 +70,4 @@ extension FileManagerService: FileManagerProtocol {
             return nil
         }
     }
-    
-    
-//    
-//    func createDirectory() {
-//        let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("photosFolder")
-//
-//    }
 }

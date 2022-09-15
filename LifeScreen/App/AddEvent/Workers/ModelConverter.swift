@@ -22,7 +22,7 @@ final class ModelConverter {
         newModel.specification = oldModel.text
         newModel.date = oldModel.date ?? Date()
         
-        if let data = oldModel.imageData {
+        if let data = oldModel.imageData[0] {
             if let newUrlString = FileManagerService.shared.write(
                 data,
                 to: "2022",

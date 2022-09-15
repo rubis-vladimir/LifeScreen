@@ -20,35 +20,55 @@ final class PhotoPickerManager {
     private var selectedAssetIdentifiers = [String]()
     private var selectedAssetIdentifierIterator: IndexingIterator<[String]>?
     private var currentAssetIdentifier: String?
+    private var imagesData: [Data] = [] {
+        didSet {
+            if imagesData.count == selection.count {
+                delegate?.setPhoto(imagesData)
+            }
+        }
+    }
     
     init(delegate: DisplayPhotoDelegate) {
         self.delegate = delegate
     }
     
     private func displayNext() {
-        guard let assetIdentifier = selectedAssetIdentifierIterator?.next() else { return }
-        currentAssetIdentifier = assetIdentifier
+        let array = selection.map { $0.key }
+        print("ARRAY + \(array) + ARRAY")
         
-        let itemProvider = selection[assetIdentifier]!.itemProvider
-        if itemProvider.canLoadObject(ofClass: UIImage.self) {
-            itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
-                DispatchQueue.main.async {
-                    self?.handleCompletion(assetIdentifier: assetIdentifier, object: image, error: error)
+        //        let dispatchGroup = DispatchGroup()
+        //        let dispatchWorkItem = DispatchWorkItem {
+        for i in array {
+            //            dispatchGroup.enter()
+            let itemProvider = self.selection[i]!.itemProvider
+            
+            if itemProvider.canLoadObject(ofClass: UIImage.self) {
+                itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
+                    DispatchQueue.main.async {
+                        self?.handleCompletion(assetIdentifier: i, object: image, error: error)
+                    }
                 }
             }
+            //            dispatchGroup.leave()
         }
+        
+        
+        
     }
     
     private func handleCompletion(assetIdentifier: String, object: Any?, error: Error? = nil) {
-        guard currentAssetIdentifier == assetIdentifier else { return }
+        //        guard currentAssetIdentifier == assetIdentifier else { return }
         
         if let image = object as? UIImage {
             
             if let imageData = image.pngData() {
-                delegate?.setPhoto(imageData)
-            } else
-            {
-                return }
+                
+                imagesData.append(imageData)
+                print("DATA + \(imageData)")
+            } else {
+                return
+                
+            }
             
         } else if let error = error {
             print("Couldn't display \(assetIdentifier) with error: \(error)")
@@ -89,14 +109,15 @@ extension PhotoPickerManager: PHPickerViewControllerDelegate {
         let existingSelection = self.selection
         var newSelection = [String: PHPickerResult]()
         for result in results {
-            let identifier = result.assetIdentifier!
+            let identifier = String(result.assetIdentifier!)
             newSelection[identifier] = existingSelection[identifier] ?? result
         }
         
         // Track the selection in case the user deselects it later.
         selection = newSelection
+        print("SELECTION + \(selection) + SELECTION")
         
-        print(newSelection)
+        
         selectedAssetIdentifiers = results.map(\.assetIdentifier!)
         selectedAssetIdentifierIterator = selectedAssetIdentifiers.makeIterator()
         //
@@ -108,4 +129,6 @@ extension PhotoPickerManager: PHPickerViewControllerDelegate {
             print("Загрузить фото")
         }
     }
+    
+    
 }

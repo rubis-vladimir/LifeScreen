@@ -45,11 +45,6 @@ class LifeEventListViewController: UITableViewController {
             }
 //            user.events.append(event)
         }
-        
-//        localeStorageManager.saveObject(user)
-        
-        localeStorageManager.removeAll()
-        
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -60,28 +55,11 @@ class LifeEventListViewController: UITableViewController {
         guard let eventModel = localeStorageManager.fetchObjects(EventModel.self) else {
             print("Модель не получена")
             return }
-//        print(userModel)
-        
-//        let events = eventModel.filter { $0.title.contains("Привет")}
         
         print(eventModel)
-//        print(events.count)
-        print("_____________________")
         
-//        localeStorageManager.updateObject(userModel) {
-//            userModel.events[0].title = ".!."
-//            userModel.events.removeLast()
-//        }
-//
-//        print("_____________________")
-//
-//        guard let userModel = localeStorageManager.fetchObject(UserModel.self, key: key) else {
-//            print("Модель не получена")
-//            return }
-//        print(userModel)
-//
-//        localeStorageManager.deleteObject(userModel)
-//        print("Объект удален")
+        print("_____________________")
+
         
         DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(7)) {
             let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]

@@ -34,6 +34,7 @@ extension AddEventTitleCellBuilder: TVCBuilderProtocol {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AddEventTitleCell", for: indexPath) as! AddEventTitleCell
         cell.delegate = delegate
         cell.displayData(title)
+        
         return cell
     }
 }

@@ -25,7 +25,7 @@ protocol AddEventBusinessLogic {
     ///  - Parameters:
     ///     - imageData: Data подгружаемого изображения
     ///     - completion: захватывает новую модель
-    func changeModel(with imageData: Data,
+    func changeModel(with imageData: [Data],
                      completion: @escaping (Result<AddEventModel, AddEventFailure>) -> Void)
     
     func changeModel(with text: String, type: AddEventCellType)
@@ -37,7 +37,7 @@ protocol AddEventBusinessLogic {
 /// Слой бизнес логики модуля AddEvent
 final class AddEventInteractor {
     
-    private(set) var eventModel: AddEventModel = AddEventModel(title: "", text: "")
+    private(set) var eventModel: AddEventModel = AddEventModel(imageData: [], title: "", text: "")
     private var id: String?
     
     weak var presenter: AddEventPresentationManagement?
@@ -75,7 +75,9 @@ extension AddEventInteractor: AddEventBusinessLogic {
             self?.getImageDataFromFile(editModel: editModel,
                                        urlString: image.urlString)
         }
-        eventModel = AddEventModel(imageData: imageDatas[0],
+        
+        
+        eventModel = AddEventModel(imageData: [imageDatas[0]],
                                    title: editModel.title,
                                    text: editModel.description,
                                    date: editModel.date)
@@ -83,7 +85,7 @@ extension AddEventInteractor: AddEventBusinessLogic {
         completion(.success(eventModel))
     }
     
-    func changeModel(with imageData: Data,
+    func changeModel(with imageData: [Data],
                      completion: @escaping (Result<AddEventModel, AddEventFailure>) -> Void) {
         
         eventModel.imageData = imageData
@@ -121,7 +123,7 @@ extension AddEventInteractor: AddEventBusinessLogic {
             editModel.specification = model.text
             editModel.date = model.date ?? Date()
             
-            guard let data = model.imageData else { return }
+            guard let data = model.imageData[0] else { return }
             guard let newUrlString = FileManagerService.shared.write(
                 data,
                 to: "2022",
@@ -140,7 +142,7 @@ extension AddEventInteractor: AddEventBusinessLogic {
         event.date = model.date ?? Date()
         event.id = "\(model.title ?? "")+12345"
         
-        guard let data = model.imageData else { return }
+        guard let data = model.imageData[0] else { return }
         guard let newUrlString = FileManagerService.shared.write(
             data,
             to: "2022",

@@ -27,7 +27,7 @@ protocol AddEventPresenterDelegate: AnyObject {
 class AddEventViewController: UITableViewController {
     
     /// Дефолтная модель данных
-    private var defaultModel = AddEventModel(title: "", text: "")
+    private var defaultModel = AddEventModel(imageData: [], title: "", text: "")
     /// Презентер модуля AddEvent
     var presenter: AddEventPresentation?
     /// Массив конфигураторов ячеек
