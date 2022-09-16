@@ -1,5 +1,5 @@
 //
-//  LocalImageDownloadManager.swift
+//  PhotoPickerManager.swift
 //  LifeScreen
 //
 //  Created by Владимир Рубис on 23.08.2022.
@@ -7,128 +7,143 @@
 
 import PhotosUI
 
-/// Пока не доработан. Подгружает изображения
+/// Ошибки в слое PhotoPicker
+enum PhotoPickerError: Error {
+    case notImage
+    case failedConvertToData
+    case imageNotLoaded(String)
+}
+
+/// Протокол создания PhotoPicker
 protocol PhotoPickerConfiguratable {
+    /// Создает и настраивает PhotoPicker
+    ///  - Parameter completion: clouser, захватывающий picker для презентации
     func createPhotoPicker(completion: @escaping (PHPickerViewController) -> Void)
 }
 
+/// Сервис загрузки объектов из библиотеки фотографий пользователя
 final class PhotoPickerManager {
     
     private weak var delegate: DisplayPhotoDelegate?
     
+    /// Словарь (идентификатор объекта - результат загрузки)
     private var selection = [String: PHPickerResult]()
+    /// Массив идентификаторов выбранных объектов
     private var selectedAssetIdentifiers = [String]()
-    private var selectedAssetIdentifierIterator: IndexingIterator<[String]>?
-    private var currentAssetIdentifier: String?
-    private var imagesData: [Data] = [] {
-        didSet {
-            if imagesData.count == selection.count {
-                delegate?.setPhoto(imagesData)
-            }
-        }
-    }
+    /// Модель передачи данных/ошибки
+    private var photoPickerResponce = PhotoPickerResponse()
     
     init(delegate: DisplayPhotoDelegate) {
         self.delegate = delegate
     }
     
-    private func displayNext() {
-        let array = selection.map { $0.key }
-        print("ARRAY + \(array) + ARRAY")
+    /// Загружает выбранные объекты
+    private func loadObject() {
+        /// Группа для обработки задач, как единое целое
+        let dispatchGroup = DispatchGroup()
         
-        //        let dispatchGroup = DispatchGroup()
-        //        let dispatchWorkItem = DispatchWorkItem {
-        for i in array {
-            //            dispatchGroup.enter()
-            let itemProvider = self.selection[i]!.itemProvider
+        for id in self.selectedAssetIdentifiers {
+            guard let result = selection[id] else { return }
+            let itemProvider = result.itemProvider
             
+            dispatchGroup.enter() /// войти в группу
+            
+            /// Пробуем загрузить объект как изображение
             if itemProvider.canLoadObject(ofClass: UIImage.self) {
                 itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
-                    DispatchQueue.main.async {
-                        self?.handleCompletion(assetIdentifier: i, object: image, error: error)
-                    }
+                    
+                    self?.process(object: image,
+                                  assetIdentifier: id,
+                                  error: error,
+                                  completion: { [weak self] result in
+                        switch result {
+                        case .success(let data):
+                            self?.photoPickerResponce.imagesData.append(data)
+                        case .failure(let error):
+                            self?.photoPickerResponce.error = error
+                        }
+                    })
+                    
+                    dispatchGroup.leave() /// покинуть группу
                 }
             }
-            //            dispatchGroup.leave()
         }
         
-        
-        
+        /// Отправка уведомления после завершения всех задач в группе
+        dispatchGroup.notify(queue: .main) {
+            self.delegate?.send(responce: self.photoPickerResponce)
+        }
     }
     
-    private func handleCompletion(assetIdentifier: String, object: Any?, error: Error? = nil) {
-        //        guard currentAssetIdentifier == assetIdentifier else { return }
-        
+    /// Обрабатывает получаемый объект или получает ошибку
+    ///  - Parameters:
+    ///   - object: объект
+    ///   - assetIdentifier: идентификатор объекта
+    ///   - error: ошибка при загрузке
+    ///   - completion: closure по выполнению (флаг успешности / ошибка)
+    private func process(object: Any?,
+                         assetIdentifier: String,
+                         error: Error?,
+                         completion: @escaping (Result<Data, PhotoPickerError>) -> Void) {
         if let image = object as? UIImage {
-            
             if let imageData = image.pngData() {
-                
-                imagesData.append(imageData)
-                print("DATA + \(imageData)")
+                completion(.success(imageData))
             } else {
-                return
-                
+                completion(.failure(.failedConvertToData))
             }
-            
-        } else if let error = error {
-            print("Couldn't display \(assetIdentifier) with error: \(error)")
-            //            displayErrorImage()
+        } else if error != nil {
+            completion(.failure(.imageNotLoaded(assetIdentifier)))
+        } else {
+            completion(.failure(.notImage))
         }
     }
 }
 
+// MARK: - PhotoPickerConfiguratable
 extension PhotoPickerManager: PhotoPickerConfiguratable {
     
     func createPhotoPicker(completion: @escaping (PHPickerViewController) -> Void) {
         
         var configuration = PHPickerConfiguration(photoLibrary: .shared())
-        
-        // Set the filter type according to the user’s selection.
+        /// Устанавливаем тип фильтра на фото
         configuration.filter = PHPickerFilter.images
-        // Set the mode to avoid transcoding, if possible, if your app supports arbitrary image/video encodings.
-        configuration.preferredAssetRepresentationMode = .current
-        // Set the selection behavior to respect the user’s selection order.
-        configuration.selection = .ordered
-        // Set the selection limit to enable multiselection.
+        /// Для множественного выбора
         configuration.selectionLimit = 0
-        // Set the preselected asset identifiers with the identifiers that the app tracks.
-        //        configuration.preselectedAssetIdentifiers = selectedAssetIdentifiers
+        /// Для установки уже выбранных объектов
+        configuration.preselectedAssetIdentifiers = selectedAssetIdentifiers
         
         let picker = PHPickerViewController(configuration: configuration)
-        
         picker.delegate = self
         completion(picker)
     }
 }
 
-
+// MARK: - PHPickerViewControllerDelegate
 extension PhotoPickerManager: PHPickerViewControllerDelegate {
+    
+    /// Уведомляет делегата о том, что пользователь завершил выбор или отменил его
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true)
         
-        let existingSelection = self.selection
-        var newSelection = [String: PHPickerResult]()
-        for result in results {
-            let identifier = String(result.assetIdentifier!)
-            newSelection[identifier] = existingSelection[identifier] ?? result
-        }
-        
-        // Track the selection in case the user deselects it later.
-        selection = newSelection
-        print("SELECTION + \(selection) + SELECTION")
-        
-        
+        selection = getNewSelection(with: results)
         selectedAssetIdentifiers = results.map(\.assetIdentifier!)
-        selectedAssetIdentifierIterator = selectedAssetIdentifiers.makeIterator()
-        //
-        if selection.isEmpty {
-            //            displayEmptyImage()
-            print("Пусто")
-        } else {
-            displayNext()
-            print("Загрузить фото")
+        
+        if !selection.isEmpty {
+            loadObject()
         }
     }
     
-    
+    /// Получает словарь из текущего выбора пользователя
+    ///  - Parameter results: результаты загрузки
+    ///  - Returns: текущий словарь (идентификатор объекта - результат загрузки)
+    private func getNewSelection(with results: [PHPickerResult]) -> [String: PHPickerResult] {
+        let existingSelection = self.selection
+        var newSelection = [String: PHPickerResult]()
+        
+        for result in results {
+            guard let identifier = result.assetIdentifier else { continue }
+            newSelection[identifier] = existingSelection[identifier] ?? result
+        }
+        return newSelection
+    }
 }

@@ -39,7 +39,7 @@ final class AddEventSlideShowCell: UITableViewCell {
         for i in 0..<images.count {
             /// горизонтальный сдвиг
             let offset = i == 0 ? 0 : (CGFloat(i) * container.bounds.width)
-            print("Добавляем ImageView")
+            print("ImageView")
             let imageView = UIImageView(frame: CGRect(x: offset,
                                                       y: 0,
                                                       width: self.bounds.width,
@@ -77,7 +77,7 @@ final class AddEventSlideShowCell: UITableViewCell {
     private func setupConstraints() {
         addSubview(container)
         container.addSubview(slideShowScrollView)
-        print("Констрейнты")
+        
         NSLayoutConstraint.activate([
             container.topAnchor.constraint(equalTo: self.topAnchor),
             container.bottomAnchor.constraint(equalTo: self.bottomAnchor),

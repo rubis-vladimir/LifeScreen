@@ -12,7 +12,7 @@ final class AddEventSlideShowCellBuilder {
     /// Высота ячейки
     private let height = CGFloat(350)
     /// Массив выбранных пользователем изображений
-    private var images: [UIImage]?
+    private var images: [UIImage] = []
     /// Делегат для обработки UI-эвентов
     weak var delegate: AddEventFactoryProtocol?
     
@@ -32,7 +32,7 @@ extension AddEventSlideShowCellBuilder: TVCBuilderProtocol {
     
     func cellAt(indexPath: IndexPath, tableView: UITableView) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: AddEventSlideShowCell.reuseId, for: indexPath) as! AddEventSlideShowCell
-        cell.configure(with: images ?? [])
+        cell.configure(with: images)
         cell.delegate = delegate
         return cell
     }

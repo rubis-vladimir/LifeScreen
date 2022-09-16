@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7D0B46DE28CA138100C11706 /* AddEventSlideShowCellBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0B46DD28CA138100C11706 /* AddEventSlideShowCellBuilder.swift */; };
+		7D0CB12828D4F13A00EE1F2D /* PhotoPickerResponce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0CB12728D4F13A00EE1F2D /* PhotoPickerResponce.swift */; };
 		7D26B8A828B2CD10005DE3F5 /* TVCBuilderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D26B8A728B2CD10005DE3F5 /* TVCBuilderProtocol.swift */; };
 		7D34BE7E28BD232E002249DF /* DatePickerBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D34BE7D28BD232E002249DF /* DatePickerBottomSheetViewController.swift */; };
 		7D34BE8328BD3ABB002249DF /* UINavigationController + Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D34BE8228BD3ABB002249DF /* UINavigationController + Transition.swift */; };
@@ -77,6 +78,7 @@
 
 /* Begin PBXFileReference section */
 		7D0B46DD28CA138100C11706 /* AddEventSlideShowCellBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventSlideShowCellBuilder.swift; sourceTree = "<group>"; };
+		7D0CB12728D4F13A00EE1F2D /* PhotoPickerResponce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerResponce.swift; sourceTree = "<group>"; };
 		7D26B8A728B2CD10005DE3F5 /* TVCBuilderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVCBuilderProtocol.swift; sourceTree = "<group>"; };
 		7D34BE7D28BD232E002249DF /* DatePickerBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerBottomSheetViewController.swift; sourceTree = "<group>"; };
 		7D34BE8228BD3ABB002249DF /* UINavigationController + Transition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController + Transition.swift"; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				7D41BBD528B96258003ED674 /* AddEventModel.swift */,
+				7D0CB12728D4F13A00EE1F2D /* PhotoPickerResponce.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -633,6 +636,7 @@
 				7D67ABE028BA0EB3001B7554 /* AddEventRouter.swift in Sources */,
 				7D6AEF3928AD334300B70B33 /* AddEventPresenter.swift in Sources */,
 				7D6AEF3728AD32B900B70B33 /* AddEventViewController.swift in Sources */,
+				7D0CB12828D4F13A00EE1F2D /* PhotoPickerResponce.swift in Sources */,
 				7DA3EE5C288717AF00EE5D28 /* AppDelegate.swift in Sources */,
 				7DA3EE7C28872A8400EE5D28 /* LifeEventListAssembly.swift in Sources */,
 				7D48DC8328B37F4F0063A017 /* AddEventInfoCell.swift in Sources */,

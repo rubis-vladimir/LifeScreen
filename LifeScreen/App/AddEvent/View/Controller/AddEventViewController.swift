@@ -7,8 +7,6 @@
 
 import UIKit
 
-
-
 /// Протокол вызова Photo Picker
 protocol PresentPickerProtocol: AnyObject {
     

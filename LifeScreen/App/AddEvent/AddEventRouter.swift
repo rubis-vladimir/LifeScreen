@@ -20,7 +20,7 @@ protocol DisplayPhotoDelegate: AnyObject {
     
     /// Добавляет в текущую модель фото и обновляет UI элементы
     ///  - Parameter data: data загруженного изображения из галереи
-    func setPhoto(_ data: [Data])
+    func send(responce: PhotoPickerResponse)
 }
 
 /// Протокол управления слоем навигации
@@ -59,8 +59,9 @@ extension AddEventRouter: AddEventRouting {
 
 //MARK: - DisplayPhotoProtocol
 extension AddEventRouter: DisplayPhotoDelegate {
-    func setPhoto(_ data: [Data]) {
-        print("Получили дату")
-        presenter?.updateModel(with: data)
+    func send(responce: PhotoPickerResponse) {
+        if !responce.imagesData.isEmpty {
+            presenter?.updateModel(with: responce.imagesData)
+        }
     }
 }
