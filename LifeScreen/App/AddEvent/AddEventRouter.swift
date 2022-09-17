@@ -10,7 +10,7 @@ import UIKit
 /// Навигация в модуле AddEvent
 enum AddEventTarget {
     /// Загрузчик изображений
-    case photoPiker
+    case photoPicker
     /// Child VC с DataPicker
     case dataPicker
 }
@@ -20,7 +20,7 @@ protocol DisplayPhotoDelegate: AnyObject {
     
     /// Добавляет в текущую модель фото и обновляет UI элементы
     ///  - Parameter data: data загруженного изображения из галереи
-    func send(responce: PhotoPickerResponse)
+    func send(response: PhotoPickerResponse)
 }
 
 /// Протокол управления слоем навигации
@@ -33,7 +33,7 @@ protocol AddEventRouting {
 final class AddEventRouter {
     
     weak var viewController: AddEventViewController?
-    weak var presenter: AddEventDisplayPhotoDelegate?
+    weak var presenter: AddEventPhotoResponseDelegate?
     private var photoPickerManager: PhotoPickerConfiguratable?
     
 }
@@ -44,12 +44,11 @@ extension AddEventRouter: AddEventRouting {
         guard let vc = viewController else { return }
         
         switch to {
-            
-        case .photoPiker:
+        case .photoPicker:
             photoPickerManager = PhotoPickerManager(delegate: self)
-            photoPickerManager?.createPhotoPicker(completion: { picker in
+            photoPickerManager?.createPhotoPicker{ picker in
                 vc.present(picker, animated: true)
-            })
+            }
         case .dataPicker:
             DatePickerBottomSheetViewController(presentedViewController: vc, presenting: .none)
         }
@@ -59,9 +58,7 @@ extension AddEventRouter: AddEventRouting {
 
 //MARK: - DisplayPhotoProtocol
 extension AddEventRouter: DisplayPhotoDelegate {
-    func send(responce: PhotoPickerResponse) {
-        if !responce.imagesData.isEmpty {
-            presenter?.updateModel(with: responce.imagesData)
-        }
+    func send(response: PhotoPickerResponse) {
+        presenter?.handleResponse(response)
     }
 }

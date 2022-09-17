@@ -71,7 +71,7 @@ final class PhotoPickerManager {
         
         /// Отправка уведомления после завершения всех задач в группе
         dispatchGroup.notify(queue: .main) {
-            self.delegate?.send(responce: self.photoPickerResponce)
+            self.delegate?.send(response: self.photoPickerResponce)
         }
     }
     

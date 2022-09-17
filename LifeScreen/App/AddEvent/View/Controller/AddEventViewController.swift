@@ -19,6 +19,7 @@ protocol PresentPickerProtocol: AnyObject {
 /// Пока не используется
 protocol AddEventPresenterDelegate: AnyObject {
     func updateUI(with model: AddEventModel)
+    func showError(_ error: Error)
 }
 
 /// Контроллер добавления жизненных событий
@@ -127,7 +128,7 @@ class AddEventViewController: UITableViewController {
 extension AddEventViewController: PresentPickerProtocol {
     
     func presentPicker() {
-        presenter?.route(to: .photoPiker)
+        presenter?.route(to: .photoPicker)
     }
     
     func didEnteredText(_ text: String, type: AddEventCellType) {
@@ -140,5 +141,17 @@ extension AddEventViewController: PresentPickerProtocol {
 extension AddEventViewController: AddEventPresenterDelegate {
     func updateUI(with model: AddEventModel) {
         refreshList()
+    }
+    
+    func showError(_ error: Error) {
+        guard let error = error as? PhotoPickerError else { return }
+        switch error {
+        case .notImage:
+            print("Not image")
+        case .failedConvertToData:
+            print("Failed convert Data")
+        case .imageNotLoaded(let id):
+            print("Image with id: \(id) not loaded.")
+        }
     }
 }

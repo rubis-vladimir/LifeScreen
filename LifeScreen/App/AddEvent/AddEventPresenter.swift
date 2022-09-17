@@ -23,11 +23,11 @@ protocol AddEventPresentation {
 }
 
 /// Протокол передачи
-protocol AddEventDisplayPhotoDelegate: AnyObject {
+protocol AddEventPhotoResponseDelegate: AnyObject {
     
-    /// Обновляет модель при загрузке изображения
-    ///  - Parameter imageData: data изображения
-    func updateModel(with imageData: [Data])
+    /// Обрабатывает ответ от PhotoPicker
+    ///  - Parameter response: ответ
+    func handleResponse(_ response: PhotoPickerResponse)
 }
 
 /// Пока не используется
@@ -87,17 +87,23 @@ extension AddEventPresenter: AddEventPresentation {
 }
 
 //MARK: - AddEventDisplayPhotoDelegate
-extension AddEventPresenter: AddEventDisplayPhotoDelegate {
+extension AddEventPresenter: AddEventPhotoResponseDelegate {
     
-    func updateModel(with imageData: [Data]) {
+    func handleResponse(_ response: PhotoPickerResponse) {
         
-        interactor.changeModel(with: imageData) { [weak self] result in
-            switch result {
-            case .success(let model):
-                self?.eventModel = model
-            case .failure(let error):
-                print("Ошибка", error.localizedDescription)
+        if !response.imagesData.isEmpty {
+            interactor.changeModel(with: response.imagesData) { [weak self] result in
+                switch result {
+                case .success(let model):
+                    self?.eventModel = model
+                case .failure(let error):
+                    print("Ошибка", error.localizedDescription)
+                }
             }
+        }
+        
+        if let error = response.error {
+            delegate?.showError(error)
         }
     }
 }
