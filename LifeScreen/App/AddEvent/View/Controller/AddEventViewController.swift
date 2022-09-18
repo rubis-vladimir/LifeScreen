@@ -8,17 +8,25 @@
 import UIKit
 
 /// Протокол вызова Photo Picker
-protocol PresentPickerProtocol: AnyObject {
-    
+protocol TransferEventProtocol: AnyObject {
     /// Передача запроса презентеру на вызов PhotoPicker
-    func presentPicker()
+    ///  - Parameter type: тип действия
+    func didPhotoButtonTapped(_ type: AddEventActions)
+    
     /// Передача текстовых данных в модель
+    ///  - Parameters:
+    ///   - text: добавленный текст
+    ///   - type: тип ячейки
     func didEnteredText(_ text: String, type: AddEventCellType)
 }
 
-/// Пока не используется
+/// Протокол работы с Вью слоем модуля AddEvent
 protocol AddEventPresenterDelegate: AnyObject {
-    func updateUI(with model: AddEventModel)
+    /// Обновляет UI
+    func updateUI()
+    
+    /// Показывает ошибку
+    ///  - Parameter error: ошибка
     func showError(_ error: Error)
 }
 
@@ -44,7 +52,7 @@ class AddEventViewController: UITableViewController {
     
     private func showEvent() {
         presenter?.setupEditEvent()
-        refreshList()
+        updateUI()
     }
     
     /// Настраивает кастомный NavigitionBar
@@ -70,9 +78,7 @@ class AddEventViewController: UITableViewController {
     
     /// Сохраняет событие и скрывает экран
     @objc private func saveAndExitRightButtonTapped() {
-        print("saveAndExitRightButtonTapped")
-        
-        presenter?.saveCurrentEvent()
+        presenter?.doAction(.saveEvent)
         dismissVC()
     }
     
@@ -85,32 +91,16 @@ class AddEventViewController: UITableViewController {
         dismissVC()
     }
     
-    /// Переход к экрану с обновлением даты
+    /// Переход к экрану настройки даты события
     @objc private func routeToDataPickerVC() {
-        presenter?.route(to: .dataPicker)
+        presenter?.doAction(.addImage)
     }
     
-    /// Скрывает экран
+    /// Настраивает скрытие экрана
     private func dismissVC() {
         guard let nc = navigationController else { return }
         nc.createCustomTransition(with: .fade)
         nc.popViewController(animated: false)
-    }
-    
-    /// Обновление данных и UI
-    ///   - Parameter model: модель сохраняемого события (по умолчанию пустая)
-    private func refreshList() {
-        guard let model = presenter?.eventModel else { return }
-        
-        factory = AddEventFactory(tableView: tableView,
-                                  model: model,
-                                  delegate: self)
-        guard let builders = factory?.builders else { return }
-        self.builders = builders
-        
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
     }
     
     // MARK: - UITableViewDataSource & Delegate
@@ -125,10 +115,9 @@ class AddEventViewController: UITableViewController {
 
 
 //MARK: - PresentPickerDelegate
-extension AddEventViewController: PresentPickerProtocol {
-    
-    func presentPicker() {
-        presenter?.route(to: .photoPicker)
+extension AddEventViewController: TransferEventProtocol {
+    func didPhotoButtonTapped(_ type: AddEventActions) {
+        presenter?.doAction(type)
     }
     
     func didEnteredText(_ text: String, type: AddEventCellType) {
@@ -139,8 +128,18 @@ extension AddEventViewController: PresentPickerProtocol {
 
 //MARK: - AddEventViewable
 extension AddEventViewController: AddEventPresenterDelegate {
-    func updateUI(with model: AddEventModel) {
-        refreshList()
+    func updateUI() {
+        guard let model = presenter?.eventModel else { return }
+        
+        factory = AddEventFactory(tableView: tableView,
+                                  model: model,
+                                  delegate: self)
+        guard let builders = factory?.builders else { return }
+        self.builders = builders
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     func showError(_ error: Error) {

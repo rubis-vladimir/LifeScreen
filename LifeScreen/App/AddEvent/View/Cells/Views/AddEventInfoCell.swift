@@ -9,7 +9,7 @@ import UIKit
 
 /// Ячейка для отображения описания события
 final class AddEventInfoCell: UITableViewCell {
-
+    
     /// Идентификатор ячейки
     static let reuseId = "AddEventInfoCell"
     /// Делегат для обработки взаимодействия
@@ -44,7 +44,7 @@ final class AddEventInfoCell: UITableViewCell {
     /// Настраивает ячейку и ее элементы
     private func setupCell() {
         self.selectionStyle = .none
-
+        
         eventTextView.delegate = self
         addSubview(eventTextView)
         
@@ -58,6 +58,16 @@ final class AddEventInfoCell: UITableViewCell {
 
 //MARK: - UITextViewDelegate
 extension AddEventInfoCell: UITextViewDelegate {
+    
+    /// Запрашивает делегата, следует ли заменить указанный текст в текстовом представлении
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        /// Для завершения редактирования при нажатии Return
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
+    }
     
     /// Сообщает делегату, когда начинается редактирование
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -82,8 +92,8 @@ extension AddEventInfoCell: UITextViewDelegate {
         /// Для обновления модели данных
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [weak self] (_) in
-            guard let text = textView.text  else { return }
-            print(text)
+            guard let text = textView.text,
+                  text != self?.placeholder else { return }
             self?.delegate?.didChangedText(with: .infoCell, text: text)
         })
     }

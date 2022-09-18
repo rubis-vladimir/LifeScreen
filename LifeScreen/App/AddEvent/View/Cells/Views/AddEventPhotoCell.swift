@@ -76,10 +76,10 @@ final class AddEventPhotoCell: UITableViewCell {
     
     /// Вызов PhotoPicker через делегата
     @objc func addPhoto() {
-        delegate?.didPhotoButtonTapped()
+        delegate?.didPhotoButtonTapped(.addImage)
     }
     
-    /// Отображает передаваемые данные
+    /// Отображает передаваемые данныеБлагодарю за ответ. Учту по поводу ссылок!
     ///  - Parameter image: фотография
     func displayData(_ imageData: Data?) {
         if let imageData = imageData {

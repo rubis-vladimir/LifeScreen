@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 enum AddEventFailure: Error {
     case failConvertImageData, eventNotExist, userModelNotFound, idNotTransferred
 }
@@ -18,8 +17,9 @@ protocol AddEventBusinessLogic {
     /// Переводит основную модель редактируемой EventModel в частную AddEventModel
     ///  - Parameters:
     ///    - editModel: модель редактируемого события
-    ///    - completion: возвращает переопределенную модель
-    func getCorvertEditModel(editModel: EventModel, completion: (Result<AddEventModel, AddEventFailure>) -> Void)
+    ///    - completion: захватывает переопределенную модель
+    func getCorvertEditModel(editModel: EventModel,
+                             completion: (Result<AddEventModel, AddEventFailure>) -> Void)
     
     /// Изменяет модель при загрузке изображения из PhotoPicker
     ///  - Parameters:
@@ -29,6 +29,9 @@ protocol AddEventBusinessLogic {
                      completion: @escaping (Result<AddEventModel, AddEventFailure>) -> Void)
     
     func changeModel(with text: String, type: AddEventCellType)
+    
+    func changeModel(type: AddEventChangeModelActions,
+                     completion: @escaping (Result<AddEventModel, AddEventFailure>) -> Void)
     
     /// Сохраняет событие
     func saveEvent()
@@ -99,6 +102,26 @@ extension AddEventInteractor: AddEventBusinessLogic {
         case .infoCell:
             eventModel.text = text
         default: break
+        }
+    }
+    
+    func changeModel(type: AddEventChangeModelActions,
+                     completion: @escaping (Result<AddEventModel, AddEventFailure>) -> Void) {
+        switch type {
+        case .uploadImage(let imageData):
+            eventModel.imageData = imageData
+            completion(.success(eventModel))
+        case .changeText(let text, let type):
+            switch type {
+            case .titleCell:
+                eventModel.title = text
+            case .infoCell:
+                eventModel.text = text
+            default: break
+            }
+        case .deleteImage(let index):
+            eventModel.imageData.remove(at: index)
+            completion(.success(eventModel))
         }
     }
     

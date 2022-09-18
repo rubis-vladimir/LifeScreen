@@ -34,7 +34,7 @@ final class AddEventRouter {
     
     weak var viewController: AddEventViewController?
     weak var presenter: AddEventPhotoResponseDelegate?
-    private var photoPickerManager: PhotoPickerConfiguratable?
+    private lazy var photoPickerManager: PhotoPickerConfiguratable = PhotoPickerManager(delegate: self)
     
 }
 
@@ -45,8 +45,8 @@ extension AddEventRouter: AddEventRouting {
         
         switch to {
         case .photoPicker:
-            photoPickerManager = PhotoPickerManager(delegate: self)
-            photoPickerManager?.createPhotoPicker{ picker in
+            photoPickerManager.setupNewSession()
+            photoPickerManager.createPhotoPicker{ picker in
                 vc.present(picker, animated: true)
             }
         case .dataPicker:

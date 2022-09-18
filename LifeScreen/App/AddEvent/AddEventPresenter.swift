@@ -15,9 +15,7 @@ protocol AddEventPresentation {
     /// Настраивает событие при необходимости его изменения
     func setupEditEvent()
     /// Переход по target
-    func route(to: AddEventTarget)
-    /// Cохранение события
-    func saveCurrentEvent()
+    func doAction(_ type: AddEventActions)
     /// Обновляет модель
     func updateModel(with text: String, type: AddEventCellType)
 }
@@ -42,7 +40,7 @@ final class AddEventPresenter {
     
     private(set) var eventModel: AddEventModel = AddEventModel(imageData: [], title: "", text: "") {
         didSet {
-            delegate?.updateUI(with: eventModel)
+            delegate?.updateUI()
         }
     }
     
@@ -73,12 +71,23 @@ extension AddEventPresenter: AddEventPresentation {
         }
     }
     
-    func route(to: AddEventTarget) {
-        router.route(to: to)
-    }
-    
-    func saveCurrentEvent() {
-        interactor.saveEvent()
+    func doAction(_ type: AddEventActions) {
+        switch type {
+        case .addImage:
+            router.route(to: .photoPicker)
+        case .deleteImage(let id):
+            interactor.changeModel(type: .deleteImage(id)) { [weak self] result in
+                switch result {
+                case .success(let model):
+                    print("DELETE IMAGE")
+                    self?.eventModel = model
+                case .failure(_):
+                    print("Fail")
+                }
+            }
+        case .saveEvent:
+            interactor.saveEvent()
+        }
     }
     
     func updateModel(with text: String, type: AddEventCellType) {

@@ -64,6 +64,12 @@ final class AddEventTitleCell: UITableViewCell {
 //MARK: - UITextFieldDelegate
 extension AddEventTitleCell: UITextFieldDelegate {
     
+    /// Запрашивает делегата, следует ли обрабатывать нажатие кнопки Return
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        /// Для завершения редактирования
+        self.endEditing(true)
+    }
+    
     /// Сообщает делегату о изменении текста в текстовом представлении
     func textFieldDidChangeSelection(_ textField: UITextField) {
         /// Для обновления модели данных
@@ -74,15 +80,4 @@ extension AddEventTitleCell: UITextFieldDelegate {
             print("textFieldDidEndEditing")
         })
     }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        print("textFieldDidEndEditing")
-    }
-    
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        print("textFieldShouldEndEditing")
-        return true
-    }
-    
-    
 }

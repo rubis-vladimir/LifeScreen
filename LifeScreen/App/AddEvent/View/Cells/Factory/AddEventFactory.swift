@@ -7,11 +7,39 @@
 
 import UIKit
 
+/// Типы текстовых ячеек модуля AddEvent
+enum AddEventCellType {
+    /// Ячейка для подгрузки фото
+    case photoCell
+    /// Ячейка с заголовком события
+    case titleCell
+    /// Ячейка с описанием события
+    case infoCell
+}
+
+/// Действия при нажатии на кнопки
+enum AddEventActions {
+    /// Добавляем изображения
+    case addImage
+    /// Удаляем изображение
+    case deleteImage(_ index: Int)
+    /// Сохраняем событие
+    case saveEvent
+}
+
+enum AddEventChangeModelActions {
+    
+    case uploadImage(_ imageData: [Data])
+    case changeText(_ text: String, type: AddEventCellType)
+    case deleteImage(_ index: Int)
+}
+
 /// Протокол обработки событий при взаимодействии пользователя с ячейками таблицы
 protocol AddEventFactoryProtocol: AnyObject {
     
     /// Нажата кнопка вызова галереи фото
-    func didPhotoButtonTapped()
+    ///  - Parameter type: тип действия
+    func didPhotoButtonTapped(_ type: AddEventActions)
     
     /// Был изменен текст. Обновляет модель данных
     ///  - Parameters:
@@ -25,7 +53,7 @@ final class AddEventFactory {
     
     private var model: AddEventModel
     private let tableView: UITableView
-    private weak var delegate: PresentPickerProtocol?
+    private weak var delegate: TransferEventProtocol?
     
     /// Инициализатор
     ///  - Parameters:
@@ -34,7 +62,7 @@ final class AddEventFactory {
     ///    - delegate: делегат для передачи UIEvent (VC)
     init(tableView: UITableView,
          model: AddEventModel,
-         delegate: PresentPickerProtocol?) {
+         delegate: TransferEventProtocol?) {
         self.tableView = tableView
         self.model = model
         self.delegate = delegate
@@ -102,8 +130,8 @@ extension AddEventFactory: TVFactoryProtocol {
 //MARK: - AddEventFactoryProtocol
 extension AddEventFactory: AddEventFactoryProtocol {
 
-    func didPhotoButtonTapped() {
-        delegate?.presentPicker()
+    func didPhotoButtonTapped(_ type: AddEventActions) {
+        delegate?.didPhotoButtonTapped(type)
     }
     
     func didChangedText(with type: AddEventCellType,

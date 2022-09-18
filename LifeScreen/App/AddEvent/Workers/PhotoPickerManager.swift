@@ -19,6 +19,9 @@ protocol PhotoPickerConfiguratable {
     /// Создает и настраивает PhotoPicker
     ///  - Parameter completion: clouser, захватывающий picker для презентации
     func createPhotoPicker(completion: @escaping (PHPickerViewController) -> Void)
+    
+    /// Обновляет ответ
+    func setupNewSession()
 }
 
 /// Сервис загрузки объектов из библиотеки фотографий пользователя
@@ -35,6 +38,10 @@ final class PhotoPickerManager {
     
     init(delegate: DisplayPhotoDelegate) {
         self.delegate = delegate
+    }
+    
+    deinit {
+        print("PHOTO PICKER OFF")
     }
     
     /// Загружает выбранные объекты
@@ -109,12 +116,14 @@ extension PhotoPickerManager: PhotoPickerConfiguratable {
         configuration.filter = PHPickerFilter.images
         /// Для множественного выбора
         configuration.selectionLimit = 0
-        /// Для установки уже выбранных объектов
-        configuration.preselectedAssetIdentifiers = selectedAssetIdentifiers
         
         let picker = PHPickerViewController(configuration: configuration)
         picker.delegate = self
         completion(picker)
+    }
+    
+    func setupNewSession() {
+        photoPickerResponce = PhotoPickerResponse()
     }
 }
 
