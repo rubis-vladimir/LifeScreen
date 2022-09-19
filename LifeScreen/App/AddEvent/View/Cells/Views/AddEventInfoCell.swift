@@ -94,7 +94,9 @@ extension AddEventInfoCell: UITextViewDelegate {
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [weak self] (_) in
             guard let text = textView.text,
                   text != self?.placeholder else { return }
-            self?.delegate?.didChangedText(with: .infoCell, text: text)
+            self?.delegate?.didActionDone(
+                .changeEvent(.changeText(text, type: .infoCell))
+            )
         })
     }
 }

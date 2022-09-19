@@ -19,33 +19,30 @@ enum AddEventCellType {
 
 /// Действия при нажатии на кнопки
 enum AddEventActions {
-    /// Добавляем изображения
-    case addImage
-    /// Удаляем изображение
-    case deleteImage(_ index: Int)
+    /// Навигация
+    case route(_ type: AddEventTarget)
     /// Сохраняем событие
     case saveEvent
+    /// Изменяем событие
+    case changeEvent(_ type: AddEventChangeModelActions)
 }
 
 enum AddEventChangeModelActions {
-    
+    /// Добавляем данные изображений
     case uploadImage(_ imageData: [Data])
+    /// Изменяем текстовые данные в модели события
     case changeText(_ text: String, type: AddEventCellType)
+    /// Удаляем изображение
     case deleteImage(_ index: Int)
+    /// Устанавливает редактируемое событие
+    case setEditEvent(_ model: EventModel)
 }
 
 /// Протокол обработки событий при взаимодействии пользователя с ячейками таблицы
 protocol AddEventFactoryProtocol: AnyObject {
-    
-    /// Нажата кнопка вызова галереи фото
-    ///  - Parameter type: тип действия
-    func didPhotoButtonTapped(_ type: AddEventActions)
-    
-    /// Был изменен текст. Обновляет модель данных
-    ///  - Parameters:
-    ///   - type: тип ячейки
-    ///   - text: введенный текст
-    func didChangedText(with type: AddEventCellType, text: String)
+    /// Было совершено взаимодействие с пользователем
+    ///  - Parameter type: тип действия пользователя
+    func didActionDone(_ type: AddEventActions)
 }
 
 /// Фабрика настройки табличного представления модуля AddEvent
@@ -130,13 +127,8 @@ extension AddEventFactory: TVFactoryProtocol {
 //MARK: - AddEventFactoryProtocol
 extension AddEventFactory: AddEventFactoryProtocol {
 
-    func didPhotoButtonTapped(_ type: AddEventActions) {
-        delegate?.didPhotoButtonTapped(type)
-    }
-    
-    func didChangedText(with type: AddEventCellType,
-                        text: String) {
-        delegate?.didEnteredText(text, type: type)
+    func didActionDone(_ type: AddEventActions) {
+        delegate?.didActionDone(type)
     }
 }
 

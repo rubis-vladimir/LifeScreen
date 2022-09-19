@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Модель ответа PhotoPicker
 struct PhotoPickerResponse {
     var imagesData: [Data] = []
     var error: PhotoPickerError?

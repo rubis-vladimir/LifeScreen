@@ -33,6 +33,6 @@ extension AddEventAssembly {
         interactor.presenter = presenter
         router.viewController = vc
         router.presenter = presenter
-        presenter.editModel = editModel
+        presenter.setupEditEvent(with: editModel)
     }
 }

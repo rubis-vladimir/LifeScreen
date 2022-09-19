@@ -9,19 +9,15 @@ import UIKit
 
 /// Протокол вызова Photo Picker
 protocol TransferEventProtocol: AnyObject {
-    /// Передача запроса презентеру на вызов PhotoPicker
-    ///  - Parameter type: тип действия
-    func didPhotoButtonTapped(_ type: AddEventActions)
-    
-    /// Передача текстовых данных в модель
-    ///  - Parameters:
-    ///   - text: добавленный текст
-    ///   - type: тип ячейки
-    func didEnteredText(_ text: String, type: AddEventCellType)
+    /// Передача информации о взаимодействии пользователя в презентер
+    ///  - Parameter type: тип действия пользователя
+    func didActionDone(_ type: AddEventActions)
 }
 
 /// Протокол работы с Вью слоем модуля AddEvent
 protocol AddEventPresenterDelegate: AnyObject {
+    
+    var isSave: Bool { get set }
     /// Обновляет UI
     func updateUI()
     
@@ -46,13 +42,8 @@ class AddEventViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        showEvent()
-        setupNavigitionBarViews()
-    }
-    
-    private func showEvent() {
-        presenter?.setupEditEvent()
         updateUI()
+        setupNavigitionBarViews()
     }
     
     /// Настраивает кастомный NavigitionBar
@@ -78,12 +69,7 @@ class AddEventViewController: UITableViewController {
     
     /// Сохраняет событие и скрывает экран
     @objc private func saveAndExitRightButtonTapped() {
-        presenter?.doAction(.saveEvent)
-        dismissVC()
-    }
-    
-    deinit {
-        print("VC deinit")
+        presenter?.handleAction(.saveEvent)
     }
     
     /// Скрывает экран
@@ -93,7 +79,9 @@ class AddEventViewController: UITableViewController {
     
     /// Переход к экрану настройки даты события
     @objc private func routeToDataPickerVC() {
-        presenter?.doAction(.addImage)
+        presenter?.handleAction(
+            .route(.dataPicker)
+        )
     }
     
     /// Настраивает скрытие экрана
@@ -116,21 +104,26 @@ class AddEventViewController: UITableViewController {
 
 //MARK: - PresentPickerDelegate
 extension AddEventViewController: TransferEventProtocol {
-    func didPhotoButtonTapped(_ type: AddEventActions) {
-        presenter?.doAction(type)
-    }
-    
-    func didEnteredText(_ text: String, type: AddEventCellType) {
-        presenter?.updateModel(with: text, type: type)
+    func didActionDone(_ type: AddEventActions) {
+        presenter?.handleAction(type)
     }
 }
 
 
 //MARK: - AddEventViewable
 extension AddEventViewController: AddEventPresenterDelegate {
+    var isSave: Bool {
+        get { false }
+        set {
+            if newValue == true {
+                dismissVC()
+            }
+        }
+    }
+    
     func updateUI() {
         guard let model = presenter?.eventModel else { return }
-        
+               
         factory = AddEventFactory(tableView: tableView,
                                   model: model,
                                   delegate: self)
@@ -143,14 +136,21 @@ extension AddEventViewController: AddEventPresenterDelegate {
     }
     
     func showError(_ error: Error) {
-        guard let error = error as? PhotoPickerError else { return }
-        switch error {
-        case .notImage:
-            print("Not image")
-        case .failedConvertToData:
-            print("Failed convert Data")
-        case .imageNotLoaded(let id):
-            print("Image with id: \(id) not loaded.")
+        if let error = error as? PhotoPickerError {
+            switch error {
+            case .notImage:
+                print("Not image")
+            case .failedConvertToData:
+                print("Failed convert Data")
+            case .imageNotLoaded(let id):
+                print("Image with id: \(id) not loaded.")
+            }
+        } else if let error = error as? AddEventFailure {
+            switch error {
+            case .noValidate:
+                print("Должна быть фотография и заголовок")
+            default: break
+            }
         }
     }
 }

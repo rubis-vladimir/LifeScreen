@@ -76,7 +76,9 @@ final class AddEventPhotoCell: UITableViewCell {
     
     /// Вызов PhotoPicker через делегата
     @objc func addPhoto() {
-        delegate?.didPhotoButtonTapped(.addImage)
+        delegate?.didActionDone(
+            .route(.photoPicker)
+        )
     }
     
     /// Отображает передаваемые данныеБлагодарю за ответ. Учту по поводу ссылок!

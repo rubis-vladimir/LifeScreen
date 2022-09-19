@@ -76,8 +76,9 @@ extension AddEventTitleCell: UITextFieldDelegate {
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [weak self] (_) in
             guard let text = textField.text  else { return }
-            self?.delegate?.didChangedText(with: .titleCell, text: text)
-            print("textFieldDidEndEditing")
+            self?.delegate?.didActionDone(
+                .changeEvent(.changeText(text, type: .titleCell))
+            )
         })
     }
 }

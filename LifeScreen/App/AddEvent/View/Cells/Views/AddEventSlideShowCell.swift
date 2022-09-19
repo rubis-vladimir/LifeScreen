@@ -44,7 +44,6 @@ final class AddEventSlideShowCell: UITableViewCell {
         for i in 0..<images.count {
             /// горизонтальный сдвиг
             let offset = i == 0 ? 0 : (CGFloat(i) * container.bounds.width)
-            print("ImageView")
             let imageView = UIImageView(frame: CGRect(x: offset,
                                                       y: 0,
                                                       width: self.bounds.width,
@@ -88,11 +87,14 @@ final class AddEventSlideShowCell: UITableViewCell {
     }
     
     @objc private func didAddImageButtonTapped() {
-        print("AddImageButton")
-        delegate?.didPhotoButtonTapped(.addImage)
+        delegate?.didActionDone(
+            .route(.photoPicker)
+        )
     }
     @objc private func didDeleteImageButtonTapped() {
-        delegate?.didPhotoButtonTapped(.deleteImage(pageControl.currentPage))
+        delegate?.didActionDone(
+            .changeEvent(.deleteImage(pageControl.currentPage))
+        )
     }
     
     /// Настраивает констрейнты

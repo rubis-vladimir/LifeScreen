@@ -51,6 +51,7 @@ extension AddEventRouter: AddEventRouting {
             }
         case .dataPicker:
             DatePickerBottomSheetViewController(presentedViewController: vc, presenting: .none)
+            print("Переход к датепикер")
         }
     }
 }

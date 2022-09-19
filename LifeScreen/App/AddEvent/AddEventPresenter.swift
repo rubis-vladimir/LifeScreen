@@ -12,12 +12,8 @@ protocol AddEventPresentation {
     
     /// Текущая модель события
     var eventModel: AddEventModel { get }
-    /// Настраивает событие при необходимости его изменения
-    func setupEditEvent()
-    /// Переход по target
-    func doAction(_ type: AddEventActions)
-    /// Обновляет модель
-    func updateModel(with text: String, type: AddEventCellType)
+    /// Обработка UI-эвентов а зависимости от типа
+    func handleAction(_ type: AddEventActions)
 }
 
 /// Протокол передачи
@@ -53,45 +49,45 @@ final class AddEventPresenter {
         self.interactor = interactor
         self.router = router
     }
+    
+    func setupEditEvent(with model: EventModel?) {
+        guard let model = model else { return }
+        changeModel(.setEditEvent(model))
+    }
 }
 
 // MARK: - AddEventPresentation
 extension AddEventPresenter: AddEventPresentation {
     
-    func setupEditEvent() {
-        guard let editModel = editModel else { return }
-        
-        interactor.getCorvertEditModel(editModel: editModel) { [weak self] result in
+    func handleAction(_ type: AddEventActions) {
+        switch type {
+        case .route(let target):
+            router.route(to: target)
+
+        case .saveEvent:
+            interactor.saveEvent { [weak self] error in
+                if let error = error {
+                    self?.delegate?.showError(error)
+                    self?.delegate?.isSave = false
+                } else {
+                    self?.delegate?.isSave = true
+                }
+            }
+            
+        case .changeEvent(let change):
+            changeModel(change)
+        }
+    }
+    
+    private func changeModel(_ type: AddEventChangeModelActions) {
+        interactor.changeModel(type: type) { [weak self] result in
             switch result {
             case .success(let model):
                 self?.eventModel = model
             case .failure(let error):
-                print(error.localizedDescription)
+                self?.delegate?.showError(error)
             }
         }
-    }
-    
-    func doAction(_ type: AddEventActions) {
-        switch type {
-        case .addImage:
-            router.route(to: .photoPicker)
-        case .deleteImage(let id):
-            interactor.changeModel(type: .deleteImage(id)) { [weak self] result in
-                switch result {
-                case .success(let model):
-                    print("DELETE IMAGE")
-                    self?.eventModel = model
-                case .failure(_):
-                    print("Fail")
-                }
-            }
-        case .saveEvent:
-            interactor.saveEvent()
-        }
-    }
-    
-    func updateModel(with text: String, type: AddEventCellType) {
-        interactor.changeModel(with: text, type: type)
     }
 }
 
@@ -99,18 +95,9 @@ extension AddEventPresenter: AddEventPresentation {
 extension AddEventPresenter: AddEventPhotoResponseDelegate {
     
     func handleResponse(_ response: PhotoPickerResponse) {
-        
         if !response.imagesData.isEmpty {
-            interactor.changeModel(with: response.imagesData) { [weak self] result in
-                switch result {
-                case .success(let model):
-                    self?.eventModel = model
-                case .failure(let error):
-                    print("Ошибка", error.localizedDescription)
-                }
-            }
+            changeModel(.uploadImage(response.imagesData))
         }
-        
         if let error = response.error {
             delegate?.showError(error)
         }
