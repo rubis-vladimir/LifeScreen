@@ -15,7 +15,7 @@ final class AddEventTitleCellBuilder {
     /// Название заголовка события
     private let title: String?
     /// Делегат для передачи введенного текста
-    weak var delegate: AddEventFactoryProtocol?
+    weak var delegate: AddEventPresentation?
     
     init(title: String?) {
         self.title = title

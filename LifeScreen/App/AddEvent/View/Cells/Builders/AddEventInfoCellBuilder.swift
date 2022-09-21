@@ -15,7 +15,7 @@ final class AddEventInfoCellBuilder {
     /// Текст описания события
     private let text: String?
     /// Делегат для передачи введенного текста
-    weak var delegate: AddEventFactoryProtocol?
+    weak var delegate: AddEventPresentation?
     
     init(text: String?) {
         self.text = text

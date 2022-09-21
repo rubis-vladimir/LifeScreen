@@ -8,7 +8,7 @@
 import Foundation
 
 /// Протокол передачи UI-эвентов слою презентации
-protocol AddEventPresentation {
+protocol AddEventPresentation: AnyObject {
     
     /// Текущая модель события
     var eventModel: AddEventModel { get }
@@ -17,11 +17,15 @@ protocol AddEventPresentation {
 }
 
 /// Протокол передачи
-protocol AddEventPhotoResponseDelegate: AnyObject {
+protocol AddEventResponseDelegate: AnyObject {
     
     /// Обрабатывает ответ от PhotoPicker
     ///  - Parameter response: ответ
-    func handleResponse(_ response: PhotoPickerResponse)
+    func handleResponse(_ response: AddEventResponse)
+}
+
+protocol AddEventDatePickerDelegate: AnyObject {
+    
 }
 
 /// Пока не используется
@@ -34,7 +38,7 @@ final class AddEventPresenter {
     /// Модель редактируемого события
     var editModel: EventModel?
     
-    private(set) var eventModel: AddEventModel = AddEventModel(imageData: [], title: "", text: "") {
+    private(set) var eventModel: AddEventModel = AddEventModel(imageData: [], title: "", text: "", date: Date()) {
         didSet {
             delegate?.updateUI()
         }
@@ -62,7 +66,7 @@ extension AddEventPresenter: AddEventPresentation {
     func handleAction(_ type: AddEventActions) {
         switch type {
         case .route(let target):
-            router.route(to: target)
+            router.route(to: target, moduleOutput: self)
 
         case .saveEvent:
             interactor.saveEvent { [weak self] error in
@@ -92,14 +96,20 @@ extension AddEventPresenter: AddEventPresentation {
 }
 
 //MARK: - AddEventDisplayPhotoDelegate
-extension AddEventPresenter: AddEventPhotoResponseDelegate {
+extension AddEventPresenter: AddEventResponseDelegate {
     
-    func handleResponse(_ response: PhotoPickerResponse) {
-        if !response.imagesData.isEmpty {
-            changeModel(.uploadImage(response.imagesData))
-        }
-        if let error = response.error {
-            delegate?.showError(error)
+    func handleResponse(_ response: AddEventResponse) {
+        
+        switch response {
+        case .photoPicker(let response):
+            if !response.imagesData.isEmpty {
+                changeModel(.uploadImage(response.imagesData))
+            }
+            if let error = response.error {
+                delegate?.showError(error)
+            }
+        case .dataPicker(let date):
+            changeModel(.updateDate(date))
         }
     }
 }

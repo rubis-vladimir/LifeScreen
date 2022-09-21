@@ -7,20 +7,12 @@
 
 import UIKit
 
-/// Протокол вызова Photo Picker
-protocol TransferEventProtocol: AnyObject {
-    /// Передача информации о взаимодействии пользователя в презентер
-    ///  - Parameter type: тип действия пользователя
-    func didActionDone(_ type: AddEventActions)
-}
-
 /// Протокол работы с Вью слоем модуля AddEvent
 protocol AddEventPresenterDelegate: AnyObject {
-    
+    /// Флаг сохранения событие
     var isSave: Bool { get set }
     /// Обновляет UI
     func updateUI()
-    
     /// Показывает ошибку
     ///  - Parameter error: ошибка
     func showError(_ error: Error)
@@ -38,12 +30,15 @@ class AddEventViewController: UITableViewController {
     /// Фабрика настройки табличного представления
     private var factory: TVFactoryProtocol?
     
+    private var customTitleView: UIButton?
+    
     //MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        updateUI()
+        
         setupNavigitionBarViews()
+        updateUI()
     }
     
     /// Настраивает кастомный NavigitionBar
@@ -57,11 +52,10 @@ class AddEventViewController: UITableViewController {
             imageName: "xmark",
             selector: #selector(cancelLeftButtonTapped)
         )
-        let customTitleView = createTitleButton(
+        customTitleView = createTitleButton(
             title: "29 августа 2022",
             selector: #selector(routeToDataPickerVC)
         )
-        
         navigationItem.rightBarButtonItems = [saveRightButton]
         navigationItem.leftBarButtonItems = [cancelLeftButton]
         navigationItem.titleView = customTitleView
@@ -79,8 +73,10 @@ class AddEventViewController: UITableViewController {
     
     /// Переход к экрану настройки даты события
     @objc private func routeToDataPickerVC() {
+        guard let date = presenter?.eventModel.date else { return }
+        
         presenter?.handleAction(
-            .route(.dataPicker)
+            .route(.dataPicker(date: date))
         )
     }
     
@@ -92,7 +88,8 @@ class AddEventViewController: UITableViewController {
     }
     
     // MARK: - UITableViewDataSource & Delegate
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { builders.count }
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        builders.count }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat { builders[indexPath.row].cellHeight() }
     
@@ -100,15 +97,6 @@ class AddEventViewController: UITableViewController {
         builders[indexPath.row].cellAt(indexPath: indexPath, tableView: tableView)
     }
 }
-
-
-//MARK: - PresentPickerDelegate
-extension AddEventViewController: TransferEventProtocol {
-    func didActionDone(_ type: AddEventActions) {
-        presenter?.handleAction(type)
-    }
-}
-
 
 //MARK: - AddEventViewable
 extension AddEventViewController: AddEventPresenterDelegate {
@@ -123,10 +111,12 @@ extension AddEventViewController: AddEventPresenterDelegate {
     
     func updateUI() {
         guard let model = presenter?.eventModel else { return }
-               
+        
+        customTitleView?.setTitle(model.date?.description, for: .normal)
+        
         factory = AddEventFactory(tableView: tableView,
                                   model: model,
-                                  delegate: self)
+                                  delegate: presenter)
         guard let builders = factory?.builders else { return }
         self.builders = builders
         

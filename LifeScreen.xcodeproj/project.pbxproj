@@ -10,6 +10,9 @@
 		7D0B46DE28CA138100C11706 /* AddEventSlideShowCellBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0B46DD28CA138100C11706 /* AddEventSlideShowCellBuilder.swift */; };
 		7D0CB12828D4F13A00EE1F2D /* PhotoPickerResponce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0CB12728D4F13A00EE1F2D /* PhotoPickerResponce.swift */; };
 		7D0CB12A28D5E3C700EE1F2D /* UIButton + ChangeSlideshowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0CB12928D5E3C700EE1F2D /* UIButton + ChangeSlideshowButton.swift */; };
+		7D0CB12C28D99E0800EE1F2D /* DatePickerBottomSheetPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0CB12B28D99E0700EE1F2D /* DatePickerBottomSheetPresenter.swift */; };
+		7D0CB12E28D99F3F00EE1F2D /* DatePickerBottomSheetAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0CB12D28D99F3E00EE1F2D /* DatePickerBottomSheetAssembly.swift */; };
+		7D0CB13328D9CA6400EE1F2D /* UIButton + DoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0CB13228D9CA6300EE1F2D /* UIButton + DoneButton.swift */; };
 		7D26B8A828B2CD10005DE3F5 /* TVCBuilderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D26B8A728B2CD10005DE3F5 /* TVCBuilderProtocol.swift */; };
 		7D34BE7E28BD232E002249DF /* DatePickerBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D34BE7D28BD232E002249DF /* DatePickerBottomSheetViewController.swift */; };
 		7D34BE8328BD3ABB002249DF /* UINavigationController + Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D34BE8228BD3ABB002249DF /* UINavigationController + Transition.swift */; };
@@ -81,6 +84,9 @@
 		7D0B46DD28CA138100C11706 /* AddEventSlideShowCellBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventSlideShowCellBuilder.swift; sourceTree = "<group>"; };
 		7D0CB12728D4F13A00EE1F2D /* PhotoPickerResponce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerResponce.swift; sourceTree = "<group>"; };
 		7D0CB12928D5E3C700EE1F2D /* UIButton + ChangeSlideshowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + ChangeSlideshowButton.swift"; sourceTree = "<group>"; };
+		7D0CB12B28D99E0700EE1F2D /* DatePickerBottomSheetPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerBottomSheetPresenter.swift; sourceTree = "<group>"; };
+		7D0CB12D28D99F3E00EE1F2D /* DatePickerBottomSheetAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerBottomSheetAssembly.swift; sourceTree = "<group>"; };
+		7D0CB13228D9CA6300EE1F2D /* UIButton + DoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + DoneButton.swift"; sourceTree = "<group>"; };
 		7D26B8A728B2CD10005DE3F5 /* TVCBuilderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVCBuilderProtocol.swift; sourceTree = "<group>"; };
 		7D34BE7D28BD232E002249DF /* DatePickerBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerBottomSheetViewController.swift; sourceTree = "<group>"; };
 		7D34BE8228BD3ABB002249DF /* UINavigationController + Transition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController + Transition.swift"; sourceTree = "<group>"; };
@@ -161,10 +167,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7D0CB13128D9CA3C00EE1F2D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7D0CB13228D9CA6300EE1F2D /* UIButton + DoneButton.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		7D34BE8028BD23EE002249DF /* DatePicker */ = {
 			isa = PBXGroup;
 			children = (
 				7D34BE7D28BD232E002249DF /* DatePickerBottomSheetViewController.swift */,
+				7D0CB12D28D99F3E00EE1F2D /* DatePickerBottomSheetAssembly.swift */,
+				7D0CB12B28D99E0700EE1F2D /* DatePickerBottomSheetPresenter.swift */,
+				7D0CB13128D9CA3C00EE1F2D /* Extensions */,
 			);
 			path = DatePicker;
 			sourceTree = "<group>";
@@ -642,6 +659,7 @@
 				7D0CB12828D4F13A00EE1F2D /* PhotoPickerResponce.swift in Sources */,
 				7DA3EE5C288717AF00EE5D28 /* AppDelegate.swift in Sources */,
 				7DA3EE7C28872A8400EE5D28 /* LifeEventListAssembly.swift in Sources */,
+				7D0CB12E28D99F3F00EE1F2D /* DatePickerBottomSheetAssembly.swift in Sources */,
 				7D0CB12A28D5E3C700EE1F2D /* UIButton + ChangeSlideshowButton.swift in Sources */,
 				7D48DC8328B37F4F0063A017 /* AddEventInfoCell.swift in Sources */,
 				7DA3EE912888292C00EE5D28 /* LifeScreenRouter.swift in Sources */,
@@ -652,6 +670,7 @@
 				7DA3EE8028872AA200EE5D28 /* Assembly.swift in Sources */,
 				7DC4D3B228A431B5009D378B /* LocaleStorageManager.swift in Sources */,
 				7D48DC9828B3EDC50063A017 /* AddEventTitleCellBuilder.swift in Sources */,
+				7D0CB12C28D99E0800EE1F2D /* DatePickerBottomSheetPresenter.swift in Sources */,
 				7D0B46DE28CA138100C11706 /* AddEventSlideShowCellBuilder.swift in Sources */,
 				7DA3EEA028885FCB00EE5D28 /* EventDetailsViewController.swift in Sources */,
 				7D67ABE628BA7689001B7554 /* UIViewController + CustomNavBar.swift in Sources */,
@@ -688,6 +707,7 @@
 				7D47518F28BDE93500E67CE6 /* AddEventFactory.swift in Sources */,
 				7DA3EEB6288891E200EE5D28 /* EventCollageCell.swift in Sources */,
 				7DA3EE9E28885F1F00EE5D28 /* EventDetailsAssembly.swift in Sources */,
+				7D0CB13328D9CA6400EE1F2D /* UIButton + DoneButton.swift in Sources */,
 				7D4CCC18289403C3001EEE5A /* EventModel.swift in Sources */,
 				7DA3EE70288719D400EE5D28 /* LifeEventListViewController.swift in Sources */,
 				7D6AEF3D28AD336B00B70B33 /* AddEventAssembly.swift in Sources */,

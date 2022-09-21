@@ -7,59 +7,63 @@
 
 import UIKit
 
+/// Типы ответов от модулей PhotoPicker и DatePickerBottomSheet
+enum AddEventResponse {
+    /// Ответ от PhotoPicker
+    case photoPicker(response: PhotoPickerResponse)
+    /// Ответ от DatePicker
+    case dataPicker(date: Date)
+}
+
 /// Навигация в модуле AddEvent
 enum AddEventTarget {
     /// Загрузчик изображений
     case photoPicker
     /// Child VC с DataPicker
-    case dataPicker
-}
-
-/// Протокол обновления модели и установки фото
-protocol DisplayPhotoDelegate: AnyObject {
-    
-    /// Добавляет в текущую модель фото и обновляет UI элементы
-    ///  - Parameter data: data загруженного изображения из галереи
-    func send(response: PhotoPickerResponse)
+    case dataPicker(date: Date)
 }
 
 /// Протокол управления слоем навигации
 protocol AddEventRouting {
     /// Переход по target
-    func route(to: AddEventTarget)
+    func route(to: AddEventTarget, moduleOutput: AddEventResponseDelegate)
 }
 
 /// Слой навигации модуля AddEvent
 final class AddEventRouter {
-    
     weak var viewController: AddEventViewController?
-    weak var presenter: AddEventPhotoResponseDelegate?
-    private lazy var photoPickerManager: PhotoPickerConfiguratable = PhotoPickerManager(delegate: self)
-    
+    private lazy var photoPickerManager = PhotoPickerManager()
 }
 
 //MARK: - AddEventRouting
 extension AddEventRouter: AddEventRouting {
-    func route(to: AddEventTarget) {
+    
+    func route(to: AddEventTarget,
+               moduleOutput: AddEventResponseDelegate) {
         guard let vc = viewController else { return }
         
         switch to {
         case .photoPicker:
             photoPickerManager.setupNewSession()
+            photoPickerManager.delegate = moduleOutput
             photoPickerManager.createPhotoPicker{ picker in
                 vc.present(picker, animated: true)
             }
-        case .dataPicker:
-            DatePickerBottomSheetViewController(presentedViewController: vc, presenting: .none)
-            print("Переход к датепикер")
+        case .dataPicker(let date):
+            
+            let sheet = DatePickerBottomSheetViewController()
+            sheet.view.backgroundColor = .clear
+            if let sheet = sheet.sheetPresentationController {
+                sheet.detents = [.medium()]
+//                sheet.selectedDetentIdentifier = .medium
+            }
+            DatePickerBottomSheetAssembly().assembly(viewController: sheet,
+                                                     date: date,
+                                                     moduleOutput: moduleOutput)
+            
+            vc.present(sheet, animated: true)
         }
     }
 }
 
 
-//MARK: - DisplayPhotoProtocol
-extension AddEventRouter: DisplayPhotoDelegate {
-    func send(response: PhotoPickerResponse) {
-        presenter?.handleResponse(response)
-    }
-}

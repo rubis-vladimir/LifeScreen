@@ -13,7 +13,7 @@ final class AddEventTitleCell: UITableViewCell {
     /// Идентификатор ячейки
     static let reuseId = "AddEventTitleCell"
     /// Делегат для обработки взаимодействия
-    weak var delegate: AddEventFactoryProtocol?
+    weak var delegate: AddEventPresentation?
     /// Таймер
     private var timer: Timer?
     
@@ -76,7 +76,7 @@ extension AddEventTitleCell: UITextFieldDelegate {
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [weak self] (_) in
             guard let text = textField.text  else { return }
-            self?.delegate?.didActionDone(
+            self?.delegate?.handleAction(
                 .changeEvent(.changeText(text, type: .titleCell))
             )
         })

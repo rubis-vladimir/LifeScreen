@@ -16,14 +16,14 @@ final class EventModel: Object {
     /// Название
     @Persisted var title: String = ""
     /// Описание
-    @Persisted var specification: String?
+    @Persisted var specification: String = ""
     /// Дата
     @Persisted var date: Date = Date()
     /// Картинки/фотографии
     @Persisted var images = List<Image>()
     
     convenience init(title: String,
-                     specification: String? = nil) {
+                     specification: String) {
         self.init()
         self.title = title
         self.specification = specification

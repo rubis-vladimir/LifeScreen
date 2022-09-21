@@ -7,6 +7,19 @@
 
 import Foundation
 
+enum AddEventChangeModelActions {
+    /// Добавляем данные изображений
+    case uploadImage(_ imageData: [Data])
+    /// Изменяем текстовые данные в модели события
+    case changeText(_ text: String, type: AddEventCellType)
+    /// Удаляем изображение
+    case deleteImage(_ index: Int)
+    /// Устанавливает редактируемое событие
+    case setEditEvent(_ model: EventModel)
+    /// Устанавливает новую дату
+    case updateDate(_ date: Date)
+}
+
 enum AddEventFailure: Error {
     case failConvertImageData, eventNotExist, userModelNotFound, idNotTransferred, noValidate
 }
@@ -27,7 +40,7 @@ protocol AddEventBusinessLogic {
 /// Слой бизнес логики модуля AddEvent
 final class AddEventInteractor {
     
-    private(set) var eventModel: AddEventModel = AddEventModel(imageData: [], title: "", text: "")
+    private(set) var eventModel: AddEventModel = AddEventModel(imageData: [], title: "", text: "", date: Date())
     private var id: String?
     
     weak var presenter: AddEventPresentationManagement?
@@ -49,9 +62,10 @@ final class AddEventInteractor {
         }
         
         
-        eventModel = AddEventModel(imageData: [imageDatas[0]],
+        
+        eventModel = AddEventModel(imageData: [] ,
                                    title: editModel.title,
-                                   text: editModel.description,
+                                   text: editModel.specification,
                                    date: editModel.date)
         self.id = editModel.id
         completion(.success(eventModel))
@@ -102,7 +116,13 @@ extension AddEventInteractor: AddEventBusinessLogic {
             
         case .setEditEvent(let model):
             getCorvertEditModel(editModel: model, completion: completion)
+            
+        case .updateDate(let date):
+            eventModel.date = date
+            completion(.success(eventModel))
         }
+        
+    
     }
     
     func saveEvent(completion: @escaping (AddEventFailure?) -> Void) {
@@ -137,7 +157,7 @@ extension AddEventInteractor: AddEventBusinessLogic {
                               to event: EventModel,
                               completion: @escaping (AddEventFailure?) -> Void) {
         event.title = model.title ?? ""
-        event.specification = model.text
+        event.specification = model.text ?? ""
         event.date = model.date ?? Date()
         event.id = "\(model.title ?? "")+12345"
         

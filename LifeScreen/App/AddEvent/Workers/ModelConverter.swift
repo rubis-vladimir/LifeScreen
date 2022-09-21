@@ -19,7 +19,7 @@ final class ModelConverter {
         
         let newModel = EventModel()
         newModel.title = oldModel.title ?? ""
-        newModel.specification = oldModel.text
+        newModel.specification = oldModel.text ?? ""
         newModel.date = oldModel.date ?? Date()
         
         if let data = oldModel.imageData[0] {

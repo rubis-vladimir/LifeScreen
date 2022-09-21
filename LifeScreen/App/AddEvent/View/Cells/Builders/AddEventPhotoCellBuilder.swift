@@ -12,7 +12,7 @@ final class AddEventPhotoCellBuilder {
     /// Высота ячейки
     private let height = CGFloat(350)
     /// Делегат для обработки нажатия на кнопку
-    weak var delegate: AddEventFactoryProtocol?
+    weak var delegate: AddEventPresentation?
 }
 
 // MARK: - TVCBuilderProtocol

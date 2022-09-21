@@ -14,7 +14,7 @@ final class AddEventSlideShowCellBuilder {
     /// Массив выбранных пользователем изображений
     private var images: [UIImage] = []
     /// Делегат для обработки UI-эвентов
-    weak var delegate: AddEventFactoryProtocol?
+    weak var delegate: AddEventPresentation?
     
     init(imageData: [Data?]) {
         self.images = convert(data: imageData)

@@ -12,7 +12,7 @@ final class AddEventSlideShowCell: UITableViewCell {
     /// Идентификатор ячейки
     static let reuseId = "AddEventSlideShowCell"
     /// Делегат для обработки взаимодействия
-    weak var delegate: AddEventFactoryProtocol?
+    weak var delegate: AddEventPresentation?
     /// Массив выбранных изображений
     private var images: [UIImage] = [] {
         didSet {
@@ -87,12 +87,12 @@ final class AddEventSlideShowCell: UITableViewCell {
     }
     
     @objc private func didAddImageButtonTapped() {
-        delegate?.didActionDone(
+        delegate?.handleAction(
             .route(.photoPicker)
         )
     }
     @objc private func didDeleteImageButtonTapped() {
-        delegate?.didActionDone(
+        delegate?.handleAction(
             .changeEvent(.deleteImage(pageControl.currentPage))
         )
     }

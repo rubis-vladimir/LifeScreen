@@ -27,7 +27,7 @@ protocol PhotoPickerConfiguratable {
 /// Сервис загрузки объектов из библиотеки фотографий пользователя
 final class PhotoPickerManager {
     
-    private weak var delegate: DisplayPhotoDelegate?
+    weak var delegate: AddEventResponseDelegate?
     
     /// Словарь (идентификатор объекта - результат загрузки)
     private var selection = [String: PHPickerResult]()
@@ -35,10 +35,10 @@ final class PhotoPickerManager {
     private var selectedAssetIdentifiers = [String]()
     /// Модель передачи данных/ошибки
     private var photoPickerResponce = PhotoPickerResponse()
-    
-    init(delegate: DisplayPhotoDelegate) {
-        self.delegate = delegate
-    }
+//    
+//    init(delegate: AddEventResponseDelegate) {
+//        self.delegate = delegate
+//    }
     
     deinit {
         print("PHOTO PICKER OFF")
@@ -78,7 +78,7 @@ final class PhotoPickerManager {
         
         /// Отправка уведомления после завершения всех задач в группе
         dispatchGroup.notify(queue: .main) {
-            self.delegate?.send(response: self.photoPickerResponce)
+            self.delegate?.handleResponse(.photoPicker(response: self.photoPickerResponce))
         }
     }
     

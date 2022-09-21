@@ -13,7 +13,7 @@ final class AddEventInfoCell: UITableViewCell {
     /// Идентификатор ячейки
     static let reuseId = "AddEventInfoCell"
     /// Делегат для обработки взаимодействия
-    weak var delegate: AddEventFactoryProtocol?
+    weak var delegate: AddEventPresentation?
     /// Таймер
     private var timer: Timer?
     /// Дефолтный текст в TV
@@ -38,7 +38,12 @@ final class AddEventInfoCell: UITableViewCell {
     /// Отображает передаваемые данные
     ///  - Parameter text: текст описания
     func displayData(_ text: String?) {
-        eventTextView.text = text == "" ? placeholder : text
+        if text == "" {
+            eventTextView.text = placeholder
+        } else {
+            eventTextView.text = text
+            eventTextView.textColor = .black.withAlphaComponent(0.7)
+        }
     }
     
     /// Настраивает ячейку и ее элементы
@@ -94,7 +99,7 @@ extension AddEventInfoCell: UITextViewDelegate {
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [weak self] (_) in
             guard let text = textView.text,
                   text != self?.placeholder else { return }
-            self?.delegate?.didActionDone(
+            self?.delegate?.handleAction(
                 .changeEvent(.changeText(text, type: .infoCell))
             )
         })

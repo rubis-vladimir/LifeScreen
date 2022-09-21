@@ -12,7 +12,7 @@ final class AddEventPhotoCell: UITableViewCell {
     /// Идентификатор ячейки
     static let reuseId = "AddEventPhotoCell"
     /// Делегат для обработки взаимодействия
-    weak var delegate: AddEventFactoryProtocol?
+    weak var delegate: AddEventPresentation?
     
     var photoImageView: UIImageView = {
         let imageView = UIImageView()
@@ -76,7 +76,7 @@ final class AddEventPhotoCell: UITableViewCell {
     
     /// Вызов PhotoPicker через делегата
     @objc func addPhoto() {
-        delegate?.didActionDone(
+        delegate?.handleAction(
             .route(.photoPicker)
         )
     }

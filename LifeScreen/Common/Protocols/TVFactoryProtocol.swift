@@ -10,8 +10,5 @@ import UIKit
 protocol TVFactoryProtocol {
     /// Строители ячеек
     var builders: [TVCBuilderProtocol] { get }
-    
-    /// Захват модели данных
-    func catchModel(completion: @escaping (Any?) -> Void)
 }
 
