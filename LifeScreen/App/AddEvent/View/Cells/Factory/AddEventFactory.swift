@@ -27,30 +27,19 @@ enum AddEventActions {
     case changeEvent(_ type: AddEventChangeModelActions)
 }
 
-/// Протокол обработки событий при взаимодействии пользователя с ячейками таблицы
-protocol AddEventFactoryProtocol: AnyObject {
-    /// Было совершено взаимодействие с пользователем
-    ///  - Parameter type: тип действия пользователя
-//    func didActionDone(_ type: AddEventActions)
-}
-
 /// Фабрика настройки табличного представления модуля AddEvent
 final class AddEventFactory {
     
-    private var model: AddEventModel
     private let tableView: UITableView
     private weak var delegate: AddEventPresentation?
     
     /// Инициализатор
     ///  - Parameters:
     ///    - tableView: настраиваемая таблица
-    ///    - model: модель данных
     ///    - delegate: делегат для передачи UIEvent (VC)
     init(tableView: UITableView,
-         model: AddEventModel,
          delegate: AddEventPresentation?) {
         self.tableView = tableView
-        self.model = model
         self.delegate = delegate
         
         setupTableView()
@@ -99,23 +88,25 @@ final class AddEventFactory {
 
 //MARK: - TVFactoryProtocol
 extension AddEventFactory: TVFactoryProtocol {
-    
     var builders: [TVCBuilderProtocol] {
+        <#code#>
+    }
+    
+    func setBuilders(with model: AddEventModel) -> [TVCBuilderProtocol] {
         var builders: [TVCBuilderProtocol] = []
         builders.append(contentsOf: [createBuilder(with: model, type: .photoCell),
                                      createBuilder(with: model, type: .titleCell),
                                      createBuilder(with: model, type: .infoCell)])
-        return builders
+        
     }
-}
-
-//MARK: - AddEventFactoryProtocol
-extension AddEventFactory: AddEventFactoryProtocol {
-
-//    func didActionDone(_ type: AddEventActions) {
-//        delegate?.didActionDone(type)
+    
+//    var builders: [TVCBuilderProtocol] {
+//        var builders: [TVCBuilderProtocol] = []
+//        builders.append(contentsOf: [createBuilder(with: model, type: .photoCell),
+//                                     createBuilder(with: model, type: .titleCell),
+//                                     createBuilder(with: model, type: .infoCell)])
+//        return builders
 //    }
 }
-
 
 

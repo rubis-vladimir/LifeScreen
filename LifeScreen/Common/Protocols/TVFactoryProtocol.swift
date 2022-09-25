@@ -8,7 +8,9 @@ import UIKit
 
 /// Фабричный протокол для конфигурации TableView
 protocol TVFactoryProtocol {
-    /// Строители ячеек
-    var builders: [TVCBuilderProtocol] { get }
+    associatedtype Model
+    associatedtype Builder
+    
+    func setBuilders(with model: Model) -> [Builder]
 }
 

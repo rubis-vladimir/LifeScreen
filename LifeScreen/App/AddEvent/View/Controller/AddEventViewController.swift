@@ -36,7 +36,8 @@ class AddEventViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        factory = AddEventFactory(tableView: tableView,
+                                  delegate: presenter)
         setupNavigitionBarViews()
         updateUI()
     }
@@ -114,10 +115,8 @@ extension AddEventViewController: AddEventPresenterDelegate {
         
         customTitleView?.setTitle(model.date?.description, for: .normal)
         
-        factory = AddEventFactory(tableView: tableView,
-                                  model: model,
-                                  delegate: presenter)
-        guard let builders = factory?.builders else { return }
+        
+        guard let builders = factory?.getBuilders(with: ) else { return }
         self.builders = builders
         
         DispatchQueue.main.async {
