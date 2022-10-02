@@ -37,7 +37,7 @@ class LifeEventListViewController: UITableViewController {
         zip(eventsData, dates).forEach { event, date in
             
             let event = EventModel(title: event.key, specification: event.value)
-            event.date = DateConvertService.convertStrToDate(date) ?? Date()
+            event.date = DateConvertService.shared.convertStrToDate(date) ?? Date()
             
             urls.forEach {
                 let image = Image(urlString: $0)
@@ -50,12 +50,13 @@ class LifeEventListViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let key = ObjectId("507f191e810c19729de860ea")
+//        let key = ObjectId("507f191e810c19729de860ea")
         
-        guard let eventModel = localeStorageManager.fetchObjects(EventModel.self) else {
+        guard let eventModels = localeStorageManager.fetchObjects(EventModel.self) else {
             print("Модель не получена")
             return }
-        
+        let eventModel = eventModels.filter { $0.title.contains("Чирик")
+        }
         print(eventModel)
         
         print("_____________________")

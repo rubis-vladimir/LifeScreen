@@ -21,8 +21,6 @@ protocol AddEventPresenterDelegate: AnyObject {
 /// Контроллер добавления жизненных событий
 class AddEventViewController: UITableViewController {
     
-    /// Дефолтная модель данных
-    private var defaultModel = AddEventModel(imageData: [], title: "", text: "")
     /// Презентер модуля AddEvent
     var presenter: AddEventPresentation?
     /// Массив конфигураторов ячеек
@@ -36,30 +34,8 @@ class AddEventViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        factory = AddEventFactory(tableView: tableView,
-                                  delegate: presenter)
         setupNavigitionBarViews()
         updateUI()
-    }
-    
-    /// Настраивает кастомный NavigitionBar
-    private func setupNavigitionBarViews() {
-        
-        let saveRightButton = createCustomBarButton(
-            imageName: "checkmark",
-            selector: #selector(saveAndExitRightButtonTapped)
-        )
-        let cancelLeftButton = createCustomBarButton(
-            imageName: "xmark",
-            selector: #selector(cancelLeftButtonTapped)
-        )
-        customTitleView = createTitleButton(
-            title: "29 августа 2022",
-            selector: #selector(routeToDataPickerVC)
-        )
-        navigationItem.rightBarButtonItems = [saveRightButton]
-        navigationItem.leftBarButtonItems = [cancelLeftButton]
-        navigationItem.titleView = customTitleView
     }
     
     /// Сохраняет событие и скрывает экран
@@ -79,6 +55,25 @@ class AddEventViewController: UITableViewController {
         presenter?.handleAction(
             .route(.dataPicker(date: date))
         )
+    }
+    
+    /// Настраивает кастомный NavigitionBar
+    private func setupNavigitionBarViews() {
+        
+        let saveRightButton = createCustomBarButton(
+            imageName: "checkmark",
+            selector: #selector(saveAndExitRightButtonTapped)
+        )
+        let cancelLeftButton = createCustomBarButton(
+            imageName: "xmark",
+            selector: #selector(cancelLeftButtonTapped)
+        )
+        customTitleView = createTitleButton(
+            selector: #selector(routeToDataPickerVC)
+        )
+        navigationItem.rightBarButtonItems = [saveRightButton]
+        navigationItem.leftBarButtonItems = [cancelLeftButton]
+        navigationItem.titleView = customTitleView
     }
     
     /// Настраивает скрытие экрана
@@ -112,11 +107,14 @@ extension AddEventViewController: AddEventPresenterDelegate {
     
     func updateUI() {
         guard let model = presenter?.eventModel else { return }
+        let date = DateConvertService.shared.convertDateToStr(model.date)
+        customTitleView?.setTitle(date, for: .normal)
         
-        customTitleView?.setTitle(model.date?.description, for: .normal)
+        factory = AddEventFactory(tableView: tableView,
+                                  model: model,
+                                  delegate: presenter)
         
-        
-        guard let builders = factory?.getBuilders(with: ) else { return }
+        guard let builders = factory?.builders else { return }
         self.builders = builders
         
         DispatchQueue.main.async {

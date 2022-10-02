@@ -49,18 +49,16 @@ extension AddEventRouter: AddEventRouting {
             photoPickerManager.createPhotoPicker{ picker in
                 vc.present(picker, animated: true)
             }
-        case .dataPicker(let date):
             
+        case .dataPicker(let date):
             let sheet = DatePickerBottomSheetViewController()
             sheet.view.backgroundColor = .clear
             if let sheet = sheet.sheetPresentationController {
                 sheet.detents = [.medium()]
-//                sheet.selectedDetentIdentifier = .medium
             }
             DatePickerBottomSheetAssembly().assembly(viewController: sheet,
                                                      date: date,
                                                      moduleOutput: moduleOutput)
-            
             vc.present(sheet, animated: true)
         }
     }

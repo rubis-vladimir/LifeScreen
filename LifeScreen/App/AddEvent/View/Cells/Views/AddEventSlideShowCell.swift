@@ -76,7 +76,6 @@ final class AddEventSlideShowCell: UITableViewCell {
         slideShowScrollView.translatesAutoresizingMaskIntoConstraints = false
         slideShowScrollView.delegate = self
         
-        changeImageStack.axis = .horizontal
         changeImageStack.spacing = 20
         changeImageStack.translatesAutoresizingMaskIntoConstraints = false
         changeImageStack.backgroundColor = .clear

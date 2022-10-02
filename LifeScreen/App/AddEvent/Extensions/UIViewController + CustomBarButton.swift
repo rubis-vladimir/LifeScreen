@@ -1,5 +1,5 @@
 //
-//  UIViewController + CustomNB.swift
+//  UIViewController + CustomBarButton.swift
 //  LifeScreen
 //
 //  Created by Владимир Рубис on 27.08.2022.
@@ -9,11 +9,7 @@ import UIKit
 
 extension UIViewController {
     
-    func createCustomNavigationBar() {
-        navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
-    }
-    
-    func createTitleButton(title: String, selector: Selector) -> UIButton {
+    func createTitleButton(selector: Selector) -> UIButton {
         let button = UIButton()
         
         button.frame = CGRect(x: 0, y: 0, width: 180, height: 25)
@@ -22,7 +18,6 @@ extension UIViewController {
         button.layer.borderColor = UIColor.systemGray4.cgColor
         
         button.titleLabel?.font = UIFont(name: "Helvetica", size: 14)
-        button.setTitle(title, for: .normal)
         button.setTitleColor(.black.withAlphaComponent(0.7), for: .normal)
         button.addTarget(self, action: selector, for: .touchUpInside)
         return button

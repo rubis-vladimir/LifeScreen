@@ -35,14 +35,6 @@ final class PhotoPickerManager {
     private var selectedAssetIdentifiers = [String]()
     /// Модель передачи данных/ошибки
     private var photoPickerResponce = PhotoPickerResponse()
-//    
-//    init(delegate: AddEventResponseDelegate) {
-//        self.delegate = delegate
-//    }
-    
-    deinit {
-        print("PHOTO PICKER OFF")
-    }
     
     /// Загружает выбранные объекты
     private func loadObject() {

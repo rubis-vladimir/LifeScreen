@@ -48,9 +48,6 @@ extension ImageDownloadManager: ImageDownloadManagement {
                     return
                 }
                 
-//                print(response?.suggestedFilename ?? url.lastPathComponent)
-//                print("Download Finished")
-                
                 self.imageCache.setObject(data as NSData, forKey: url.absoluteString as NSString)
                 completion(.success(data))
             }

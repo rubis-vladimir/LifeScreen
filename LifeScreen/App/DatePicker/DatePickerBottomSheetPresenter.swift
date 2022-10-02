@@ -7,30 +7,31 @@
 
 import Foundation
 
+/// Протокол передачи даты события
 protocol DatePickerBottomSheetPresentation {
+    
+    /// Отправляет дату делегату
+    ///  - Parameter date: дата
     func send(date: Date)
 }
 
-
+/// Слой презентации модуля DatePickerBottomSheet
 final class DatePickerBottomSheetPresenter {
-    weak var presenter: DatePickerBottomSheetPresenterDelegate?
-    weak var delegate: AddEventResponseDelegate?
     
+    weak var view: DatePickerBottomSheetPresenterDelegate?
+    weak var delegate: AddEventResponseDelegate?
     private var date: Date 
     
     init(date: Date) {
         self.date = date
     }
     
-    deinit {
-        print("DATE PICKER PRESENTER OFF")
-    }
-    
     func updateView() {
-        presenter?.showDate(date)
+        view?.showDate(date)
     }
 }
 
+//MARK: - DatePickerBottomSheetPresentation
 extension DatePickerBottomSheetPresenter: DatePickerBottomSheetPresentation {
     func send(date: Date) {
         delegate?.handleResponse(.dataPicker(date: date))

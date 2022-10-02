@@ -36,7 +36,6 @@ final class MainTabBarController: UITabBarController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        
         redefineTabBarFrame()
         addMiddleButton()
     }

@@ -26,7 +26,6 @@ final class NetworkManager {
         let queue = DispatchQueue(label: "newQueue", qos: .userInteractive, attributes: [.concurrent])
         
         let workItem = DispatchWorkItem {
-            print(Thread.current)
             
             if let data = try? Data(contentsOf: url) {
                 completion(.success(data))

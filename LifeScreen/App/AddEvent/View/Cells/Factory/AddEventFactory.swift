@@ -31,6 +31,7 @@ enum AddEventActions {
 final class AddEventFactory {
     
     private let tableView: UITableView
+    private let model: AddEventModel
     private weak var delegate: AddEventPresentation?
     
     /// Инициализатор
@@ -38,8 +39,10 @@ final class AddEventFactory {
     ///    - tableView: настраиваемая таблица
     ///    - delegate: делегат для передачи UIEvent (VC)
     init(tableView: UITableView,
+         model: AddEventModel,
          delegate: AddEventPresentation?) {
         self.tableView = tableView
+        self.model = model
         self.delegate = delegate
         
         setupTableView()
@@ -88,25 +91,14 @@ final class AddEventFactory {
 
 //MARK: - TVFactoryProtocol
 extension AddEventFactory: TVFactoryProtocol {
-    var builders: [TVCBuilderProtocol] {
-        <#code#>
-    }
     
-    func setBuilders(with model: AddEventModel) -> [TVCBuilderProtocol] {
+    var builders: [TVCBuilderProtocol] {
         var builders: [TVCBuilderProtocol] = []
         builders.append(contentsOf: [createBuilder(with: model, type: .photoCell),
                                      createBuilder(with: model, type: .titleCell),
                                      createBuilder(with: model, type: .infoCell)])
-        
+        return builders
     }
-    
-//    var builders: [TVCBuilderProtocol] {
-//        var builders: [TVCBuilderProtocol] = []
-//        builders.append(contentsOf: [createBuilder(with: model, type: .photoCell),
-//                                     createBuilder(with: model, type: .titleCell),
-//                                     createBuilder(with: model, type: .infoCell)])
-//        return builders
-//    }
 }
 
 

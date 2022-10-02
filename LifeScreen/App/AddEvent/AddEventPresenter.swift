@@ -24,15 +24,6 @@ protocol AddEventResponseDelegate: AnyObject {
     func handleResponse(_ response: AddEventResponse)
 }
 
-protocol AddEventDatePickerDelegate: AnyObject {
-    
-}
-
-/// Пока не используется
-protocol AddEventPresentationManagement: AnyObject {
-    
-}
-
 /// Слой презентации модуля AddEvent
 final class AddEventPresenter {
     /// Модель редактируемого события
@@ -58,6 +49,14 @@ final class AddEventPresenter {
         guard let model = model else { return }
         changeModel(.setEditEvent(model))
     }
+    
+    /// Изменяет модель события
+    ///  - Parameter type: тип действия
+    private func changeModel(_ type: AddEventChangeModelActions) {
+        interactor.changeModel(type: type) { [weak self] model in
+            self?.eventModel = model
+        }
+    }
 }
 
 // MARK: - AddEventPresentation
@@ -82,24 +81,12 @@ extension AddEventPresenter: AddEventPresentation {
             changeModel(change)
         }
     }
-    
-    private func changeModel(_ type: AddEventChangeModelActions) {
-        interactor.changeModel(type: type) { [weak self] result in
-            switch result {
-            case .success(let model):
-                self?.eventModel = model
-            case .failure(let error):
-                self?.delegate?.showError(error)
-            }
-        }
-    }
 }
 
 //MARK: - AddEventDisplayPhotoDelegate
 extension AddEventPresenter: AddEventResponseDelegate {
     
     func handleResponse(_ response: AddEventResponse) {
-        
         switch response {
         case .photoPicker(let response):
             if !response.imagesData.isEmpty {
@@ -108,16 +95,11 @@ extension AddEventPresenter: AddEventResponseDelegate {
             if let error = response.error {
                 delegate?.showError(error)
             }
+            
         case .dataPicker(let date):
             changeModel(.updateDate(date))
         }
     }
-}
-
-// MARK: - AddEventPresentationManagement
-extension AddEventPresenter: AddEventPresentationManagement {
-    
-    
 }
 
 

@@ -29,64 +29,46 @@ protocol AddEventBusinessLogic {
     /// Изменяет модель
     ///  - Parameters:
     ///     - type: тип изменения модели события
-    ///     - completion: захватывает новую модель/ошибку
+    ///     - completion: захватывает новую модель
     func changeModel(type: AddEventChangeModelActions,
-                     completion: @escaping (Result<AddEventModel, AddEventFailure>) -> Void)
+                     completion: @escaping (AddEventModel) -> Void)
     
     /// Сохраняет событие
+    ///  - Parameter completion: захватывает ошибку
     func saveEvent(completion: @escaping (AddEventFailure?) -> Void)
 }
 
 /// Слой бизнес логики модуля AddEvent
 final class AddEventInteractor {
     
-    private(set) var eventModel: AddEventModel = AddEventModel(imageData: [], title: "", text: "", date: Date())
+    private let fileManagerService: FileManagerProtocol
+    private let eventSaveManager: EventSaveProtocol
+    
+    private var eventModel: AddEventModel = AddEventModel(imageData: [], title: "", text: "", date: Date())
     private var id: String?
     
-    weak var presenter: AddEventPresentationManagement?
-    private let fileManagerService: FileManagerProtocol
-    private let localeStorage: LocaleStorageManagement
-    
-    init(fileManager: FileManagerProtocol = FileManagerService(),
-         localeStorage: LocaleStorageManagement = LocaleStorageManager()) {
+    init(fileManager: FileManagerProtocol = FileManagerService.shared,
+         eventSaveManager: EventSaveProtocol = EventSaveManager()) {
         self.fileManagerService = fileManager
-        self.localeStorage = localeStorage
+        self.eventSaveManager = eventSaveManager
     }
     
-    func getCorvertEditModel(editModel: EventModel,
-                             completion: @escaping (Result<AddEventModel, AddEventFailure>) -> Void) {
-        
-        let imageDatas = editModel.images.compactMap { [weak self] image in
-            self?.getImageDataFromFile(editModel: editModel,
-                                       urlString: image.urlString)
-        }
-        
-        
-        
-        eventModel = AddEventModel(imageData: [] ,
-                                   title: editModel.title,
-                                   text: editModel.specification,
-                                   date: editModel.date)
-        self.id = editModel.id
-        completion(.success(eventModel))
-    }
-    
-    func validate() -> Bool {
+    private func validate() -> Bool {
         eventModel.title == "" || eventModel.imageData.isEmpty ? false : true
     }
     
-    /// Получает data из файла, если он существует по заданному пути
-    private func getImageDataFromFile(editModel: EventModel, urlString: String) -> Data? {
-        
-        guard let filePath = fileManagerService.read(from: "2022", and: editModel.title, file: urlString) else { return nil }
-        
-        var data: Data?
-        do {
-            data = try Data(contentsOf: filePath)
-        } catch let error  {
-            print(error.localizedDescription)
+    private func convertEditModel(_ editModel: EventModel) {
+        let urlsString = editModel.images.reduce(into: []) {
+            $0 += [$1.urlString]
         }
-        return data
+        let imagesData = urlsString.map {
+            fileManagerService.getData(from: $0, date: editModel.date)
+        }
+        id = editModel.id
+        eventModel = AddEventModel(imageData: imagesData,
+                                   title: editModel.title,
+                                   text: editModel.specification,
+                                   date: editModel.date)
     }
 }
 
@@ -94,14 +76,12 @@ final class AddEventInteractor {
 extension AddEventInteractor: AddEventBusinessLogic {
     
     func changeModel(type: AddEventChangeModelActions,
-                     completion: @escaping (Result<AddEventModel, AddEventFailure>) -> Void) {
-        
+                     completion: @escaping (AddEventModel) -> Void) {
         switch type {
         case .uploadImage(let imageData):
             eventModel.imageData = imageData
-            completion(.success(eventModel))
             
-        case .changeText(let text, let type):
+        case let .changeText(text, type):
             switch type {
             case .titleCell:
                 eventModel.title = text
@@ -109,20 +89,18 @@ extension AddEventInteractor: AddEventBusinessLogic {
                 eventModel.text = text
             default: break
             }
+            return
             
         case .deleteImage(let index):
             eventModel.imageData.remove(at: index)
-            completion(.success(eventModel))
             
         case .setEditEvent(let model):
-            getCorvertEditModel(editModel: model, completion: completion)
+            convertEditModel(model)
             
         case .updateDate(let date):
             eventModel.date = date
-            completion(.success(eventModel))
         }
-        
-    
+        completion(eventModel)
     }
     
     func saveEvent(completion: @escaping (AddEventFailure?) -> Void) {
@@ -130,46 +108,8 @@ extension AddEventInteractor: AddEventBusinessLogic {
             completion(.noValidate)
             return
         }
-        
-        switch id {
-        case .none:
-            let event = EventModel()
-            convertEvent(from: eventModel, to: event, completion: completion)
-            localeStorage.saveObject(event)
-            
-        case .some(let id):
-            let model = eventModel
-            guard let event = localeStorage
-                .fetchObjects(EventModel.self)?
-                .filter({ $0.id == id })
-                .first else {
-                completion(.eventNotExist)
-                return
-            }
-            
-            localeStorage.updateObject(event) { [weak self] in
-                self?.convertEvent(from: model, to: event, completion: completion)
-            }
-        }
-    }
-    
-    private func convertEvent(from model: AddEventModel,
-                              to event: EventModel,
-                              completion: @escaping (AddEventFailure?) -> Void) {
-        event.title = model.title ?? ""
-        event.specification = model.text ?? ""
-        event.date = model.date ?? Date()
-        event.id = "\(model.title ?? "")+12345"
-        
-        guard let data = model.imageData[0] else { return }
-        guard let newUrlString = FileManagerService.shared.write(
-            data,
-            to: "2022",
-            and: model.title ?? "",
-            file: "Test123"
-        ) else { return }
-        
-        
-        event.images.append(Image(urlString: newUrlString))
+        eventSaveManager.convertAndSave(from: eventModel,
+                                        id: id,
+                                        completion: completion)
     }
 }

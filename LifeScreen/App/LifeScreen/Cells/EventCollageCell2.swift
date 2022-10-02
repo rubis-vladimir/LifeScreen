@@ -28,7 +28,7 @@ class EventCollageCell2: UICollectionViewCell {
     
     func configure(_ viewModel: EventCollageCellViewModelProtocol,
                    imageDownloadManager: ImageDownloadManagement = ImageDownloadManager(),
-                   fileManagerService: FileManagerProtocol = FileManagerService()) {
+                   fileManagerService: FileManagerProtocol = FileManagerService.shared) {
         self.viewModel = viewModel
         self.imageDownloadManager = imageDownloadManager
         self.fileManagerService = fileManagerService
@@ -53,13 +53,12 @@ class EventCollageCell2: UICollectionViewCell {
         
         if let url = viewModel.url {
             
-            let lastPartUrl = url.absoluteString.split(separator: "/").last!
+            let lastPartUrl = ""
             
-            let filePath = fileManagerService.read(from: "2022", and: "Event", file: "\(String(describing: lastPartUrl)).png")
-            print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].absoluteString)
+            let imagesData = FileManagerService.shared.getData(from: lastPartUrl, date: Date())
             
-            if let filePath = filePath {
-                guard let image = UIImage(contentsOfFile: filePath.path) else { return }
+            if let imagesData = imagesData {
+                guard let image = UIImage(data: imagesData) else { return }
                 
                 DispatchQueue.main.async {
                     self.contentContainer.photoImageViewOne.image = image
@@ -86,9 +85,10 @@ class EventCollageCell2: UICollectionViewCell {
                                 print("Картинка загружена из сети")
                             }
                             
-                            
                             if let data = image.pngData() {
-                                fileManagerService.write(data, to: "2022", and: "Event", file: "\(String(describing: lastPartUrl)).png")
+//                                fileManagerService.write(data,
+//                                                         date: Date(),
+//                                                         file: "\(String(describing: lastPartUrl)).png")
                             }
                         }
                     }

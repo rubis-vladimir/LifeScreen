@@ -31,7 +31,6 @@ extension AddEventAssembly {
         let model = EventModel(title: "Чирик-Чирик", specification: "Чижик пыжик, где ты был?")
         vc.presenter = presenter
         presenter.delegate = vc
-        interactor.presenter = presenter
         router.viewController = vc
         presenter.setupEditEvent(with: model)
     }

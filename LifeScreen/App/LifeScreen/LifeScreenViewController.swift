@@ -16,7 +16,6 @@ class LifeScreenViewController: UICollectionViewController {
 
     private var viewModels: [EventCollageCellViewModelProtocol] = [] {
         didSet {
-            print(viewModels[0])
             print("Обновили CollectionView")
             collectionView.reloadData()
         }

@@ -7,17 +7,18 @@
 
 import UIKit
 
-final class DatePickerBottomSheetAssembly { }
-
-extension DatePickerBottomSheetAssembly {
-    func assembly(viewController: UIViewController, date: Date, moduleOutput: AddEventResponseDelegate) {
+/// Компоновщик для DatePickerBottomSheet
+final class DatePickerBottomSheetAssembly {
+    
+    func assembly(viewController: UIViewController,
+                  date: Date,
+                  moduleOutput: AddEventResponseDelegate) {
         
         guard let viewController = viewController as? DatePickerBottomSheetViewController else { return }
         let presenter = DatePickerBottomSheetPresenter(date: date)
         viewController.presenter = presenter
-        presenter.presenter = viewController
+        presenter.view = viewController
         presenter.updateView()
-        
         presenter.delegate = moduleOutput
     }
 }
