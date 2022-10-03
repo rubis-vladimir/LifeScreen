@@ -18,6 +18,7 @@ final class MainTabBarController: UITabBarController {
     var presenter: MainTabBarPresentation?
     
     private let middleButton = UIButton()
+    private let searchBar = UISearchBar()
     
     private var plusImageView: UIImageView = {
         let imageView = UIImageView()
@@ -32,13 +33,50 @@ final class MainTabBarController: UITabBarController {
         imageView.tintColor = .systemGray
         return imageView
     }()
-    
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupNavigitionBarViews()
+    }
+        
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        
         redefineTabBarFrame()
         addMiddleButton()
+        navigationController?.navigationBar.tintColor = .black.withAlphaComponent(0.7)
+    }
+    
+    
+    @objc private func didRightBarButtonTapped() {
+        let vc = UIViewController()
+        vc.view.backgroundColor = .orange
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc private func handleShowSearchBar() {
+        print("SEARCH")
+        
+        navigationItem.titleView = searchBar
+        searchBar.showsCancelButton = true
+        navigationItem.leftBarButtonItem = nil
+        
+    }
+    
+    private func setupNavigitionBarViews() {
+        
+        searchBar.sizeToFit()
+        
+        
+        let rightBarButtonItem = createCustomBarButton(imageName: "gearshape", selector: #selector(didRightBarButtonTapped))
+        let leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search,
+                                                target: self,
+                                                action: #selector(handleShowSearchBar))
+        
+        navigationItem.rightBarButtonItem = rightBarButtonItem
+        navigationItem.leftBarButtonItem = leftBarButtonItem
     }
     
     /// Переопределяем Frame для tabBar
@@ -101,6 +139,19 @@ final class MainTabBarController: UITabBarController {
     @objc func routeToCreateEvent(sender: UIButton) {
         presenter?.readyForRoute()
     }
+}
+
+// MARK: - UISearchBarDelegate
+extension MainTabBarController: UISearchBarDelegate {
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        navigationItem.titleView = nil
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search,
+                                                            target: self,
+                                                            action: #selector(handleShowSearchBar))
+        searchBar.showsCancelButton = false
+    }
+    
 }
 
 // MARK: - MainTabBarViewable
