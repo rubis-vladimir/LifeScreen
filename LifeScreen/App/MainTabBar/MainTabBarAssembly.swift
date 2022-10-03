@@ -14,7 +14,7 @@ final class MainTabBarAssembly {
     private let tabBarConfigurator: TabBarConfiguration
     
     init(navigationController: UINavigationController,
-         tabBarConfigurator: TabBarConfiguration = TabBarConfigurator()) {
+         tabBarConfigurator: TabBarConfiguration) {
         self.navigationController = navigationController
         self.tabBarConfigurator = tabBarConfigurator
     }
@@ -32,7 +32,6 @@ extension MainTabBarAssembly: Assemblying {
         
         tb.presenter = presenter
         router.navigationController = navigationController
-        
         tabBarConfigurator.generate(tabBar: tb)
     }
 }
