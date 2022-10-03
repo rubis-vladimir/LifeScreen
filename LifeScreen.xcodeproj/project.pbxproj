@@ -79,6 +79,7 @@
 		7DCC91FE28E4DCB7006B767C /* TVFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCC91FD28E4DCB7006B767C /* TVFactoryProtocol.swift */; };
 		7DCC920028E7039E006B767C /* EventSaveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCC91FF28E7039E006B767C /* EventSaveManager.swift */; };
 		7DCC920228EB18CE006B767C /* UIViewController + Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCC920128EB18CE006B767C /* UIViewController + Alert.swift */; };
+		7DCC920628EB7D9A006B767C /* MainTabBarController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCC920528EB7D9A006B767C /* MainTabBarController2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -154,6 +155,7 @@
 		7DCC91FD28E4DCB7006B767C /* TVFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVFactoryProtocol.swift; sourceTree = "<group>"; };
 		7DCC91FF28E7039E006B767C /* EventSaveManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSaveManager.swift; sourceTree = "<group>"; };
 		7DCC920128EB18CE006B767C /* UIViewController + Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Alert.swift"; sourceTree = "<group>"; };
+		7DCC920528EB7D9A006B767C /* MainTabBarController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -402,6 +404,7 @@
 			isa = PBXGroup;
 			children = (
 				7D34BE8428BD5BED002249DF /* MainTabBarController.swift */,
+				7DCC920528EB7D9A006B767C /* MainTabBarController2.swift */,
 				7D6AEF3228AD30A000B70B33 /* MainTabBarPresenter.swift */,
 				7D6AEF3428AD30BF00B70B33 /* MainTabBarRouter.swift */,
 				7D6AEF3028AD308C00B70B33 /* MainTabBarAssembly.swift */,
@@ -680,6 +683,7 @@
 				7DA3EE7C28872A8400EE5D28 /* LifeEventListAssembly.swift in Sources */,
 				7D0CB12E28D99F3F00EE1F2D /* DatePickerBottomSheetAssembly.swift in Sources */,
 				7D0CB12A28D5E3C700EE1F2D /* UIButton + ChangeSlideshowButton.swift in Sources */,
+				7DCC920628EB7D9A006B767C /* MainTabBarController2.swift in Sources */,
 				7D48DC8328B37F4F0063A017 /* AddEventInfoCell.swift in Sources */,
 				7DA3EE912888292C00EE5D28 /* LifeScreenRouter.swift in Sources */,
 				7D26B8A828B2CD10005DE3F5 /* TVCBuilderProtocol.swift in Sources */,
