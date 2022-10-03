@@ -29,7 +29,7 @@
 		7D48DC9828B3EDC50063A017 /* AddEventTitleCellBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D48DC9728B3EDC50063A017 /* AddEventTitleCellBuilder.swift */; };
 		7D4B76A5288B4CE000CCF8DD /* Persist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4B76A4288B4CE000CCF8DD /* Persist.swift */; };
 		7D4B76A82891605100CCF8DD /* CollageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4B76A72891605100CCF8DD /* CollageView.swift */; };
-		7D4B76AA2891B32E00CCF8DD /* EventCollageCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4B76A92891B32E00CCF8DD /* EventCollageCell2.swift */; };
+		7D4B76AA2891B32E00CCF8DD /* EventCollageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4B76A92891B32E00CCF8DD /* EventCollageCell.swift */; };
 		7D4CCC152893FDA7001EEE5A /* LifeEventCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CCC142893FDA7001EEE5A /* LifeEventCellViewModel.swift */; };
 		7D4CCC18289403C3001EEE5A /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CCC17289403C3001EEE5A /* EventModel.swift */; };
 		7D67ABE028BA0EB3001B7554 /* AddEventRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D67ABDF28BA0EB3001B7554 /* AddEventRouter.swift */; };
@@ -68,7 +68,6 @@
 		7DA3EEAF288876E800EE5D28 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EEAE288876E800EE5D28 /* NetworkManager.swift */; };
 		7DA3EEB128887FA700EE5D28 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EEB028887FA700EE5D28 /* Event.swift */; };
 		7DA3EEB42888850900EE5D28 /* ImageDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EEB32888850900EE5D28 /* ImageDownloadManager.swift */; };
-		7DA3EEB6288891E200EE5D28 /* EventCollageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EEB5288891E200EE5D28 /* EventCollageCell.swift */; };
 		7DA3EEB92888945800EE5D28 /* EventCollageCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EEB82888945800EE5D28 /* EventCollageCellViewModel.swift */; };
 		7DA3EEBC288993CA00EE5D28 /* LifeScreenPresentetionLanWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3EEBB288993CA00EE5D28 /* LifeScreenPresentetionLanWorker.swift */; };
 		7DC4D3AC28A42C7B009D378B /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 7DC4D3AB28A42C7B009D378B /* Realm */; };
@@ -79,6 +78,7 @@
 		7DC4D3B728A4F2D4009D378B /* DateConvertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4D3B628A4F2D4009D378B /* DateConvertService.swift */; };
 		7DCC91FE28E4DCB7006B767C /* TVFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCC91FD28E4DCB7006B767C /* TVFactoryProtocol.swift */; };
 		7DCC920028E7039E006B767C /* EventSaveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCC91FF28E7039E006B767C /* EventSaveManager.swift */; };
+		7DCC920228EB18CE006B767C /* UIViewController + Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCC920128EB18CE006B767C /* UIViewController + Alert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,7 +104,7 @@
 		7D48DC9728B3EDC50063A017 /* AddEventTitleCellBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventTitleCellBuilder.swift; sourceTree = "<group>"; };
 		7D4B76A4288B4CE000CCF8DD /* Persist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persist.swift; sourceTree = "<group>"; };
 		7D4B76A72891605100CCF8DD /* CollageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageView.swift; sourceTree = "<group>"; };
-		7D4B76A92891B32E00CCF8DD /* EventCollageCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollageCell2.swift; sourceTree = "<group>"; };
+		7D4B76A92891B32E00CCF8DD /* EventCollageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollageCell.swift; sourceTree = "<group>"; };
 		7D4CCC142893FDA7001EEE5A /* LifeEventCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeEventCellViewModel.swift; sourceTree = "<group>"; };
 		7D4CCC17289403C3001EEE5A /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
 		7D67ABDF28BA0EB3001B7554 /* AddEventRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventRouter.swift; sourceTree = "<group>"; };
@@ -145,7 +145,6 @@
 		7DA3EEAE288876E800EE5D28 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		7DA3EEB028887FA700EE5D28 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		7DA3EEB32888850900EE5D28 /* ImageDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadManager.swift; sourceTree = "<group>"; };
-		7DA3EEB5288891E200EE5D28 /* EventCollageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollageCell.swift; sourceTree = "<group>"; };
 		7DA3EEB82888945800EE5D28 /* EventCollageCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollageCellViewModel.swift; sourceTree = "<group>"; };
 		7DA3EEBB288993CA00EE5D28 /* LifeScreenPresentetionLanWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeScreenPresentetionLanWorker.swift; sourceTree = "<group>"; };
 		7DC4D3AF28A4305A009D378B /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
@@ -154,6 +153,7 @@
 		7DC4D3B628A4F2D4009D378B /* DateConvertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateConvertService.swift; sourceTree = "<group>"; };
 		7DCC91FD28E4DCB7006B767C /* TVFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVFactoryProtocol.swift; sourceTree = "<group>"; };
 		7DCC91FF28E7039E006B767C /* EventSaveManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSaveManager.swift; sourceTree = "<group>"; };
+		7DCC920128EB18CE006B767C /* UIViewController + Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Alert.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +192,8 @@
 			isa = PBXGroup;
 			children = (
 				7D34BE8228BD3ABB002249DF /* UINavigationController + Transition.swift */,
+				7D67ABE528BA7689001B7554 /* UIViewController + CustomBarButton.swift */,
+				7DCC920128EB18CE006B767C /* UIViewController + Alert.swift */,
 			);
 			name = Extensions;
 			path = Entity;
@@ -308,7 +310,6 @@
 		7D67ABE428BA764F001B7554 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				7D67ABE528BA7689001B7554 /* UIViewController + CustomBarButton.swift */,
 				7D0CB12928D5E3C700EE1F2D /* UIButton + ChangeSlideshowButton.swift */,
 			);
 			path = Extensions;
@@ -367,11 +368,11 @@
 		7DA3EE7628871FD400EE5D28 /* LifeEventList */ = {
 			isa = PBXGroup;
 			children = (
-				7DA3EE7B28872A8400EE5D28 /* LifeEventListAssembly.swift */,
-				7DA3EE6F288719D400EE5D28 /* LifeEventListViewController.swift */,
+				7DCC920328EB4820006B767C /* Views */,
 				7DA3EE8328872E7500EE5D28 /* LifeEventListInteractor.swift */,
 				7DA3EE8128872CE800EE5D28 /* LifeEventListPresenter.swift */,
 				7DA3EE8528872EC200EE5D28 /* LifeEventListRouter.swift */,
+				7DA3EE7B28872A8400EE5D28 /* LifeEventListAssembly.swift */,
 				7D4CCC132893FD72001EEE5A /* ViewModels */,
 				7D6AEF3E28AE313E00B70B33 /* Workers */,
 				7DA3EE872887439F00EE5D28 /* Cells */,
@@ -461,8 +462,7 @@
 		7DA3EE9228882B0D00EE5D28 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				7DA3EEB5288891E200EE5D28 /* EventCollageCell.swift */,
-				7D4B76A92891B32E00CCF8DD /* EventCollageCell2.swift */,
+				7D4B76A92891B32E00CCF8DD /* EventCollageCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -577,6 +577,22 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		7DCC920328EB4820006B767C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7DCC920428EB483F006B767C /* Controller */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7DCC920428EB483F006B767C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7DA3EE6F288719D400EE5D28 /* LifeEventListViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -680,7 +696,7 @@
 				7D67ABE328BA6105001B7554 /* TabBarConfigurator.swift in Sources */,
 				7D6AEF3528AD30BF00B70B33 /* MainTabBarRouter.swift in Sources */,
 				7D48DC8128B37C780063A017 /* AddEventPhotoCell.swift in Sources */,
-				7D4B76AA2891B32E00CCF8DD /* EventCollageCell2.swift in Sources */,
+				7D4B76AA2891B32E00CCF8DD /* EventCollageCell.swift in Sources */,
 				7D34BE8528BD5BED002249DF /* MainTabBarController.swift in Sources */,
 				7D7AC4E928CF40BE00500C0E /* AddEventSlideShowCell.swift in Sources */,
 				7DC4D3B028A4305A009D378B /* UserModel.swift in Sources */,
@@ -706,9 +722,9 @@
 				7DA3EEA628885FF300EE5D28 /* EventDetailsRouter.swift in Sources */,
 				7D48DC9628B3ED950063A017 /* AddEventTitleCell.swift in Sources */,
 				7D35CCC328B56CEC00EBE9BC /* PhotoPickerManager.swift in Sources */,
+				7DCC920228EB18CE006B767C /* UIViewController + Alert.swift in Sources */,
 				7DA3EE8428872E7500EE5D28 /* LifeEventListInteractor.swift in Sources */,
 				7D47518F28BDE93500E67CE6 /* AddEventFactory.swift in Sources */,
-				7DA3EEB6288891E200EE5D28 /* EventCollageCell.swift in Sources */,
 				7DA3EE9E28885F1F00EE5D28 /* EventDetailsAssembly.swift in Sources */,
 				7D0CB13328D9CA6400EE1F2D /* UIButton + DoneButton.swift in Sources */,
 				7D4CCC18289403C3001EEE5A /* EventModel.swift in Sources */,

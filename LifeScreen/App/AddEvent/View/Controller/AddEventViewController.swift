@@ -135,7 +135,8 @@ extension AddEventViewController: AddEventPresenterDelegate {
         } else if let error = error as? AddEventFailure {
             switch error {
             case .noValidate:
-                print("Должна быть фотография и заголовок")
+                showAlert(title: "ОШИБКА",
+                          messege: "Для сохранения события добавьте фотографию и заголовок")
             default: break
             }
         }

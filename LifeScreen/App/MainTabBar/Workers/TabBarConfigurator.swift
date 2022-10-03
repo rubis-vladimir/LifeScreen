@@ -16,7 +16,11 @@ final class TabBarConfigurator {
     
     /// Настройка TabBar
     /// - Parameter tb: TabBar-VC
+    private let navigationController: UINavigationController
     
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
+    }
     
     /// Настройка VC и tabBarItem
     /// - Parameter viewController: Child-VC
@@ -25,8 +29,6 @@ final class TabBarConfigurator {
                               selectedImage: UIImage? = nil) -> UIViewController {
         viewController.tabBarItem.image = image
         viewController.tabBarItem.selectedImage = selectedImage
-        
-        let navigationController = UINavigationController(rootViewController: viewController)
         
         /// Конфигурируем VIPER-модуль для Child-VC
         switch viewController {

@@ -60,6 +60,7 @@ extension EventSaveManager: EventSaveProtocol {
                 switch result {
                 case .success(let event):
                     self?.localeStorage.saveObject(event)
+                    completion(nil)
                 case .failure(let error):
                     completion(error)
                 }

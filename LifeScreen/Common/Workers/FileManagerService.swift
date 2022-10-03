@@ -51,42 +51,18 @@ extension FileManagerService: FileManagerProtocol {
                                file: file)
         createDirectory(with: filePath)
         var paths: [String] = []
-        do {
-            for image in images {
-                try image.write(to: filePath.appendingPathComponent(file))
+        for i in 0..<images.count {
+            do {
+                let pathToFile = filePath.appendingPathComponent(i.description)
+                try images[i].write(to: pathToFile)
+                paths.append(pathToFile.path)
+            } catch {
+                print(error.localizedDescription)
             }
-            paths.append(filePath.appendingPathComponent(file).path)
-        } catch {
-            print(error.localizedDescription)
         }
+        print(paths)
         return paths
     }
-    
-    
-    //    func write(_ image: Data,
-    //               to directoryPathComponents: [String],
-    //               file: String) -> String? {
-    //
-    //        let filePath = path.appendingPathComponent(directoryYear).appendingPathComponent(directoryEvent)
-    //
-    //        if !FileManager.default.fileExists(atPath: filePath.absoluteString) {
-    //            do {
-    //                try FileManager.default.createDirectory(at: filePath,
-    //                                                        withIntermediateDirectories: true,
-    //                                                        attributes: nil)
-    //            } catch {
-    //                print(error.localizedDescription)
-    //            }
-    //        }
-    //
-    //        do {
-    //            try image.write(to: filePath.appendingPathComponent(file))
-    //            return filePath.appendingPathComponent(file).path
-    //        } catch {
-    //            print(error.localizedDescription)
-    //            return nil
-    //        }
-    //    }
     
     private func getPath(directoryPathComponents: [String], file: String) -> URL {
         return directoryPathComponents.reduce(path) {
@@ -95,7 +71,7 @@ extension FileManagerService: FileManagerProtocol {
     }
     
     private func createDirectory(with path: URL) {
-        let path = path.deletingLastPathComponent()
+        //        let path = path.deletingLastPathComponent()
         if !FileManager.default.fileExists(atPath: path.absoluteString) {
             do {
                 try FileManager.default.createDirectory(at: path,

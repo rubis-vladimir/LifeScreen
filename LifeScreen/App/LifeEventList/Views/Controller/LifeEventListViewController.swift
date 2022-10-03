@@ -45,6 +45,10 @@ class LifeEventListViewController: UITableViewController {
             }
 //            user.events.append(event)
         }
+        
+        localeStorageManager.removeAll()
+        
+//        setupNavigitionBarViews()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -68,6 +72,17 @@ class LifeEventListViewController: UITableViewController {
         }
         
                                                                                                                 
+    }
+    
+    @objc private func didRightBarButtonTapped() {
+        
+    }
+    
+    private func setupNavigitionBarViews() {
+        
+        let rightBarButtonItem = createCustomBarButton(imageName: "slider.horizontal.3", selector: #selector(didRightBarButtonTapped))
+        
+        navigationItem.rightBarButtonItem = rightBarButtonItem
     }
     
     // MARK: - UITableViewDataSource

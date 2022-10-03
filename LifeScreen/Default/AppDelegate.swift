@@ -22,7 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         /// Создаем NavigationController для TabBarController
         let navigationVC = UINavigationController(rootViewController: mainTabbarController)
         /// Устанавливаем зависимости и настраиваем TabBarController
-        MainTabBarAssembly(navigationController: navigationVC).assembly(viewController: mainTabbarController)
+        let tabBarConfigurator = TabBarConfigurator(navigationController: navigationVC)
+        MainTabBarAssembly(navigationController: navigationVC, tabBarConfigurator: tabBarConfigurator).assembly(viewController: mainTabbarController)
         
         /// Определяем rootVC и отображаем на экране
         window.rootViewController = navigationVC
